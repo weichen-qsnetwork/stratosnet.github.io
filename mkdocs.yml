@@ -1,5 +1,5 @@
 site_name: Stratos Documentation
-site_url: https://xenthox.github.io/mkdocs
+site_url: https://docs.thestratos.org
 theme:
   name: material
   font:
