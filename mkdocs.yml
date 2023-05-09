@@ -70,6 +70,8 @@ extra:
       link: https://twitter.com/Stratos_Network 
     - icon: fontawesome/brands/medium
       link: https://stratos-network.medium.com/ 
+    - icon: fontawesome/brands/github
+      link: https://github.com/stratosnet
 
 markdown_extensions:
   - toc:
