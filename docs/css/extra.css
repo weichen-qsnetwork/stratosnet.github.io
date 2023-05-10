@@ -88,7 +88,7 @@
 }
 
 /* Logo bigger */
-@media (min-width: 76.25em) {
+@media (min-width: 109.5em) {
   .md-header__button.md-logo {
     position: absolute;
     top: 0;
