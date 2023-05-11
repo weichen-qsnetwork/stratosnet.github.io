@@ -1,6 +1,15 @@
+---
+title: Stratos Chain stchaind gRPC queries
+description: Stratos Network Full-Chain stchaind gRPC queries.
+---
+
 Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/resources/cosmos-grpc-docs.html#cosmos.auth.v1beta1.QueryAccountRequest)
 
 ## Register Module
+
+<br>
+
+---
 
 ### gRPC Gateway
 
@@ -365,6 +374,10 @@ Response:
 
 ## SDS Module
 
+<br>
+
+---
+
 ### gRPC Gateway
 
 | Method Name | Request Type                                                           | Response Type                                                         | Description                                                                 |
@@ -510,6 +523,10 @@ Response:
 ***
 
 ## POT Module
+
+<br>
+
+---
 
 ### gRPC Gateway
 
