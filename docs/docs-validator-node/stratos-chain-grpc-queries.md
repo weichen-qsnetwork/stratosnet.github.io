@@ -24,7 +24,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | BondedResourceNodeCount  | QueryBondedResourceNodeCountRequest <br>fields:{}                              | QueryBondedResourceNodeCountResponse <br>fields:{"number": uint64}                                                              | Get params of Register Module                                             |
 | BondedMetaNodeCount      | QueryBondedMetaNodeCountRequest <br>fields:{}                                  | QueryBondedMetaNodeCountResponse <br>fields:{"number": uint64}                                                                  | Get params of Register Module                                             |
 
-**ResourceNode**:
+<br>
+
+---
+
+ResourceNode:
 
 | Field           | Type                              | Label |
 |-----------------|-----------------------------------|-------|
@@ -38,7 +42,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | creation_time   | google.protobuf.Timestamp         |       |
 | node_type       | uint32                            |       |
 
-**MetaNode**:
+<br>
+
+---
+
+MetaNode:
 
 | Field           | Type                              | Label |
 |-----------------|-----------------------------------|-------|
@@ -51,7 +59,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | description     | Description                       |       |
 | creation_time   | google.protobuf.Timestamp         |       |
 
-**Description**:
+<br>
+
+---
+
+Description:
 
 | Field            | Type   | Label |
 |------------------|--------|-------|
@@ -61,7 +73,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | security_contact | string |       |
 | details          | string |       |
 
-**Params**:
+<br>
+
+---
+
+Params:
 
 | Field                     | Type                     | Label |
 |---------------------------|--------------------------|-------|
@@ -70,7 +86,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | unbonding_completion_time | google.protobuf.Duration |       |
 | max_entries               | uint32                   |       |
 
-**StakingInfo**:
+<br>
+
+---
+
+StakingInfo:
 
 | Field            | Type                              | Label |
 |------------------|-----------------------------------|-------|
@@ -87,7 +107,11 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | un_bonding_stake | cosmos.base.v1beta1.Coin          |       |
 | un_bonded_stake  | cosmos.base.v1beta1.Coin          |       |
 
-**TotalStakesResponse**:
+<br>
+
+---
+
+TotalStakesResponse:
 
 | Field                      | Type                     | Label |
 |----------------------------|--------------------------|-------|
@@ -98,16 +122,18 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 | total_unbonding_stake      | cosmos.base.v1beta1.Coin |       |
 
 
-<details>
-    <summary><code> List </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List all available grpc queries in Register Module</summary>
-<br>
+### - List
+
+List all available grpc queries in Register Module
 
 Request:
-```http request
- grpcurl -plaintext 127.0.0.1:9090 list stratos.register.v1.Query
+
+```
+grpcurl -plaintext 127.0.0.1:9090 list stratos.register.v1.Query
 ```
 Response:
-```shell
+
+``` { .yaml .no-copy }
 stratos.register.v1.Query.ResourceNode
 stratos.register.v1.Query.MetaNode
 stratos.register.v1.Query.Params
@@ -116,19 +142,23 @@ stratos.register.v1.Query.StakeByOwner
 stratos.register.v1.Query.StakeTotal
 stratos.register.v1.Query.BondedResourceNodeCount
 stratos.register.v1.Query.BondedMetaNodeCount
+
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code> ResourceNode </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get info of a registered resource node</summary>
-<br>
+### - ResourceNode
+
+Get info of a registered resource node
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"network_addr":"stsds1xg2jzku8gptq6sjpjd9zus8qec7a39phcj8md9"}' 127.0.0.1:9090 stratos.register.v1.Query.ResourceNode
 ```
+
 Response:
+
 ```json
 {
  "node": {
@@ -148,19 +178,22 @@ Response:
  }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code> MetaNode </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get info of a registered meta node</summary>
-<br>
+### - MetaNode
+
+Get info of a registered meta node
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"network_addr":"stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64"}' 127.0.0.1:9090 stratos.register.v1.Query.MetaNode
 ```
+
 Response:
+
 ```json
 {
  "node": {
@@ -179,19 +212,22 @@ Response:
  }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code> Params</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get params of Register Module</summary>
-<br>
+### - Params
+
+Get params of Register Module
 
 Request:
-```http request
+
+```
 grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.Params
 ```
+
 Response:
+
 ```json
 {
  "params": {
@@ -203,19 +239,22 @@ Response:
  }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code> StakeByNode </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get staking info of a specific node</summary>
-<br>
+### - StakeByNode
+
+Get staking info of a specific node
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"network_addr":"stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64","query_type": 1 }' 127.0.0.1:9090 stratos.register.v1.Query.StakeByNode
 ```
+
 Response:
+
 ```json
 {
  "stakingInfo": {
@@ -246,19 +285,22 @@ Response:
  }
 }
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code> StakeByOwner </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get all staking info of a specific owner</summary>
-<br>
+
+### - StakeByOwner
+
+Get all staking info of a specific owner
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"owner_addr":"st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x", "pagination": {"limit":20}}' 127.0.0.1:9090 stratos.register.v1.Query.StakeByOwner
 ```
 
 Response:
+
 ```json
 {
  "stakingInfos": [
@@ -294,19 +336,23 @@ Response:
  }
 }
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code>StakeTotal</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Query total staking state of all registered resource nodes and meta nodes</summary>
-<br>
+
+### - StakeTotal
+
+Query total staking state of all registered resource nodes and meta nodes
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.StakeTotal
 ```
+
 Response:
-```shell
+
+```json
 {
     "totalStakes": {
         "resourceNodesTotalStake": {
@@ -332,51 +378,55 @@ Response:
     }
 }
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code>BondedResourceNodeCount</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Queries total number of Bonded ResourceNodes</summary>
-<br>
+
+### - BondedResourceNodeCount
+
+Queries total number of Bonded ResourceNodes
 
 Request:
-```http request
+
+```
 grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.BondedResourceNodeCount
 ```
+
 Response:
-```shell
+
+```json
 {
   "number": "2"
 }
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code>BondedMetaNodeCount</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Queries total number of Bonded MetaNodes</summary>
-<br>
+
+### - BondedMetaNodeCount
+
+Queries total number of Bonded MetaNodes
 
 Request:
-```http request
+
+```
 grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.BondedMetaNodeCount
 ```
+
 Response:
-```shell
+
+```json
 {
   "number": "4"
 }
 ```
-</details>
-<br>
-
-
-***
-
-## SDS Module
 
 <br>
+
 
 ---
+
+## SDS Module
 
 ### gRPC Gateway
 
@@ -388,7 +438,7 @@ Response:
 | NozSupply   | QueryNozSupplyRequest <br>fields:{}                                    | QueryNozSupplyResponse <br>fields:{"remaining":string,"total":string} | Query noz supply                                                            |
 | Params      | QueryParamsRequest <br>fields:{}                                       | QueryParamsResponse <br>fields:{"params":Params}                      | Get params of SDS Module                                                    |
 
-**FileInfo**:
+FileInfo:
 
 | Field     | Type   | Label |
 |-----------|--------|-------|
@@ -396,42 +446,49 @@ Response:
 | reporters | bytes  |       |
 | uploader  | string |       |
 
-**Params**:
+Params:
 
 | Field      | Type   | Label |
 |------------|--------|-------|
 | bond_denom | string |       |
 
 
-<details>
-    <summary><code> List </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List all available grpc queries in SDS Module</summary>
-<br>
+### - List
+
+List all available grpc queries in SDS Module
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 list stratos.sds.v1.Query
 ```
+
 Response:
-```shell
+
+``` { .yaml .no-copy }
 stratos.sds.v1.Query.Fileupload
 stratos.sds.v1.Query.SimPrepay
 stratos.sds.v1.Query.NozPrice
 stratos.sds.v1.Query.NozSupply
 stratos.sds.v1.Query.Params
 ```
-</details>
+
 <br>
 
-<details>
-    <summary><code>Fileupload</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Query uploaded file info by hash</summary>
-<br>
+
+### - Fileupload
+
+Query uploaded file info by hash
 
 Request:
-```http request
+
+```
  grpcurl -plaintext -d '{"file_hash":"v05ahm51dd62ise3fo7ojqub90p0ql2c3jg37hk8"}' 127.0.0.1:9090 stratos.sds.v1.Query.Fileupload
 ```
+
 Response:
-```shell
+
+```json
 {
     "file_info": {
         "height": "4109",
@@ -440,93 +497,100 @@ Response:
     }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>SimPrepay</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Simulate prepay to query the noz that can be purchased at the current price</summary>
-<br>
+### - SimPrepay
+
+Simulate prepay to query the noz that can be purchased at the current price
 
 Request:
-```http request
+
+```
  grpcurl -plaintext -d '{"amount":[{"amount":"100000000000","denom":"wei"}]}' 127.0.0.1:9090 stratos.sds.v1.Query.SimPrepay
 ```
+
 Response:
-```shell
+
+```json
 {
     "noz": "98736"
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>NozPrice</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Query the current price of noz</summary>
-<br>
+### - NozPrice
+
+Query the current price of noz
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 stratos.sds.v1.Query.NozPrice
 ```
+
 Response:
-```shell
+
+```json
 {
     "price": "1012791644248016784459322"
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>NozSupply</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Query noz supply</summary>
-<br>
+### - NozSupply
+
+Query noz supply
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 stratos.sds.v1.Query.NozSupply
 ```
+
 Response:
-```shell
+
+```json
 {
     "remaining": "7949398620856330560",
     "total": "8000080000000000000"
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>Params</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get params of SDS Module</summary>
-<br>
+### - Params
+
+Get params of SDS Module
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 stratos.sds.v1.Query.Params
 ```
+
 Response:
-```shell
+
+```json
 {
     "params": {
         "bond_denom": "wei"
     }
 }
 ```
-</details>
-<br>
-
-
-
-***
-
-## POT Module
 
 <br>
+
 
 ---
+
+## POT Module
 
 ### gRPC Gateway
 
@@ -541,7 +605,7 @@ Response:
 | CirculationSupply | QueryCirculationSupplyRequest <br>fields:{}                                                                                          | QueryCirculationSupplyResponse <br>fields:{"circulation_supply":[]cosmos.base.v1beta1.Coin}                                       | Get circulation supply         |
 
 
-**ReportInfo**:
+ReportInfo:
 
 | Field     | Type    | Label |
 |-----------|---------|-------|
@@ -550,7 +614,7 @@ Response:
 | tx_hash   | string  |       |
 | reporter  | string  |       |
 
-**Reward**:
+Reward:
 
 | Field                    | Type                      | Label     |
 |--------------------------|---------------------------|-----------|
@@ -558,7 +622,7 @@ Response:
 | reward_from_mining_pool  | cosmos.base.v1beta1.Coin  | repeated  |
 | reward_from_traffic_pool | cosmos.base.v1beta1.Coin  | repeated  |
 
-**RewardByOwner**:
+RewardByOwner:
 
 | Field                 | Type                     | Label    |
 |-----------------------|--------------------------|----------|
@@ -566,7 +630,7 @@ Response:
 | mature_total_reward   | cosmos.base.v1beta1.Coin | repeated |
 | immature_total_reward | cosmos.base.v1beta1.Coin | repeated |
 
-**Params**:
+Params:
 
 | Field                | Type                     | Label    |
 |----------------------|--------------------------|----------|
@@ -577,7 +641,7 @@ Response:
 | community_tax        | string                   |          |
 | initial_total_supply | cosmos.base.v1beta1.Coin |          |
 
-**MiningRewardParam**:
+MiningRewardParam:
 
 | Field                          | Type                     | Label |
 |--------------------------------|--------------------------|-------|
@@ -589,16 +653,19 @@ Response:
 | meta_node_percentage_in_bp     | string                   |       |
 
 
-<details>
-    <summary><code> List </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List all available grpc queries in POT Module</summary>
-<br>
+### - List
+
+List all available grpc queries in POT Module
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 list stratos.pot.v1.Query
 ```
+
 Response:
-```shell
+
+``` { .yaml .no-copy }
 stratos.pot.v1.Query.VolumeReport
 stratos.pot.v1.Query.RewardsByEpoch
 stratos.pot.v1.Query.RewardsByOwner
@@ -607,19 +674,22 @@ stratos.pot.v1.Query.Params
 stratos.pot.v1.Query.TotalMinedToken
 stratos.pot.v1.Query.CirculationSupply
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>VolumeReport</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get pot volume report by epoch</summary>
-<br>
+### - VolumeReport
+
+Get pot volume report by epoch
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"epoch": 2 }' 127.0.0.1:9090 stratos.pot.v1.Query.VolumeReport
 ```
+
 Response:
+
 ```json
 {
   "report_info": {
@@ -631,19 +701,22 @@ Response:
   "height": "18519"
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>RewardsByEpoch</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Query pot reward by epoch </summary>
-<br>
+### - RewardsByEpoch
+
+Query pot reward by epoch
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"epoch": 2, "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em" }' 127.0.0.1:9090 stratos.pot.v1.Query.RewardsByEpoch
 ```
+
 Response:
+
 ```json
 {
   "rewards": [
@@ -670,19 +743,22 @@ Response:
   }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>RewardsByOwner</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get pot reward by owner </summary>
-<br>
+### - RewardsByOwner
+
+Get pot reward by owner
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em"} ' 127.0.0.1:9090 stratos.pot.v1.Query.RewardsByOwner
 ```
+
 Response:
+
 ```json
 {
   "rewards": {
@@ -702,40 +778,44 @@ Response:
   "height": "18998"
 }
 ```
-</details>
+
 <br>
 
 
+### - SlashingByOwner
 
-<details>
-    <summary><code>SlashingByOwner</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get pot slashing by owner </summary>
-<br>
+Get pot slashing by owner
 
 Request:
-```http request
+
+```
 grpcurl -plaintext -d '{"wallet_address": "st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw"} ' 127.0.0.1:9090 stratos.pot.v1.Query.SlashingByOwner
 ```
+
 Response:
+
 ```json
 {
  "slashing": "0",
  "height": "2977"
 }
 ```
-</details>
+
 <br>
 
 
+### - Params
 
-<details>
-    <summary><code>Params</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get params of POT Module</summary>
-<br>
+Get params of POT Module
 
 Request:
-```http request
+
+```
  grpcurl -plaintext 127.0.0.1:9090 stratos.pot.v1.Query.Params
 ```
+
 Response:
+
 ```json
 {
   "params": {
@@ -854,19 +934,22 @@ Response:
   }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>TotalMinedToken</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get total mined token </summary>
-<br>
+### - TotalMinedToken
+
+Get total mined token
 
 Request:
-```http request
+
+```
 grpcurl -plaintext 127.0.0.1:9090 stratos.pot.v1.Query.TotalMinedToken
 ```
+
 Response:
+
 ```json
 {
   "total_mined_token": {
@@ -875,18 +958,20 @@ Response:
   }
 }
 ```
-</details>
+
 <br>
 
 
-<details>
-    <summary><code>CirculationSupply</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get circulation supply </summary>
-<br>
+### - CirculationSupply
+
+Get circulation supply
 
 Request:
-```http request
+
+```
 grpcurl -plaintext 127.0.0.1:9090 stratos.pot.v1.Query.CirculationSupply
 ```
+
 Response:
 ```json
 {
@@ -898,5 +983,9 @@ Response:
   ]
 }
 ```
-</details>
+
+<br>
+
+---
+
 <br>
