@@ -2687,7 +2687,7 @@ Response Example:
 
     Alias:  /staking/delegators/{delegatorAddr}/unbonding_delegations
 
-    
+
 Request Example:
 ```http
 https://rest-tropos.thestratos.org/cosmos/staking/v1beta1/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegations
@@ -2697,24 +2697,24 @@ https://rest-tropos.thestratos.org/staking/delegators/st1fw6tcpku363yz6le7569wzz
 Response Example:
 ```json
 {
-    "unbonding_responses": [
+  "unbonding_responses": [
+    {
+      "delegator_address": "string",
+      "validator_address": "string",
+      "entries": [
         {
-            "delegator_address": "string",
-            "validator_address": "string",
-            "entries": [
-                {
-                    "creation_height": "string",
-                    "completion_time": "2022-07-19T19:59:10.339Z",
-                    "initial_balance": "string",
-                    "balance": "string"
-                }
-            ]
+          "creation_height": "string",
+          "completion_time": "2022-07-19T19:59:10.339Z",
+          "initial_balance": "string",
+          "balance": "string"
         }
-    ],
-    "pagination": {
-        "next_key": "string",
-        "total": "string"
+      ]
     }
+  ],
+  "pagination": {
+    "next_key": "string",
+    "total": "string"
+  }
 }
 ```
 </details>
@@ -2730,19 +2730,19 @@ https://rest-tropos.thestratos.org/staking/delegators/st12adksjsd7gcsn23h5jmvdyg
 Response Example:
 ```json
 {
-    "height": "2742",
-    "result": {
-        "delegator_address": "st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh",
-        "validator_address": "stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u",
-        "entries": [
-            {
-                "creation_height": "2739",
-                "completion_time": "2021-09-03T00:26:44.825391686Z",
-                "initial_balance": "10000",
-                "balance": "10000"
-            }
-        ]
-    }
+  "height": "2742",
+  "result": {
+    "delegator_address": "st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh",
+    "validator_address": "stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u",
+    "entries": [
+      {
+        "creation_height": "2739",
+        "completion_time": "2021-09-03T00:26:44.825391686Z",
+        "initial_balance": "10000",
+        "balance": "10000"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -2761,41 +2761,41 @@ https://rest-tropos.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6
 Response Example:
 ```json
 {
-    "validators": [
-        {
-            "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-            "consensus_pubkey": {
-                "@type": "/cosmos.crypto.ed25519.PubKey",
-                "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-            },
-            "jailed": false,
-            "status": "BOND_STATUS_BONDED",
-            "tokens": "500000000000",
-            "delegator_shares": "500000000000.000000000000000000",
-            "description": {
-                "moniker": "node",
-                "identity": "",
-                "website": "",
-                "security_contact": "",
-                "details": ""
-            },
-            "unbonding_height": "0",
-            "unbonding_time": "1970-01-01T00:00:00Z",
-            "commission": {
-                "commission_rates": {
-                    "rate": "0.100000000000000000",
-                    "max_rate": "0.200000000000000000",
-                    "max_change_rate": "0.010000000000000000"
-                },
-                "update_time": "2023-01-09T17:08:58.489050300Z"
-            },
-            "min_self_delegation": "1"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+  "validators": [
+    {
+      "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+      "consensus_pubkey": {
+        "@type": "/cosmos.crypto.ed25519.PubKey",
+        "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+      },
+      "jailed": false,
+      "status": "BOND_STATUS_BONDED",
+      "tokens": "500000000000",
+      "delegator_shares": "500000000000.000000000000000000",
+      "description": {
+        "moniker": "node",
+        "identity": "",
+        "website": "",
+        "security_contact": "",
+        "details": ""
+      },
+      "unbonding_height": "0",
+      "unbonding_time": "1970-01-01T00:00:00Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "update_time": "2023-01-09T17:08:58.489050300Z"
+      },
+      "min_self_delegation": "1"
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -2815,30 +2815,30 @@ https://rest-tropos.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6
 Response Example:
 ```json
 {
-    "height": "3158",
-    "result": {
-        "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-        "consensus_pubkey": {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-        },
-        "status": 3,
-        "tokens": "500000000000",
-        "delegator_shares": "500000000000.000000000000000000",
-        "description": {
-            "moniker": "node"
-        },
-        "unbonding_time": "1970-01-01T00:00:00Z",
-        "commission": {
-            "commission_rates": {
-                "rate": "0.100000000000000000",
-                "max_rate": "0.200000000000000000",
-                "max_change_rate": "0.010000000000000000"
-            },
-            "update_time": "2023-01-09T17:08:58.4890503Z"
-        },
-        "min_self_delegation": "1"
-    }
+  "height": "3158",
+  "result": {
+    "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+    "consensus_pubkey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+    },
+    "status": 3,
+    "tokens": "500000000000",
+    "delegator_shares": "500000000000.000000000000000000",
+    "description": {
+      "moniker": "node"
+    },
+    "unbonding_time": "1970-01-01T00:00:00Z",
+    "commission": {
+      "commission_rates": {
+        "rate": "0.100000000000000000",
+        "max_rate": "0.200000000000000000",
+        "max_change_rate": "0.010000000000000000"
+      },
+      "update_time": "2023-01-09T17:08:58.4890503Z"
+    },
+    "min_self_delegation": "1"
+  }
 }
 ```
 </details>
@@ -2863,41 +2863,41 @@ https://rest-tropos.thestratos.org/staking/validators
 Response Example:
 ```json
 {
-    "validators": [
-        {
-            "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-            "consensus_pubkey": {
-                "@type": "/cosmos.crypto.ed25519.PubKey",
-                "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-            },
-            "jailed": false,
-            "status": "BOND_STATUS_BONDED",
-            "tokens": "500000000000",
-            "delegator_shares": "500000000000.000000000000000000",
-            "description": {
-                "moniker": "node",
-                "identity": "",
-                "website": "",
-                "security_contact": "",
-                "details": ""
-            },
-            "unbonding_height": "0",
-            "unbonding_time": "1970-01-01T00:00:00Z",
-            "commission": {
-                "commission_rates": {
-                    "rate": "0.100000000000000000",
-                    "max_rate": "0.200000000000000000",
-                    "max_change_rate": "0.010000000000000000"
-                },
-                "update_time": "2023-01-09T17:08:58.489050300Z"
-            },
-            "min_self_delegation": "1"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+  "validators": [
+    {
+      "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+      "consensus_pubkey": {
+        "@type": "/cosmos.crypto.ed25519.PubKey",
+        "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+      },
+      "jailed": false,
+      "status": "BOND_STATUS_BONDED",
+      "tokens": "500000000000",
+      "delegator_shares": "500000000000.000000000000000000",
+      "description": {
+        "moniker": "node",
+        "identity": "",
+        "website": "",
+        "security_contact": "",
+        "details": ""
+      },
+      "unbonding_height": "0",
+      "unbonding_time": "1970-01-01T00:00:00Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "update_time": "2023-01-09T17:08:58.489050300Z"
+      },
+      "min_self_delegation": "1"
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -2917,35 +2917,35 @@ https://rest-tropos.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu00
 Response Example:
 ```json
 {
-    "validator": {
-        "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-        "consensus_pubkey": {
-            "@type": "/cosmos.crypto.ed25519.PubKey",
-            "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-        },
-        "jailed": false,
-        "status": "BOND_STATUS_BONDED",
-        "tokens": "500000000000",
-        "delegator_shares": "500000000000.000000000000000000",
-        "description": {
-            "moniker": "node",
-            "identity": "",
-            "website": "",
-            "security_contact": "",
-            "details": ""
-        },
-        "unbonding_height": "0",
-        "unbonding_time": "1970-01-01T00:00:00Z",
-        "commission": {
-            "commission_rates": {
-                "rate": "0.100000000000000000",
-                "max_rate": "0.200000000000000000",
-                "max_change_rate": "0.010000000000000000"
-            },
-            "update_time": "2023-01-09T17:08:58.489050300Z"
-        },
-        "min_self_delegation": "1"
-    }
+  "validator": {
+    "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+    "consensus_pubkey": {
+      "@type": "/cosmos.crypto.ed25519.PubKey",
+      "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+    },
+    "jailed": false,
+    "status": "BOND_STATUS_BONDED",
+    "tokens": "500000000000",
+    "delegator_shares": "500000000000.000000000000000000",
+    "description": {
+      "moniker": "node",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "unbonding_height": "0",
+    "unbonding_time": "1970-01-01T00:00:00Z",
+    "commission": {
+      "commission_rates": {
+        "rate": "0.100000000000000000",
+        "max_rate": "0.200000000000000000",
+        "max_change_rate": "0.010000000000000000"
+      },
+      "update_time": "2023-01-09T17:08:58.489050300Z"
+    },
+    "min_self_delegation": "1"
+  }
 }
 ```
 </details>
@@ -2964,23 +2964,23 @@ https://rest-tropos.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu00
 Response Example:
 ```json
 {
-    "delegation_responses": [
-        {
-            "delegation": {
-                "delegator_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-                "validator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-                "shares": "500000000000.000000000000000000"
-            },
-            "balance": {
-                "denom": "wei",
-                "amount": "500000000000"
-            }
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+  "delegation_responses": [
+    {
+      "delegation": {
+        "delegator_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+        "validator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+        "shares": "500000000000.000000000000000000"
+      },
+      "balance": {
+        "denom": "wei",
+        "amount": "500000000000"
+      }
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -2996,17 +2996,17 @@ https://rest-tropos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1p
 Response Example:
 ```json
 {
-    "delegation_response": {
-        "delegation": {
-            "delegator_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-            "validator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-            "shares": "500000000000.000000000000000000"
-        },
-        "balance": {
-            "denom": "wei",
-            "amount": "500000000000"
-        }
+  "delegation_response": {
+    "delegation": {
+      "delegator_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+      "validator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+      "shares": "500000000000.000000000000000000"
+    },
+    "balance": {
+      "denom": "wei",
+      "amount": "500000000000"
     }
+  }
 }
 ```
 </details>
@@ -3023,18 +3023,18 @@ https://rest-tropos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1v
 Response Example:
 ```json
 {
-    "unbond": {
-        "delegator_address": "st1fw6tcpku363yz6le7569wzzg84val68e9eayq7",
-        "validator_address": "stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a",
-        "entries": [
-            {
-                "creation_height": "4336",
-                "completion_time": "2022-08-09T21:02:38.208383315Z",
-                "initial_balance": "100",
-                "balance": "100"
-            }
-        ]
-    }
+  "unbond": {
+    "delegator_address": "st1fw6tcpku363yz6le7569wzzg84val68e9eayq7",
+    "validator_address": "stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a",
+    "entries": [
+      {
+        "creation_height": "4336",
+        "completion_time": "2022-08-09T21:02:38.208383315Z",
+        "initial_balance": "100",
+        "balance": "100"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -3054,24 +3054,24 @@ https://rest-tropos.thestratos.org/staking/validators/stvaloper1v33vxhmu9kp9yrnc
 Response Example:
 ```json
 {
-    "unbonding_responses": [
+  "unbonding_responses": [
+    {
+      "delegator_address": "st1fw6tcpku363yz6le7569wzzg84val68e9eayq7",
+      "validator_address": "stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a",
+      "entries": [
         {
-            "delegator_address": "st1fw6tcpku363yz6le7569wzzg84val68e9eayq7",
-            "validator_address": "stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a",
-            "entries": [
-                {
-                    "creation_height": "4336",
-                    "completion_time": "2022-08-09T21:02:38.208383315Z",
-                    "initial_balance": "100",
-                    "balance": "100"
-                }
-            ]
+          "creation_height": "4336",
+          "completion_time": "2022-08-09T21:02:38.208383315Z",
+          "initial_balance": "100",
+          "balance": "100"
         }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+      ]
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -3090,11 +3090,11 @@ https://rest-tropos.thestratos.org/staking/pool
 Response Example:
 ```json
 {
-    "height": "3295",
-    "result": {
-        "not_bonded_tokens": "0",
-        "bonded_tokens": "500000000000"
-    }
+  "height": "3295",
+  "result": {
+    "not_bonded_tokens": "0",
+    "bonded_tokens": "500000000000"
+  }
 }
 ```
 </details>
@@ -3113,14 +3113,14 @@ https://rest-tropos.thestratos.org/staking/parameters
 Response Example:
 ```json
 {
-    "height": "3306",
-    "result": {
-        "unbonding_time": "1814400000000000",
-        "max_validators": 100,
-        "max_entries": 7,
-        "historical_entries": 10000,
-        "bond_denom": "wei"
-    }
+  "height": "3306",
+  "result": {
+    "unbonding_time": "1814400000000000",
+    "max_validators": 100,
+    "max_entries": 7,
+    "historical_entries": 10000,
+    "bond_denom": "wei"
+  }
 }
 ```
 </details>
@@ -3136,64 +3136,64 @@ https://rest-tropos.thestratos.org/cosmos/staking/v1beta1/historical_info/3306
 Response Example:
 ```json
 {
-    "hist": {
-        "header": {
-            "version": {
-                "block": "11",
-                "app": "0"
-            },
-            "chain_id": "test-chain",
-            "height": "3306",
-            "time": "2023-01-11T16:52:59.055776222Z",
-            "last_block_id": {
-                "hash": "m9Oo8OpUP0fhPJdidZlFKtAPlQhwSgEfiYKrEkqvUF8=",
-                "part_set_header": {
-                    "total": 1,
-                    "hash": "pUakkavHHERRXfzunIB4hyPB2wPl9DeTqmgunmTsmXY="
-                }
-            },
-            "last_commit_hash": "x7G3rcph4rtTJDmXOn/hdHwnq6jb3dLV9thcS2zv8fc=",
-            "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
-            "app_hash": "I769v0BCHX/DgctOF5/Y+mnM8m+ia11goQXvUM2uto8=",
-            "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
+  "hist": {
+    "header": {
+      "version": {
+        "block": "11",
+        "app": "0"
+      },
+      "chain_id": "test-chain",
+      "height": "3306",
+      "time": "2023-01-11T16:52:59.055776222Z",
+      "last_block_id": {
+        "hash": "m9Oo8OpUP0fhPJdidZlFKtAPlQhwSgEfiYKrEkqvUF8=",
+        "part_set_header": {
+          "total": 1,
+          "hash": "pUakkavHHERRXfzunIB4hyPB2wPl9DeTqmgunmTsmXY="
+        }
+      },
+      "last_commit_hash": "x7G3rcph4rtTJDmXOn/hdHwnq6jb3dLV9thcS2zv8fc=",
+      "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
+      "app_hash": "I769v0BCHX/DgctOF5/Y+mnM8m+ia11goQXvUM2uto8=",
+      "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
+    },
+    "valset": [
+      {
+        "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
+        "consensus_pubkey": {
+          "@type": "/cosmos.crypto.ed25519.PubKey",
+          "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
         },
-        "valset": [
-            {
-                "operator_address": "stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu",
-                "consensus_pubkey": {
-                    "@type": "/cosmos.crypto.ed25519.PubKey",
-                    "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-                },
-                "jailed": false,
-                "status": "BOND_STATUS_BONDED",
-                "tokens": "500000000000",
-                "delegator_shares": "500000000000.000000000000000000",
-                "description": {
-                    "moniker": "node",
-                    "identity": "",
-                    "website": "",
-                    "security_contact": "",
-                    "details": ""
-                },
-                "unbonding_height": "0",
-                "unbonding_time": "1970-01-01T00:00:00Z",
-                "commission": {
-                    "commission_rates": {
-                        "rate": "0.100000000000000000",
-                        "max_rate": "0.200000000000000000",
-                        "max_change_rate": "0.010000000000000000"
-                    },
-                    "update_time": "2023-01-09T17:08:58.489050300Z"
-                },
-                "min_self_delegation": "1"
-            }
-        ]
-    }
+        "jailed": false,
+        "status": "BOND_STATUS_BONDED",
+        "tokens": "500000000000",
+        "delegator_shares": "500000000000.000000000000000000",
+        "description": {
+          "moniker": "node",
+          "identity": "",
+          "website": "",
+          "security_contact": "",
+          "details": ""
+        },
+        "unbonding_height": "0",
+        "unbonding_time": "1970-01-01T00:00:00Z",
+        "commission": {
+          "commission_rates": {
+            "rate": "0.100000000000000000",
+            "max_rate": "0.200000000000000000",
+            "max_change_rate": "0.010000000000000000"
+          },
+          "update_time": "2023-01-09T17:08:58.489050300Z"
+        },
+        "min_self_delegation": "1"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -3423,65 +3423,65 @@ https://rest-tropos.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
 Response Example:
 ```json
 {
-    "block_id": {
-        "hash": "sMqrEks0H7oR/8svEPNfQNDs/ohLHMRF63VOd5nUCIo=",
-        "part_set_header": {
-            "total": 1,
-            "hash": "KAPRCqsANSLnnJy5SplBnGtP3c1xPZ+IUe0k2pUU8aE="
-        }
-    },
-    "block": {
-        "header": {
-            "version": {
-                "block": "11",
-                "app": "0"
-            },
-            "chain_id": "test-chain",
-            "height": "3342",
-            "time": "2023-01-11T16:55:59.811290254Z",
-            "last_block_id": {
-                "hash": "FdTnVbBsS5nnK66URj5Lv6v6/889XdJTyShJC6eREvY=",
-                "part_set_header": {
-                    "total": 1,
-                    "hash": "ucD3c65YyXhsqe21apRAs9R4Ytw3TBM42yVNV1hohKg="
-                }
-            },
-            "last_commit_hash": "/oU+N+xWq/0a1vHz9hte2BlMGn33LQcJAdNWaYOaX1s=",
-            "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
-            "app_hash": "Pgf0fbYlN8UPoOOI5c0qQZCuuL3Q32NV8swM+OJnvLo=",
-            "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
-        },
-        "data": {
-            "txs": []
-        },
-        "evidence": {
-            "evidence": []
-        },
-        "last_commit": {
-            "height": "3341",
-            "round": 0,
-            "block_id": {
-                "hash": "FdTnVbBsS5nnK66URj5Lv6v6/889XdJTyShJC6eREvY=",
-                "part_set_header": {
-                    "total": 1,
-                    "hash": "ucD3c65YyXhsqe21apRAs9R4Ytw3TBM42yVNV1hohKg="
-                }
-            },
-            "signatures": [
-                {
-                    "block_id_flag": "BLOCK_ID_FLAG_COMMIT",
-                    "validator_address": "GKcWnBtCfZlBM/ez1FBOknids3w=",
-                    "timestamp": "2023-01-11T16:55:59.811290254Z",
-                    "signature": "tspmnLBjoCTfUbfh1gv1/YTnCOlcJAjadfbguSFvWB+GwROVoxcPvGjxqHBiFbKvyG/yJTjr4FSauLXDvoBgAw=="
-                }
-            ]
-        }
+  "block_id": {
+    "hash": "sMqrEks0H7oR/8svEPNfQNDs/ohLHMRF63VOd5nUCIo=",
+    "part_set_header": {
+      "total": 1,
+      "hash": "KAPRCqsANSLnnJy5SplBnGtP3c1xPZ+IUe0k2pUU8aE="
     }
+  },
+  "block": {
+    "header": {
+      "version": {
+        "block": "11",
+        "app": "0"
+      },
+      "chain_id": "test-chain",
+      "height": "3342",
+      "time": "2023-01-11T16:55:59.811290254Z",
+      "last_block_id": {
+        "hash": "FdTnVbBsS5nnK66URj5Lv6v6/889XdJTyShJC6eREvY=",
+        "part_set_header": {
+          "total": 1,
+          "hash": "ucD3c65YyXhsqe21apRAs9R4Ytw3TBM42yVNV1hohKg="
+        }
+      },
+      "last_commit_hash": "/oU+N+xWq/0a1vHz9hte2BlMGn33LQcJAdNWaYOaX1s=",
+      "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
+      "app_hash": "Pgf0fbYlN8UPoOOI5c0qQZCuuL3Q32NV8swM+OJnvLo=",
+      "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
+    },
+    "data": {
+      "txs": []
+    },
+    "evidence": {
+      "evidence": []
+    },
+    "last_commit": {
+      "height": "3341",
+      "round": 0,
+      "block_id": {
+        "hash": "FdTnVbBsS5nnK66URj5Lv6v6/889XdJTyShJC6eREvY=",
+        "part_set_header": {
+          "total": 1,
+          "hash": "ucD3c65YyXhsqe21apRAs9R4Ytw3TBM42yVNV1hohKg="
+        }
+      },
+      "signatures": [
+        {
+          "block_id_flag": "BLOCK_ID_FLAG_COMMIT",
+          "validator_address": "GKcWnBtCfZlBM/ez1FBOknids3w=",
+          "timestamp": "2023-01-11T16:55:59.811290254Z",
+          "signature": "tspmnLBjoCTfUbfh1gv1/YTnCOlcJAjadfbguSFvWB+GwROVoxcPvGjxqHBiFbKvyG/yJTjr4FSauLXDvoBgAw=="
+        }
+      ]
+    }
+  }
 }
 ```
 </details>
@@ -3498,67 +3498,67 @@ https://rest-tropos.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
 Response Example:
 ```json
 {
-    "block_id": {
-        "hash": "v3fqwUVL/XL0rwCxmO4x96Euvy2V7ZJso8+4rqohl9o=",
-        "part_set_header": {
-            "total": 1,
-            "hash": "t8wCFw2/VHBOHYAIO4k7MZNgUIzjBazvNjQS3R89NuM="
-        }
-    },
-    "block": {
-        "header": {
-            "version": {
-                "block": "11",
-                "app": "0"
-            },
-            "chain_id": "test-chain",
-            "height": "3355",
-            "time": "2023-01-11T16:57:05.012011668Z",
-            "last_block_id": {
-                "hash": "IdID2P6phDleoQAdMrLwzVr2DY02Omx3VnlATf4TwKI=",
-                "part_set_header": {
-                    "total": 1,
-                    "hash": "D/UcqWz7vvjUZ+yBezcVNymswrPpsYNMC0YfW5veVBM="
-                }
-            },
-            "last_commit_hash": "//C9EwF2qjAPjGaykugAv4N4kRY3+DqiXJI/QRMtSfk=",
-            "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
-            "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
-            "app_hash": "vJ+axVi3DlFFnA6bPzqAaco9J3mXsObourreZUhz01M=",
-            "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
-            "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
-        },
-        "data": {
-            "txs": [
-            ]
-        },
-        "evidence": {
-            "evidence": [
-            ]
-        },
-        "last_commit": {
-            "height": "3354",
-            "round": 0,
-            "block_id": {
-                "hash": "IdID2P6phDleoQAdMrLwzVr2DY02Omx3VnlATf4TwKI=",
-                "part_set_header": {
-                    "total": 1,
-                    "hash": "D/UcqWz7vvjUZ+yBezcVNymswrPpsYNMC0YfW5veVBM="
-                }
-            },
-            "signatures": [
-                {
-                    "block_id_flag": "BLOCK_ID_FLAG_COMMIT",
-                    "validator_address": "GKcWnBtCfZlBM/ez1FBOknids3w=",
-                    "timestamp": "2023-01-11T16:57:05.012011668Z",
-                    "signature": "dHppKwAZFYzv19VLgmngOKq/Un2zJpZ5Fg7llx0iTNo72pbXXvSPi7BSvsqOzd4AKWTtO3XgQ6X97jxOpKd0CQ=="
-                }
-            ]
-        }
+  "block_id": {
+    "hash": "v3fqwUVL/XL0rwCxmO4x96Euvy2V7ZJso8+4rqohl9o=",
+    "part_set_header": {
+      "total": 1,
+      "hash": "t8wCFw2/VHBOHYAIO4k7MZNgUIzjBazvNjQS3R89NuM="
     }
+  },
+  "block": {
+    "header": {
+      "version": {
+        "block": "11",
+        "app": "0"
+      },
+      "chain_id": "test-chain",
+      "height": "3355",
+      "time": "2023-01-11T16:57:05.012011668Z",
+      "last_block_id": {
+        "hash": "IdID2P6phDleoQAdMrLwzVr2DY02Omx3VnlATf4TwKI=",
+        "part_set_header": {
+          "total": 1,
+          "hash": "D/UcqWz7vvjUZ+yBezcVNymswrPpsYNMC0YfW5veVBM="
+        }
+      },
+      "last_commit_hash": "//C9EwF2qjAPjGaykugAv4N4kRY3+DqiXJI/QRMtSfk=",
+      "data_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "next_validators_hash": "UjS9kaOnUeBVw1h2V43kpGYxGoDVQLWYha9o721NVt4=",
+      "consensus_hash": "BICRvH3cKD93v7+R1zxE2ljD34qcvIZ0Bdi389qtoi8=",
+      "app_hash": "vJ+axVi3DlFFnA6bPzqAaco9J3mXsObourreZUhz01M=",
+      "last_results_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "evidence_hash": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "proposer_address": "GKcWnBtCfZlBM/ez1FBOknids3w="
+    },
+    "data": {
+      "txs": [
+      ]
+    },
+    "evidence": {
+      "evidence": [
+      ]
+    },
+    "last_commit": {
+      "height": "3354",
+      "round": 0,
+      "block_id": {
+        "hash": "IdID2P6phDleoQAdMrLwzVr2DY02Omx3VnlATf4TwKI=",
+        "part_set_header": {
+          "total": 1,
+          "hash": "D/UcqWz7vvjUZ+yBezcVNymswrPpsYNMC0YfW5veVBM="
+        }
+      },
+      "signatures": [
+        {
+          "block_id_flag": "BLOCK_ID_FLAG_COMMIT",
+          "validator_address": "GKcWnBtCfZlBM/ez1FBOknids3w=",
+          "timestamp": "2023-01-11T16:57:05.012011668Z",
+          "signature": "dHppKwAZFYzv19VLgmngOKq/Un2zJpZ5Fg7llx0iTNo72pbXXvSPi7BSvsqOzd4AKWTtO3XgQ6X97jxOpKd0CQ=="
+        }
+      ]
+    }
+  }
 }
 ```
 </details>
@@ -4264,7 +4264,7 @@ https://rest-tropos.thestratos.org/cosmos/base/tendermint/v1beta1/syncing
 Response Example:
 ```json
 {
-    "syncing": false
+  "syncing": false
 }
 ```
 </details>
@@ -4283,22 +4283,22 @@ https://rest-tropos.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/
 Response Example:
 ```json
 {
-    "block_height": "3392",
-    "validators": [
-        {
-            "address": "stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802",
-            "pub_key": {
-                "@type": "/cosmos.crypto.ed25519.PubKey",
-                "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-            },
-            "voting_power": "500000",
-            "proposer_priority": "0"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+  "block_height": "3392",
+  "validators": [
+    {
+      "address": "stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802",
+      "pub_key": {
+        "@type": "/cosmos.crypto.ed25519.PubKey",
+        "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+      },
+      "voting_power": "500000",
+      "proposer_priority": "0"
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -4316,22 +4316,22 @@ https://rest-tropos.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/
 Response Example:
 ```json
 {
-    "block_height": "1000",
-    "validators": [
-        {
-            "address": "stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802",
-            "pub_key": {
-                "@type": "/cosmos.crypto.ed25519.PubKey",
-                "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-            },
-            "voting_power": "500000",
-            "proposer_priority": "0"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "1"
+  "block_height": "1000",
+  "validators": [
+    {
+      "address": "stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802",
+      "pub_key": {
+        "@type": "/cosmos.crypto.ed25519.PubKey",
+        "key": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
+      },
+      "voting_power": "500000",
+      "proposer_priority": "0"
     }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "1"
+  }
 }
 ```
 </details>
@@ -5108,6 +5108,78 @@ Response Example:
 ### Register
 
 <details>
+    <summary><code> GET /register/resource-node/{nodeAddress} </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries info of a registered resource node</summary>
+
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/register/resource-node/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
+```
+Response Example:
+```json
+{
+  "height": "3712",
+  "result": {
+    "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
+    "pubkey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
+    },
+    "suspend": true,
+    "status": 3,
+    "tokens": "10000000000000000000",
+    "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+    "description": {
+      "moniker": "resource-node0",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": "2023-01-11T17:26:06.410263787Z",
+    "node_type": 1
+  }
+}
+```
+</details>
+<br>
+
+<details>
+    <summary><code> GET /register/meta-node/{nodeAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; returns info of a registered meta node</summary>
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/register/meta-node/stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64
+```
+Response Example:
+```json
+{
+  "height": "3731",
+  "result": {
+    "network_address": "stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64",
+    "pubkey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "ltODy8zL5IjJwCutlIexqlBb3GH0+aHZOrpT7f/aKnQ="
+    },
+    "suspend": false,
+    "status": 3,
+    "tokens": "100000000000000000000",
+    "owner_address": "st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x",
+    "description": {
+      "moniker": "snode://stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64@127.0.0.1:8888",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": "1970-01-01T00:00:00Z"
+  }
+}
+```
+</details>
+<br>
+
+<details>
     <summary><code> GET /register/staking</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries total staking state of all registered resource nodes and meta nodes</summary>
 
 Request Example:
@@ -5146,101 +5218,6 @@ Response Example:
 <br>
 
 <details>
-    <summary><code> GET /register/params</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries params of registered module</summary>
-
-Request Example:
-```http
-https://rest-tropos.thestratos.org/register/params
-```
-Response Example:
-```json
-{
-    "height": "3588",
-    "result": {
-        "bond_denom": "wei",
-        "unbonding_threashold_time": "15552000000000000",
-        "unbonding_completion_time": "1209600000000000",
-        "max_entries": 16,
-        "resource_node_reg_enabled": true
-    }
-}
-```
-</details>
-<br>
-
-<details>
-    <summary><code> GET /register/resource-node/{nodeAddress} </code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries info of a registered resource node</summary>
-
-
-Request Example:
-```http
-https://rest-tropos.thestratos.org/register/resource-node/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
-```
-Response Example:
-```json
-{
-    "height": "3712",
-    "result": {
-        "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
-        "pubkey": {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
-        },
-        "suspend": true,
-        "status": 3,
-        "tokens": "10000000000000000000",
-        "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-        "description": {
-            "moniker": "resource-node0",
-            "identity": "",
-            "website": "",
-            "security_contact": "",
-            "details": ""
-        },
-        "creation_time": "2023-01-11T17:26:06.410263787Z",
-        "node_type": 1
-    }
-}
-```
-</details>
-<br>
-
-<details>
-    <summary><code> GET /register/meta-node/{nodeAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; returns info of a registered meta node</summary>
-
-Request Example:
-```http
-https://rest-tropos.thestratos.org/register/meta-node/stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64
-```
-Response Example:
-```json
-{
-    "height": "3731",
-    "result": {
-        "network_address": "stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64",
-        "pubkey": {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "ltODy8zL5IjJwCutlIexqlBb3GH0+aHZOrpT7f/aKnQ="
-        },
-        "suspend": false,
-        "status": 3,
-        "tokens": "100000000000000000000",
-        "owner_address": "st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x",
-        "description": {
-            "moniker": "snode://stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64@127.0.0.1:8888",
-            "identity": "",
-            "website": "",
-            "security_contact": "",
-            "details": ""
-        },
-        "creation_time": "1970-01-01T00:00:00Z"
-    }
-}
-```
-</details>
-<br>
-
-<details>
     <summary><code> GET /register/staking/address/{nodeAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries staking info of a specific node</summary>
 
 Request Example:
@@ -5250,39 +5227,39 @@ https://rest-tropos.thestratos.org/register/staking/address/stsds1gl9ywg6jdfdgcj
 Response Example:
 ```json
 {
-    "height": "3749",
-    "result": {
-        "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
-        "pubkey": {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
-        },
-        "suspend": true,
-        "status": 3,
-        "tokens": "10000000000000000000",
-        "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-        "description": {
-            "moniker": "resource-node0",
-            "identity": "",
-            "website": "",
-            "security_contact": "",
-            "details": ""
-        },
-        "creation_time": "2023-01-11T17:26:06.410263787Z",
-        "node_type": 1,
-        "bonded_stake": {
-            "denom": "wei",
-            "amount": "10000000000000000000"
-        },
-        "un_bonding_stake": {
-            "denom": "wei",
-            "amount": "0"
-        },
-        "un_bonded_stake": {
-            "denom": "wei",
-            "amount": "0"
-        }
+  "height": "3749",
+  "result": {
+    "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
+    "pubkey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
+    },
+    "suspend": true,
+    "status": 3,
+    "tokens": "10000000000000000000",
+    "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+    "description": {
+      "moniker": "resource-node0",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": "2023-01-11T17:26:06.410263787Z",
+    "node_type": 1,
+    "bonded_stake": {
+      "denom": "wei",
+      "amount": "10000000000000000000"
+    },
+    "un_bonding_stake": {
+      "denom": "wei",
+      "amount": "0"
+    },
+    "un_bonded_stake": {
+      "denom": "wei",
+      "amount": "0"
     }
+  }
 }
 ```
 </details>
@@ -5298,46 +5275,68 @@ https://rest-tropos.thestratos.org/register/staking/owner/st1pvyjzlhwrpgklu0044a
 Response Example:
 ```json
 {
-    "height": "3765",
-    "result": [
-        {
-            "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
-            "pubkey": {
-                "type": "tendermint/PubKeyEd25519",
-                "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
-            },
-            "suspend": true,
-            "status": 3,
-            "tokens": "10000000000000000000",
-            "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-            "description": {
-                "moniker": "resource-node0",
-                "identity": "",
-                "website": "",
-                "security_contact": "",
-                "details": ""
-            },
-            "creation_time": "2023-01-11T17:26:06.410263787Z",
-            "node_type": 1,
-            "bonded_stake": {
-                "denom": "wei",
-                "amount": "10000000000000000000"
-            },
-            "un_bonding_stake": {
-                "denom": "wei",
-                "amount": "0"
-            },
-            "un_bonded_stake": {
-                "denom": "wei",
-                "amount": "0"
-            }
-        }
-    ]
+  "height": "3765",
+  "result": [
+    {
+      "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
+      "pubkey": {
+        "type": "tendermint/PubKeyEd25519",
+        "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
+      },
+      "suspend": true,
+      "status": 3,
+      "tokens": "10000000000000000000",
+      "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+      "description": {
+        "moniker": "resource-node0",
+        "identity": "",
+        "website": "",
+        "security_contact": "",
+        "details": ""
+      },
+      "creation_time": "2023-01-11T17:26:06.410263787Z",
+      "node_type": 1,
+      "bonded_stake": {
+        "denom": "wei",
+        "amount": "10000000000000000000"
+      },
+      "un_bonding_stake": {
+        "denom": "wei",
+        "amount": "0"
+      },
+      "un_bonded_stake": {
+        "denom": "wei",
+        "amount": "0"
+      }
+    }
+  ]
 }
 ```
 </details>
 <br>
 
+<details>
+    <summary><code> GET /register/params</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries params of registered module</summary>
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/register/params
+```
+Response Example:
+```json
+{
+  "height": "3588",
+  "result": {
+    "bond_denom": "wei",
+    "unbonding_threashold_time": "15552000000000000",
+    "unbonding_completion_time": "1209600000000000",
+    "max_entries": 16,
+    "resource_node_reg_enabled": true
+  }
+}
+```
+</details>
+<br>
 
 <details>
     <summary><code> GET /register/resource-count</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries total number of bonded resource nodes</summary>
@@ -5349,8 +5348,8 @@ https://rest-tropos.thestratos.org/register/resource-count
 Response Example:
 ```json
 {
-    "height": "1093",
-    "result": "2"
+  "height": "1093",
+  "result": "2"
 }
 ```
 </details>
@@ -5367,8 +5366,8 @@ https://rest-tropos.thestratos.org/register/meta-count
 Response Example:
 ```json
 {
-    "height": "1118",
-    "result": "4"
+  "height": "1118",
+  "result": "4"
 }
 ```
 </details>
@@ -5388,87 +5387,105 @@ https://rest-tropos.thestratos.org/pot/report/epoch/1
 Response Example:
 ```json
 {
-    "height": "1358",
-    "result": {
-        "reporter": "stsds13yakj2xgzzdfcw7kd5gtfcfv2k6sn5eg4vdfem",
-        "report_reference": " report for epoch 1",
-        "tx_hash": "CF404452FF47EDCA99787FD5E79355D7A3BDB0E65E6FE3A54F4914F0E9EE0DF6"
-    }
+  "height": "19979",
+  "result": {
+    "reporter": "stsds1umqakd5tkedkval6fsch0y67mjlfch0umxuqnh",
+    "report_reference": "volume_report_stsds1umqakd5tkedkval6fsch0y67mjlfch0umxuqnh_1",
+    "tx_hash": "B22B2F859627C6E2BC6D83DD76C0B06A304228E75213DC4E2024AAC1A20426A0"
+  }
 }
 ```
 </details>
 <br>
 
-<!--  
 <details>
-    <summary><code> GET /pot/rewards/epoch/{epoch}?wallet_address={wallet_address}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries  Pot rewards info of a wallet_address at a specific epoch</summary>
+    <summary><code> GET /pot/rewards/epoch/{epoch}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries all rewards info at a specific epoch</summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/pot/rewards/epoch/3?wallet_address=st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw
+https://rest-tropos.thestratos.org/pot/rewards/epoch/1?page=1&limit=3
 ```
 Response Example:
 ```json
 {
-    "height": "2613",
-    "result": [
+  "height": "19968",
+  "result": [
+    {
+      "wallet_address": "st1qk5crq35zzus7c3ztx6znez8xe3wmn9y755uzl",
+      "reward_from_mining_pool": [
         {
-            "wallet_address": "st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw",
-            "reward_from_mining_pool": [
-                {
-                    "denom": "utros",
-                    "amount": "48000000710"
-                }
-            ],
-            "reward_from_traffic_pool": [
-                {
-                    "denom": "ustos",
-                    "amount": "300"
-                }
-            ]
+          "denom": "utros",
+          "amount": "3813153"
         }
-    ]
+      ],
+      "reward_from_traffic_pool": [
+        {
+          "denom": "wei",
+          "amount": "5208698191"
+        }
+      ]
+    },
+    {
+      "wallet_address": "st1pfsrjnx74vwfpd96haml5054q9upvx4jtwmhxy",
+      "reward_from_mining_pool": [
+        {
+          "denom": "utros",
+          "amount": "7813153114"
+        }
+      ],
+      "reward_from_traffic_pool": [
+        {
+          "denom": "wei",
+          "amount": "10672625850829"
+        }
+      ]
+    },
+    {
+      "wallet_address": "st19wcqrjdpl3259f9flfc4zhy04m22g0r6ndk9er",
+      "reward_from_mining_pool": [
+        {
+          "denom": "utros",
+          "amount": "3813153"
+        }
+      ],
+      "reward_from_traffic_pool": [
+        {
+          "denom": "wei",
+          "amount": "5208698191"
+        }
+      ]
+    }
+  ]
 }
 ```
 </details>
 <br>
-
--->
 
 <details>
     <summary><code> GET /pot/rewards/wallet/{walletAddress}[?height={BlockHeight}, optional]</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries owner's Pot rewards info at a specific height</summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/pot/rewards/wallet/st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg/3877
+https://rest-tropos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?height=10000
 ```
 Response Example:
 ```json
 {
-    "height": "3877",
-    "result": {
-        "wallet_address": "st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg",
-        "MatureTotalReward": [
-            {
-                "denom": "utros",
-                "amount": "1696408013053"
-            },
-            {
-                "denom": "wei",
-                "amount": "3576778"
-            }
-        ],
-        "ImmatureTotalReward": [
-            {
-                "denom": "utros",
-                "amount": "872451398"
-            },
-            {
-                "denom": "wei",
-                "amount": "278865"
-            }
-        ]
-    }
+  "height": "10000",
+  "result": {
+    "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em",
+    "mature_total_reward": [],
+    "immature_total_reward": [
+      {
+        "denom": "utros",
+        "amount": "46878920500"
+      },
+      {
+        "denom": "wei",
+        "amount": "34050759021267"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -5481,29 +5498,27 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/pot/rewards/wallet/st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg?epoch=50
+https://rest-tropos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?epoch=10
 ```
 Response Example:
 ```json
 {
-    "height": "4471",
-    "result": [
-        {
-            "wallet_address": "st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg",
-            "reward_from_mining_pool": [
-                {
-                    "denom": "utros",
-                    "amount": "48000000710"
-                }
-            ],
-            "reward_from_traffic_pool": [
-                {
-                    "denom": "wei",
-                    "amount": "2918"
-                }
-            ]
-        }
+  "height": "19941",
+  "result": {
+    "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em",
+    "reward_from_mining_pool": [
+      {
+        "denom": "utros",
+        "amount": "7813151751"
+      }
+    ],
+    "reward_from_traffic_pool": [
+      {
+        "denom": "wei",
+        "amount": "5672467197734"
+      }
     ]
+  }
 }
 ```
 </details>
@@ -5514,88 +5529,30 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/pot/rewards/wallet/st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg
+https://rest-tropos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em
 ```
 Response Example:
 ```json
 {
-    "height": "3877",
-    "result": {
-        "wallet_address": "st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg",
-        "MatureTotalReward": [
-            {
-                "denom": "utros",
-                "amount": "1696408013053"
-            },
-            {
-                "denom": "wei",
-                "amount": "3576778"
-            }
-        ],
-        "ImmatureTotalReward": [
-            {
-                "denom": "utros",
-                "amount": "872451398"
-            },
-            {
-                "denom": "wei",
-                "amount": "278865"
-            }
-        ]
-    }
-}
-```
-</details>
-<br>
-
-<details>
-    <summary><code> GET /pot/rewards/epoch/{epoch}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries all rewards info at a specific epoch</summary>
-
-Request Example:
-```http
-https://rest-tropos.thestratos.org/pot/rewards/epoch/1?page=1
-```
-Response Example:
-```json
-{
-    "height": "4404",
-    "result": [
-        {
-            "wallet_address": "st19cpsaw2q2dcmc5s7vu09xntqacakfcfdw8dg8m",
-            "reward_from_mining_pool": [
-                {
-                    "denom": "utros",
-                    "amount": "2003083802"
-                }
-            ],
-            "reward_from_traffic_pool": [
-                {
-                    "denom": "wei",
-                    "amount": "3863162732376"
-                }
-            ]
-        },
-        {
-            "wallet_address": "st1xlhwxzexp4fjnf2xt8zsd6jh7y3ap0sgddaf4r",
-            "reward_from_mining_pool": [
-                {
-                    "denom": "utros",
-                    "amount": "2003083802"
-                }
-            ],
-            "reward_from_traffic_pool": [
-                {
-                    "denom": "wei",
-                    "amount": "3863162732376"
-                }
-            ]
-        }
+  "height": "19926",
+  "result": {
+    "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em",
+    "mature_total_reward": [],
+    "immature_total_reward": [
+      {
+        "denom": "utros",
+        "amount": "93757827824"
+      },
+      {
+        "denom": "wei",
+        "amount": "88509725445757"
+      }
     ]
+  }
 }
 ```
 </details>
 <br>
-
 
 <details>
     <summary><code>GET /pot/slashing/{walletAddress} [?height={BlockHeight}, optional]</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries owner's Pot slashing info at a specific height</summary>
@@ -5607,8 +5564,8 @@ https://rest-tropos.thestratos.org/pot/slashing/st1am40hqkacscgwvvsjcxzxk49r8cua
 Response Example:
 ```json
 {
-    "height": "3877",
-    "result": 0
+  "height": "3877",
+  "result": 0
 }
 ```
 </details>
@@ -5624,117 +5581,163 @@ https://rest-tropos.thestratos.org/pot/params
 Response Example:
 ```json
 {
-    "height": "3997",
-    "result": {
-        "bond_denom": "wei",
-        "reward_denom": "utros",
-        "mature_epoch": "2016",
-        "mining_reward_params": [
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "0"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "16819200000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "80000000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "6000",
-                "meta_node_percentage_in_ten_thousand": "2000"
-            },
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "16819200000000000"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "25228800000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "40000000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "6200",
-                "meta_node_percentage_in_ten_thousand": "1800"
-            },
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "25228800000000000"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "29433600000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "20000000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "6400",
-                "meta_node_percentage_in_ten_thousand": "1600"
-            },
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "29433600000000000"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "31536000000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "10000000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "6600",
-                "meta_node_percentage_in_ten_thousand": "1400"
-            },
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "31536000000000000"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "32587200000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "5000000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "6800",
-                "meta_node_percentage_in_ten_thousand": "1200"
-            },
-            {
-                "total_mined_valve_start": {
-                    "denom": "utros",
-                    "amount": "32587200000000000"
-                },
-                "total_mined_valve_end": {
-                    "denom": "utros",
-                    "amount": "40000000000000000"
-                },
-                "mining_reward": {
-                    "denom": "utros",
-                    "amount": "2500000000"
-                },
-                "block_chain_percentage_in_ten_thousand": "2000",
-                "resource_node_percentage_in_ten_thousand": "7000",
-                "meta_node_percentage_in_ten_thousand": "1000"
-            }
-        ],
-        "community_tax": "0.020000000000000000"
+  "height": "19637",
+  "result": {
+    "bond_denom": "wei",
+    "reward_denom": "utros",
+    "mature_epoch": "2016",
+    "mining_reward_params": [
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "0"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "16819200000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "80000000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "6000",
+        "meta_node_percentage_in_bp": "2000"
+      },
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "16819200000000000"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "25228800000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "40000000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "6200",
+        "meta_node_percentage_in_bp": "1800"
+      },
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "25228800000000000"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "29433600000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "20000000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "6400",
+        "meta_node_percentage_in_bp": "1600"
+      },
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "29433600000000000"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "31536000000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "10000000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "6600",
+        "meta_node_percentage_in_bp": "1400"
+      },
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "31536000000000000"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "32587200000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "5000000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "6800",
+        "meta_node_percentage_in_bp": "1200"
+      },
+      {
+        "total_mined_valve_start": {
+          "denom": "utros",
+          "amount": "32587200000000000"
+        },
+        "total_mined_valve_end": {
+          "denom": "utros",
+          "amount": "40000000000000000"
+        },
+        "mining_reward": {
+          "denom": "utros",
+          "amount": "2500000000"
+        },
+        "block_chain_percentage_in_bp": "2000",
+        "resource_node_percentage_in_bp": "7000",
+        "meta_node_percentage_in_bp": "1000"
+      }
+    ],
+    "community_tax": "0.020000000000000000",
+    "initial_total_supply": {
+      "denom": "wei",
+      "amount": "100000000000000000000000000"
     }
+  }
+}
+```
+</details>
+<br>
+
+<details>
+    <summary><code>GET /pot/total-mined-token</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries total mined token</summary>
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/pot/total-mined-token
+```
+Response Example:
+```json
+{
+  "height": "19033",
+  "result": {
+    "denom": "utros",
+    "amount": "959999999923"
+  }
+}
+```
+</details>
+<br>
+
+<details>
+    <summary><code>GET /pot/circulation-supply</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries circulation supply</summary>
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/pot/circulation-supply
+```
+Response Example:
+```json
+{
+  "height": "19619",
+  "result": [
+    {
+      "denom": "wei",
+      "amount": "441335743191571263470157636"
+    }
+  ]
 }
 ```
 </details>
@@ -5745,17 +5748,38 @@ Response Example:
 ### SDS
 
 <details>
-    <summary><code> GET /sds/simulatePrepay/{amtToPrepay}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries a simulated prepay result </summary>
+    <summary><code> GET /sds/fileUpload/{fileHash}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; query uploaded file info by hash </summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/sds/simulatePrepay/8000000000
+https://rest-tropos.thestratos.org/sds/fileUpload/v05ahm51dd62ise3fo7ojqub90p0ql2c3jg37hk8
 ```
 Response Example:
 ```json
 {
-    "height": "4036",
-    "result": "8799"
+  "height": "20444",
+  "result": {
+    "height": "4109",
+    "reporters": "DwAAAAAAAAA=",
+    "uploader": "st18986jyng5vsprmtzkdxla80jrw7qyc6wl73h0u"
+  }
+}
+```
+</details>
+<br>
+
+<details>
+    <summary><code> GET /sds/simPrepay/{amtToPrepay}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries a simulated prepay result </summary>
+
+Request Example:
+```http
+https://rest-tropos.thestratos.org/sds/simPrepay/8000000000
+```
+Response Example:
+```json
+{
+  "height": "4036",
+  "result": "8799"
 }
 ```
 </details>
@@ -5771,8 +5795,8 @@ https://rest-tropos.thestratos.org/sds/nozPrice
 Response Example:
 ```json
 {
-    "height": "4088",
-    "result": "909090.909090909090909091"
+  "height": "4088",
+  "result": "909090.909090909090909091"
 }
 ```
 </details>
@@ -5788,11 +5812,11 @@ https://rest-tropos.thestratos.org/sds/nozSupply
 Response Example:
 ```json
 {
-    "height": "4078",
-    "result": {
-        "Remaining": "110000000000000",
-        "Total": "110000000000000"
-    }
+  "height": "4078",
+  "result": {
+    "Remaining": "110000000000000",
+    "Total": "110000000000000"
+  }
 }
 ```
 </details>
@@ -5808,10 +5832,10 @@ https://rest-tropos.thestratos.org/sds/params
 Response Example:
 ```json
 {
-    "height": "4055",
-    "result": {
-        "bond_denom": "wei"
-    }
+  "height": "4055",
+  "result": {
+    "bond_denom": "wei"
+  }
 }
 ```
 </details>
