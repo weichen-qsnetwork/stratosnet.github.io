@@ -126,84 +126,98 @@ tokens: "10000000000000000000"
 REST API:
 
 ```http
-http://127.0.0.1:1317/register/staking/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
-```
-
-Response:
-
-```json
-{"height":"7","result":{
-  "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
-  "pubkey": {
-    "type": "tendermint/PubKeyEd25519",
-    "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
-  },
-  "suspend": true,
-  "status": 3,
-  "tokens": "10000000000000000000",
-  "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-  "description": {
-    "moniker": "resource-node0",
-    "identity": "",
-    "website": "",
-    "security_contact": "",
-    "details": ""
-  },
-  "creation_time": "2023-01-10T16:48:24.591781632Z",
-  "node_type": 1,
-  "bonded_stake": {
-    "denom": "wei",
-    "amount": "10000000000000000000"
-  },
-  "un_bonding_stake": {
-    "denom": "wei",
-    "amount": "0"
-  },
-  "un_bonded_stake": {
-    "denom": "wei",
-    "amount": "0"
-  }
-```
-
-GRPC Command:
-
-```http
-grpcurl -plaintext -d '{"network_addr":"stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv","query_type":"0" }' 127.0.0.1:9090 stratos.register.v1.Query.StakeByNode
-```
-
-Note:
-
-``` { .yaml .no-copy }
-query_type     = 0   query the staking info of both resource nodes or meta and nodes with this account address
-query_type     = 1   query the staking info of only meta node with this account address
-query_type     = 2   query the staking info of only resource node with this account address
+http://127.0.0.1:1317/register/deposit/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
 ```
 
 Response:
 
 ```json
 {
-  "stakingInfo": {
-    "networkAddress": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
-    "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="},
-    "suspend": true,
-    "status": "BOND_STATUS_BONDED",
-    "tokens": "10000000000000000000",
-    "ownerAddress": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
-    "description": {
-      "moniker": "resource-node0"
+  "height": "7",
+  "result": {
+    "network_address": "stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv",
+    "pubkey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "2OAeLO0+KrBkSxuFKU1ofJqGb4RtA8GpD8XCZlMYw2A="
     },
-    "creationTime": "2023-01-10T18:16:14.738068297Z",
-    "nodeType": 1,
-    "bondedStake": {
+    "suspend": true,
+    "status": 3,
+    "tokens": "10000000000000000000",
+    "owner_address": "st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh",
+    "description": {
+      "moniker": "resource-node0",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": "2023-01-10T16:48:24.591781632Z",
+    "node_type": 1,
+    "bonded_deposit": {
       "denom": "wei",
       "amount": "10000000000000000000"
     },
-    "unBondingStake": {
+    "un_bonding_deposit": {
       "denom": "wei",
       "amount": "0"
     },
-    "unBondedStake": {
+    "un_bonded_deposit": {
+      "denom": "wei",
+      "amount": "0"
+    }
+  }
+}
+```
+
+GRPC Command:
+
+```http
+grpcurl -plaintext -d '{"network_addr":"stsds1m9fhlyy2eug7kcgrqfdxxxvnscp5qdvut6g4xz","query_type":"0" }' 127.0.0.1:9090 stratos.register.v1.Query.DepositByNode
+```
+
+Note:
+
+``` { .yaml .no-copy }
+query_type     = 0   query the deposit info of both resource nodes or meta and nodes with this account address
+query_type     = 1   query the deposit info of only meta node with this account address
+query_type     = 2   query the deposit info of only resource node with this account address
+```
+
+Response:
+
+```json
+{
+  "deposit_info": {
+    "network_address": "stsds1m9fhlyy2eug7kcgrqfdxxxvnscp5qdvut6g4xz",
+    "pubkey": {
+      "type_url": "/cosmos.crypto.ed25519.PubKey",
+      "value": "CiD37kGSAjc+jRvAqaphnkKNarZo6KePzYmp1ViQxMHVvg=="
+    },
+    "suspend": true,
+    "status": "BOND_STATUS_BONDED",
+    "tokens": "2003000000000000000000",
+    "owner_address": "st18986jyng5vsprmtzkdxla80jrw7qyc6wl73h0u",
+    "description": {
+      "moniker": "stsds1m9fhlyy2eug7kcgrqfdxxxvnscp5qdvut6g4xz",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": {
+      "seconds": "1685729968",
+      "nanos": 908306425
+    },
+    "node_type": 4,
+    "bonded_deposit": {
+      "denom": "wei",
+      "amount": "2003000000000000000000"
+    },
+    "un_bonding_deposit": {
+      "denom": "wei",
+      "amount": "0"
+    },
+    "un_bonded_deposit": {
       "denom": "wei",
       "amount": "0"
     }
@@ -305,13 +319,13 @@ tokens: "10000000000000000000"
 
 <br>
 
-### -`update-resource-node-stake`
+### -`update-resource-node-deposit`
 
-update resource node's stake
+update resource node's deposit
 
 ```{ .yaml .no-copy }
 Usage:
-  stchaind tx register update-resource-node-stake [flags]
+  stchaind tx register update-resource-node-deposit [flags]
 
 Flags:
   -a, --account-number uint      The account number of the signing account (offline mode only)
@@ -319,8 +333,7 @@ Flags:
       --fee-account string       Fee account pays fees for the transaction instead of deducting from the signer
       --gas string               gas limit to set per-transaction; set to "auto" to calculate sufficient gas automatically (default 200000)
       --generate-only            Build an unsigned transaction and write it to STDOUT (when enabled, the local Keybase is not accessible)
-  -h, --help                     help for update-resource-node-stake
-      --incr-stake string        Boolean indicator of increase/decrease of stake delta, true for increase and false for decrease
+  -h, --help                     help for update-resource-node-deposit
       --keyring-dir string       The client Keyring directory; if omitted, the default 'home' directory will be used
       --ledger                   Use a connected Ledger device
       --network-address string   The address of the PP node
@@ -329,7 +342,7 @@ Flags:
   -o, --output string            Output format (text|json) (default "json")
   -s, --sequence uint            The sequence number of the signing account (offline mode only)
       --sign-mode string         Choose sign mode (direct|amino-json), this is an advanced feature
-      --stake-delta string       Stake change of coins to be made (always positive like 100000gwei)
+      --deposit-delta string     Deposit change of coins to be made (always positive like 100000gwei)
       --timeout-height uint      Set a block timeout height to prevent the tx from being committed past a certain height
   -y, --yes                      Skip tx broadcasting prompt confirmation
 
@@ -341,13 +354,12 @@ Example:
 
 ``` { .yaml .no-copy }
 Usage:
-stchaind tx register update-resource-node-stake \
+stchaind tx register update-resource-node-deposit \
 --network-address=<resource_node_address> \
 --from=<Name|address of private key> \
 --chain-id=<current chain-id> \
 --keyring-backend=<keyring's backend> \
---stake-delta=<delta_amount> \
---incr-stake=<bool> \
+--deposit-delta=<delta_amount> \
 --gas=auto
 ```
 
@@ -425,7 +437,7 @@ stchaind tx register remove-resource-node \
 Check the status update of the resource node
 
 ```http
-http://127.0.0.1:1317/register/staking/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
+http://127.0.0.1:1317/register/deposit/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
 ```
 
 Response:
@@ -452,15 +464,15 @@ Response:
         },
         "creation_time": "2023-01-10T18:16:14.738068297Z",
         "node_type": 7,
-        "bonded_stake": {
+        "bonded_deposit": {
             "denom": "wei",
             "amount": "0"
         },
-        "un_bonding_stake": {
+        "un_bonding_deposit": {
             "denom": "wei",
             "amount": "10000000000000000000"
         },
-        "un_bonded_stake": {
+        "un_bonded_deposit": {
             "denom": "wei",
             "amount": "0"
         }
@@ -760,13 +772,13 @@ Response:
 
 <br>
 
-### -`update-meta-node-stake`
+### -`update-meta-node-deposit`
 
-update meta node's stake
+update meta node's deposit
 
 ```{ .yaml .no-copy }
 Usage:
-  stchaind tx register update-meta-node-stake [flags]
+  stchaind tx register update-meta-node-deposit [flags]
 
 Flags:
   -a, --account-number uint      The account number of the signing account (offline mode only)
@@ -774,8 +786,8 @@ Flags:
       --fee-account string       Fee account pays fees for the transaction instead of deducting from the signer
       --gas string               gas limit to set per-transaction; set to "auto" to calculate sufficient gas automatically (default 200000)
       --generate-only            Build an unsigned transaction and write it to STDOUT (when enabled, the local Keybase is not accessible)
-  -h, --help                     help for update-meta-node-stake
-      --incr-stake string        Boolean indicator of increase/decrease of stake delta, true for increase and false for decrease
+  -h, --help                     help for update-meta-node-deposit
+      --incr-deposit string      Boolean indicator of increase/decrease of deposit delta, true for increase and false for decrease
       --keyring-dir string       The client Keyring directory; if omitted, the default 'home' directory will be used
       --ledger                   Use a connected Ledger device
       --network-address string   The address of the PP node
@@ -784,7 +796,7 @@ Flags:
   -o, --output string            Output format (text|json) (default "json")
   -s, --sequence uint            The sequence number of the signing account (offline mode only)
       --sign-mode string         Choose sign mode (direct|amino-json), this is an advanced feature
-      --stake-delta string       Stake change of coins to be made (always positive like 100000gwei)
+      --deposit-delta string     Deposit change of coins to be made (always positive like 100000gwei)
       --timeout-height uint      Set a block timeout height to prevent the tx from being committed past a certain height
   -y, --yes                      Skip tx broadcasting prompt confirmation
 
@@ -797,23 +809,23 @@ Example:
 
 ``` { .yaml .no-copy }
 Usage:
-stchaind tx register update-meta-node-stake \
+stchaind tx register update-meta-node-deposit \
 --network-address=<meta_node_address> \
 --from=<owner_address> \
 --chain-id=<current chain-id> \
 --keyring-backend=<keyring's backend> \
---stake-delta=<delta_amount> \
---incr-stake=<true|false>
+--deposit-delta=<delta_amount> \
+--incr-deposit=<true|false>
 ```
 
 Transaction example:
 
 ```shell
-stchaind tx register update-meta-node-stake \
+stchaind tx register update-meta-node-deposit \
 --network-address=stsds1faej5w4q6hgnt0ft598dlm408g4p747y4krwca \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---stake-delta=100gwei \
---incr-stake=true \
+--deposit-delta=100gwei \
+--incr-deposit=true \
 --chain-id=tropos-5 \
 --keyring-backend=test \
 --gas=auto \
@@ -1548,7 +1560,7 @@ Example:
 stchaind tendermint show-validator
   {"@type":"/cosmos.crypto.ed25519.PubKey","key":"69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="}
 ```
-</details>
+
 <br>
 
 
@@ -2126,7 +2138,7 @@ Result:
     }
 }
 ```
-</details>
+
 <br>
 
 

@@ -554,9 +554,9 @@ registerpeer
 
 <br>
   
-- <b>Uploading/Downloading files without staking</b>
+- <b>Uploading/Downloading files without deposit</b>
 
-You do not need to stake anything if you just want to upload/download files. 
+You do not need to deposit anything if you just want to upload/download files. 
 
 After registering your resource node(`rp` subcommand), purchase enough `ozone` using the `prepay` subcommand. 
 
@@ -583,9 +583,9 @@ On the other hand, since the resource node is not activated, users will not rece
 
 <br>
 
-- Activating the resource node with staking
+- Activating the resource node with deposit
 
-You can activate your resource node by staking an amount of tokens. 
+You can activate your resource node by deposit an amount of tokens. 
 
 After it is activated successfully,your resource node starts to receive tasks from meta nodes and thus gaining mining rewards automatically.
 
@@ -593,7 +593,7 @@ After it is activated successfully,your resource node starts to receive tasks fr
 activate <amount> <fee> [gas] 
 ```
 
-> `amount` is the amount of tokens you want to stake. 1stos = 10^9gwei = 10^18wei.
+> `amount` is the amount of tokens you want to deposit. 1stos = 10^9gwei = 10^18wei.
 >
 > `fee` is the amount of tokens to pay as a fee for the activation transaction. 10000wei would work. It will use default value if no fee amount is provided.
 >
@@ -624,25 +624,23 @@ status
 
 <br>
 
-- Update stake of an active resource node
+- Update deposit of an active resource node, only increase deposit is allowed
 
 ```shell
-updateStake <stakeDelta> <fee> [gas] <isIncrStake>  
+updateDeposit <depositDelta> <fee> [gas]
 ```
 
-> `stakeDelta` is the absolute amount of difference between the original and the updated stake. It should be a positive valid token, in the unit of `stos`/`gwei`/`wei`.
+> `depositDelta` is the absolute amount of difference between the original and the updated deposit. It should be a positive valid token, in the unit of `stos`/`gwei`/`wei`.
 >
-> `isIncrStake` is a boolean flag with `false` for decreasing the original stake and `true` for increasing the original stake.
->
-> When a resource node is suspended, use this command to update its state and re-start mining by increasing its stake.
+> When a resource node is suspended, use this command to update its state and re-start mining by increasing its deposit.
 
 Example:
 
 ```shell
-updateStake 1stos 1000000gwei 1000000 true
+updateDeposit 1stos 1000000gwei 1000000
 ```
 
-The above command will increase 1stos to stake, use 1000000gwei for tx fee and 1000000 for tx gas.
+The above command will increase 1stos to deposit, use 1000000gwei for tx fee and 1000000 for tx gas.
 
 <br>
 
@@ -834,10 +832,10 @@ Check node registration status(`register` module)
 
 <br>
 
-- Query total staking state of all registered resource nodes and meta nodes
+- Query total deposit state of all registered resource nodes and meta nodes
 
 ```shell
-https://rest-tropos.thestratos.org/register/staking
+https://rest-tropos.thestratos.org/register/deposit
 ```    
 
 <br>
@@ -850,10 +848,10 @@ https://rest-tropos.thestratos.org/register/params
 
 <br>
 
-- Get all staking info of a specific owner
+- Get all deposit info of a specific owner
 
 ```shell
-https://rest-tropos.thestratos.org/register/staking/owner/{owner wallet address}
+https://rest-tropos.thestratos.org/register/deposit/owner/{owner wallet address}
 ```    
 
 <br>
