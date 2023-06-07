@@ -13,16 +13,16 @@ Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/
 
 ### gRPC Gateway
 
-| Method Name              | Request Type                                                                   | Response Type                                                                                                                   | Description                                                               |
-|--------------------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| ResourceNode             | QueryResourceNodeRequest <br>fields:{"network_addr":string}                    | QueryResourceNodeResponse <br>fields:{"node":ResourceNode}                                                                      | Get info of a registered resource node                                    |
-| MetaNode                 | QueryMetaNodeRequest <br>fields:{"network_addr":string}                        | QueryMetaNodeResponse <br>fields:{"node":MetaNode}                                                                              | Get info of a registered meta node                                        |
-| Params                   | QueryParamsRequest <br>fields:{}                                               | QueryParamsResponse <br>fields:{"params":Params}                                                                                | Get params of Register Module                                             |
-| StakeByNode              | QueryStakeByNodeRequest <br>fields:{"network_addr":string, query_type:uint32}  | QueryStakeByNodeResponse <br>fields:{"staking_info":StakingInfo }                                                               | Get staking info of a specific node                                       |                                  
-| StakeByOwner             | QueryStakeByOwnerRequest <br>fields:{"owner_addr":string}                      | QueryStakeByOwnerResponse <br>fields:{"staking_infos":[]StakingInfo, <br>"pagination": cosmos.base.query.v1beta1.PageResponse } | Get all staking info of a specific owner                                  |
-| StakeTotal               | QueryTotalStakeRequest <br>fields:{}                                           | QueryTotalStakeResponse <br>fields:{"totalStakes":TotalStakesResponse}                                                          | Query total staking state of all registered resource nodes and meta nodes |
-| BondedResourceNodeCount  | QueryBondedResourceNodeCountRequest <br>fields:{}                              | QueryBondedResourceNodeCountResponse <br>fields:{"number": uint64}                                                              | Get params of Register Module                                             |
-| BondedMetaNodeCount      | QueryBondedMetaNodeCountRequest <br>fields:{}                                  | QueryBondedMetaNodeCountResponse <br>fields:{"number": uint64}                                                                  | Get params of Register Module                                             |
+| Method Name              | Request Type                                                                    | Response Type                                                                                                                                                                                                                                                                                                               | Description                                                               |
+|--------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| ResourceNode             | QueryResourceNodeRequest <br>fields:{"network_addr":string}                     | QueryResourceNodeResponse <br>fields:{"node":ResourceNode}                                                                                                                                                                                                                                                                  | Get info of a registered resource node                                    |
+| MetaNode                 | QueryMetaNodeRequest <br>fields:{"network_addr":string}                         | QueryMetaNodeResponse <br>fields:{"node":MetaNode}                                                                                                                                                                                                                                                                          | Get info of a registered meta node                                        |
+| Params                   | QueryParamsRequest <br>fields:{}                                                | QueryParamsResponse <br>fields:{"params":Params}                                                                                                                                                                                                                                                                            | Get params of Register Module                                             |
+| DepositByNode            | QueryDepositByNodeRequest <br>fields:{"network_addr":string, query_type:uint32} | QueryDepositByNodeResponse <br>fields:{"deposit_info":DepositInfo }                                                                                                                                                                                                                                                         | Get deposit info of a specific node                                       |                                  
+| DepositByOwner           | QueryDepositByOwnerRequest <br>fields:{"owner_addr":string}                     | QueryDepositByOwnerResponse <br>fields:{"deposit_infos":[]DepositInfo, <br>"pagination": cosmos.base.query.v1beta1.PageResponse }                                                                                                                                                                                           | Get all deposit info of a specific owner                                  |
+| DepositTotal             | QueryDepositTotalRequest <br>fields:{}                                          | QueryDepositTotalResponse <br>fields:{"resource_nodes_total_deposit":cosmos.base.v1beta1.Coin, <br>"meta_nodes_total_deposit":cosmos.base.v1beta1.Coin, <br>"total_bonded_deposit":cosmos.base.v1beta1.Coin, <br>"total_unbonded_deposit":cosmos.base.v1beta1.Coin, <br>"total_unbonding_deposit":cosmos.base.v1beta1.Coin} | Query total deposit state of all registered resource nodes and meta nodes |
+| BondedResourceNodeCount  | QueryBondedResourceNodeCountRequest <br>fields:{}                               | QueryBondedResourceNodeCountResponse <br>fields:{"number": uint64}                                                                                                                                                                                                                                                          | Get params of Register Module                                             |
+| BondedMetaNodeCount      | QueryBondedMetaNodeCountRequest <br>fields:{}                                   | QueryBondedMetaNodeCountResponse <br>fields:{"number": uint64}                                                                                                                                                                                                                                                              | Get params of Register Module                                             |
 
 <br>
 
@@ -90,36 +90,24 @@ Params:
 
 ---
 
-StakingInfo:
+DepositInfo:
 
-| Field            | Type                              | Label |
-|------------------|-----------------------------------|-------|
-| network_address  | string                            |       |
-| pubkey           | google.protobuf.Any               |       |
-| suspend          | bool                              |       |
-| status           | cosmos.staking.v1beta1.BondStatus |       |
-| tokens           | string                            |       |
-| owner_address    | string                            |       |
-| description      | Description                       |       |
-| creation_time    | google.protobuf.Timestamp         |       |
-| node_type        | uint32                            |       |
-| bonded_stake     | cosmos.base.v1beta1.Coin          |       |
-| un_bonding_stake | cosmos.base.v1beta1.Coin          |       |
-| un_bonded_stake  | cosmos.base.v1beta1.Coin          |       |
+| Field              | Type                              | Label |
+|--------------------|-----------------------------------|-------|
+| network_address    | string                            |       |
+| pubkey             | google.protobuf.Any               |       |
+| suspend            | bool                              |       |
+| status             | cosmos.staking.v1beta1.BondStatus |       |
+| tokens             | string                            |       |
+| owner_address      | string                            |       |
+| description        | Description                       |       |
+| creation_time      | google.protobuf.Timestamp         |       |
+| node_type          | uint32                            |       |
+| bonded_deposit     | cosmos.base.v1beta1.Coin          |       |
+| un_bonding_deposit | cosmos.base.v1beta1.Coin          |       |
+| un_bonded_deposit  | cosmos.base.v1beta1.Coin          |       |
 
 <br>
-
----
-
-TotalStakesResponse:
-
-| Field                      | Type                     | Label |
-|----------------------------|--------------------------|-------|
-| resource_nodes_total_stake | cosmos.base.v1beta1.Coin |       |
-| meta_nodes_total_stake     | cosmos.base.v1beta1.Coin |       |
-| total_bonded_stake         | cosmos.base.v1beta1.Coin |       |
-| total_unbonded_stake       | cosmos.base.v1beta1.Coin |       |
-| total_unbonding_stake      | cosmos.base.v1beta1.Coin |       |
 
 
 ### - List
@@ -137,9 +125,9 @@ Response:
 stratos.register.v1.Query.ResourceNode
 stratos.register.v1.Query.MetaNode
 stratos.register.v1.Query.Params
-stratos.register.v1.Query.StakeByNode
-stratos.register.v1.Query.StakeByOwner
-stratos.register.v1.Query.StakeTotal
+stratos.register.v1.Query.DepositByNode
+stratos.register.v1.Query.DepositByOwner
+stratos.register.v1.Query.DepositTotal
 stratos.register.v1.Query.BondedResourceNodeCount
 stratos.register.v1.Query.BondedMetaNodeCount
 
@@ -243,139 +231,156 @@ Response:
 <br>
 
 
-### - StakeByNode
+### - DepositByNode
 
-Get staking info of a specific node
+Get deposit info of a specific node
 
 Request:
 
 ```
-grpcurl -plaintext -d '{"network_addr":"stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64","query_type": 1 }' 127.0.0.1:9090 stratos.register.v1.Query.StakeByNode
+grpcurl -plaintext -d '{"network_addr":"stsds12xeswat6yy3dg9e3q3ekl6dlnld4g9yhjz70c4","query_type": 1 }' 127.0.0.1:9090 stratos.register.v1.Query.DepositByNode
 ```
 
 Response:
 
 ```json
 {
- "stakingInfo": {
-  "networkAddress": "stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64",
-  "pubkey": {
-   "@type": "/cosmos.crypto.ed25519.PubKey",
-   "key": "ltODy8zL5IjJwCutlIexqlBb3GH0+aHZOrpT7f/aKnQ="
-  },
-  "status": "BOND_STATUS_BONDED",
-  "tokens": "100000000000000000000",
-  "ownerAddress": "st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x",
-  "description": {
-   "moniker": "snode://stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64@127.0.0.1:8888"
-  },
-  "creationTime": "0001-01-01T00:00:00Z",
-  "bondedStake": {
-   "denom": "wei",
-   "amount": "100000000000000000000"
-  },
-  "unBondingStake": {
-   "denom": "wei",
-   "amount": "0"
-  },
-  "unBondedStake": {
-   "denom": "wei",
-   "amount": "0"
-  }
- }
-}
-```
-
-<br>
-
-
-### - StakeByOwner
-
-Get all staking info of a specific owner
-
-Request:
-
-```
-grpcurl -plaintext -d '{"owner_addr":"st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x", "pagination": {"limit":20}}' 127.0.0.1:9090 stratos.register.v1.Query.StakeByOwner
-```
-
-Response:
-
-```json
-{
- "stakingInfos": [
-  {
-   "networkAddress": "stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64",
-   "pubkey": {
-    "@type": "/cosmos.crypto.ed25519.PubKey",
-    "key": "ltODy8zL5IjJwCutlIexqlBb3GH0+aHZOrpT7f/aKnQ="
-   },
-   "status": "BOND_STATUS_BONDED",
-   "tokens": "100000000000000000000",
-   "ownerAddress": "st1a8ngk4tjvuxneyuvyuy9nvgehkpfa38hm8mp3x",
-   "description": {
-    "moniker": "snode://stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64@127.0.0.1:8888"
-   },
-   "creationTime": "0001-01-01T00:00:00Z",
-   "bondedStake": {
-    "denom": "wei",
-    "amount": "100000000000000000000"
-   },
-   "unBondingStake": {
-    "denom": "wei",
-    "amount": "0"
-   },
-   "unBondedStake": {
-    "denom": "wei",
-    "amount": "0"
-   }
-  }
- ],
- "pagination": {
-  "total": "1"
- }
-}
-```
-
-<br>
-
-
-### - StakeTotal
-
-Query total staking state of all registered resource nodes and meta nodes
-
-Request:
-
-```
- grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.StakeTotal
-```
-
-Response:
-
-```json
-{
-    "totalStakes": {
-        "resourceNodesTotalStake": {
-            "denom": "wei",
-            "amount": "0"
-        },
-        "metaNodesTotalStake": {
-            "denom": "wei",
-            "amount": "100000000000000000000"
-        },
-        "totalBondedStake": {
-            "denom": "wei",
-            "amount": "100000000000000000000"
-        },
-        "totalUnbondedStake": {
-            "denom": "wei",
-            "amount": "0"
-        },
-        "totalUnbondingStake": {
-            "denom": "wei",
-            "amount": "0"
-        }
+  "deposit_info": {
+    "network_address": "stsds12xeswat6yy3dg9e3q3ekl6dlnld4g9yhjz70c4",
+    "pubkey": {
+      "type_url": "/cosmos.crypto.ed25519.PubKey",
+      "value": "CiD+uMRSnq9prSATpE8XPvAh9FM6xaQWri1mg1vihC7Feg=="
+    },
+    "suspend": false,
+    "status": "BOND_STATUS_BONDED",
+    "tokens": "2000000000000000000000000",
+    "owner_address": "st19n4aa9gvjms5ax0zzrgzhpsdgg8hfy7p4m43xd",
+    "description": {
+      "moniker": "stratos-foundation",
+      "identity": "",
+      "website": "",
+      "security_contact": "",
+      "details": ""
+    },
+    "creation_time": {
+      "seconds": "-62135596800",
+      "nanos": 0
+    },
+    "node_type": 0,
+    "bonded_deposit": {
+      "denom": "wei",
+      "amount": "2000000000000000000000000"
+    },
+    "un_bonding_deposit": {
+      "denom": "wei",
+      "amount": "0"
+    },
+    "un_bonded_deposit": {
+      "denom": "wei",
+      "amount": "0"
     }
+  }
+}
+```
+
+<br>
+
+
+### - DepositByOwner
+
+Get all deposit info of a specific owner
+
+Request:
+
+```
+grpcurl -plaintext -d '{"owner_addr":"st19n4aa9gvjms5ax0zzrgzhpsdgg8hfy7p4m43xd", "pagination": {"limit":20}}' 127.0.0.1:9090 stratos.register.v1.Query.DepositByOwner
+```
+
+Response:
+
+```json
+{
+  "deposit_infos": [
+    {
+      "network_address": "stsds12xeswat6yy3dg9e3q3ekl6dlnld4g9yhjz70c4",
+      "pubkey": {
+        "type_url": "/cosmos.crypto.ed25519.PubKey",
+        "value": "CiD+uMRSnq9prSATpE8XPvAh9FM6xaQWri1mg1vihC7Feg=="
+      },
+      "suspend": false,
+      "status": "BOND_STATUS_BONDED",
+      "tokens": "2000000000000000000000000",
+      "owner_address": "st19n4aa9gvjms5ax0zzrgzhpsdgg8hfy7p4m43xd",
+      "description": {
+        "moniker": "stratos-foundation",
+        "identity": "",
+        "website": "",
+        "security_contact": "",
+        "details": ""
+      },
+      "creation_time": {
+        "seconds": "-62135596800",
+        "nanos": 0
+      },
+      "node_type": 0,
+      "bonded_deposit": {
+        "denom": "wei",
+        "amount": "2000000000000000000000000"
+      },
+      "un_bonding_deposit": {
+        "denom": "wei",
+        "amount": "0"
+      },
+      "un_bonded_deposit": {
+        "denom": "wei",
+        "amount": "0"
+      }
+    }
+  ],
+  "pagination": {
+    "next_key": "",
+    "total": "1"
+  }
+}
+```
+
+<br>
+
+
+### - DepositTotal
+
+Query total deposit state of all registered resource nodes and meta nodes
+
+Request:
+
+```
+ grpcurl -plaintext 127.0.0.1:9090 stratos.register.v1.Query.DepositTotal
+```
+
+Response:
+
+```json
+{
+  "resource_nodes_total_deposit": {
+    "denom": "wei",
+    "amount": "26003000000000000000000"
+  },
+  "meta_nodes_total_deposit": {
+    "denom": "wei",
+    "amount": "8000000000000000000000000"
+  },
+  "total_bonded_deposit": {
+    "denom": "wei",
+    "amount": "8026003000000000000000000"
+  },
+  "total_unbonded_deposit": {
+    "denom": "wei",
+    "amount": "0"
+  },
+  "total_unbonding_deposit": {
+    "denom": "wei",
+    "amount": "0"
+  }
 }
 ```
 

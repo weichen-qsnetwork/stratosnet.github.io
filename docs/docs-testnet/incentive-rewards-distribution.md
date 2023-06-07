@@ -18,7 +18,7 @@ On the incentive testnet, the distribution will be similar but with some adjustm
 
 First, there will be no meta node for public testing. Thus, rewards issued to meta nodes will be changed to a minimum number only for testing purposes.
 
-Second, the staking token for testnet is distributed for free, so it doesn't reflect the contribution to the network in any sense, we cannot distribute the reward based on staking numbers.
+Second, the deposit token for testnet is distributed for free, so it doesn't reflect the contribution to the network in any sense, we cannot distribute the reward based on deposit numbers.
 
 The allocation plan for the reward will also be changed accordingly as follows:
 

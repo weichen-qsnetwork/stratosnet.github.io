@@ -5180,49 +5180,49 @@ Response Example:
 <br>
 
 <details>
-    <summary><code> GET /register/staking</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries total staking state of all registered resource nodes and meta nodes</summary>
+    <summary><code> GET /register/deposit</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries total deposit state of all registered resource nodes and meta nodes</summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/register/staking
+https://rest-tropos.thestratos.org/register/deposit
 ```
 Response Example:
 ```json
 {
-    "height": "3573",
-    "result": {
-        "resource_nodes_total_stake": {
-            "denom": "wei",
-            "amount": "0"
-        },
-        "meta_nodes_total_stake": {
-            "denom": "wei",
-            "amount": "100000000000000000000"
-        },
-        "total_bonded_stake": {
-            "denom": "wei",
-            "amount": "100000000000000000000"
-        },
-        "total_unbonded_stake": {
-            "denom": "wei",
-            "amount": "0"
-        },
-        "total_unbonding_stake": {
-            "denom": "wei",
-            "amount": "0"
-        }
+  "height": "47150",
+  "result": {
+    "resource_nodes_total_deposit": {
+      "denom": "wei",
+      "amount": "26003000000000000000000"
+    },
+    "meta_nodes_total_deposit": {
+      "denom": "wei",
+      "amount": "8000000000000000000000000"
+    },
+    "total_bonded_deposit": {
+      "denom": "wei",
+      "amount": "8026003000000000000000000"
+    },
+    "total_unbonded_deposit": {
+      "denom": "wei",
+      "amount": "0"
+    },
+    "total_unbonding_deposit": {
+      "denom": "wei",
+      "amount": "0"
     }
+  }
 }
 ```
 </details>
 <br>
 
 <details>
-    <summary><code> GET /register/staking/address/{nodeAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries staking info of a specific node</summary>
+    <summary><code> GET /register/deposit/address/{nodeAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries deposit info of a specific node</summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/register/staking/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
+https://rest-tropos.thestratos.org/register/deposit/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
 ```
 Response Example:
 ```json
@@ -5247,15 +5247,15 @@ Response Example:
     },
     "creation_time": "2023-01-11T17:26:06.410263787Z",
     "node_type": 1,
-    "bonded_stake": {
+    "bonded_deposit": {
       "denom": "wei",
       "amount": "10000000000000000000"
     },
-    "un_bonding_stake": {
+    "un_bonding_deposit": {
       "denom": "wei",
       "amount": "0"
     },
-    "un_bonded_stake": {
+    "un_bonded_deposit": {
       "denom": "wei",
       "amount": "0"
     }
@@ -5266,11 +5266,11 @@ Response Example:
 <br>
 
 <details>
-    <summary><code> GET /register/staking/owner/{ownerAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries all staking info of a specific owner</summary>
+    <summary><code> GET /register/deposit/owner/{ownerAddress}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries all deposit info of a specific owner</summary>
 
 Request Example:
 ```http
-https://rest-tropos.thestratos.org/register/staking/owner/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest-tropos.thestratos.org/register/deposit/owner/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 ```
 Response Example:
 ```json
@@ -5296,15 +5296,15 @@ Response Example:
       },
       "creation_time": "2023-01-11T17:26:06.410263787Z",
       "node_type": 1,
-      "bonded_stake": {
+      "bonded_deposit": {
         "denom": "wei",
         "amount": "10000000000000000000"
       },
-      "un_bonding_stake": {
+      "un_bonding_deposit": {
         "denom": "wei",
         "amount": "0"
       },
-      "un_bonded_stake": {
+      "un_bonded_deposit": {
         "denom": "wei",
         "amount": "0"
       }
