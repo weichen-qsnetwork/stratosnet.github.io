@@ -17,7 +17,7 @@ newwallet                                                      create new wallet
 registerpeer                                                   register peer to index node
 rp                                                             register peer to index node
 activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
-updateStake <stakeDelta> <fee> optional<gas> <isIncrStake>     send transaction to stchain to update active pp's stake
+updateDeposit <depositDelta> <fee> optional<gas>               send transaction to stchain to update active pp's deposit
 deactivate <fee> optional<gas>                                 send transaction to stchain to stop being an active PP node
 startmining                                                    start mining
 prepay <amount> <fee> optional<gas>                            prepay stos to get ozone
@@ -89,7 +89,7 @@ activate <amount> <fee> [gas]
 
 !!! tip
 
-    `amount` is the amount of tokens you want to stake. 1stos = 10^9gwei = 10^18wei.
+    `amount` is the amount of tokens you want to deposit. 1stos = 10^9gwei = 10^18wei.
 
     `fee` is the amount of tokens to pay as a fee for the activation transaction. 10000wei would work. It will use default value if not provide.
 
@@ -143,7 +143,7 @@ Activation: Active | Mining: ONLINE | Initial tier: 1 | Ongoing tier: 1 | Weight
 
     `Mining` indicates the mining state of a resource node, including `ONLINE`, `OFFLINE`, `SUSPEND` and `MAINTENANCE`.
 
-    When a resource node becomes `Mining: SUSPEND` due to its poor performance, user may use `updateStake` command to update its state and re-start mining by increasing its stake.
+    When a resource node becomes `Mining: SUSPEND` due to its poor performance, user may use `updateDeposit` command to update its state and re-start mining by increasing its deposit.
 
     Meta Node assigns a `Weight score` to Resource Node depending on its performance. The more `Weight score` a Resource Node has, the more priority it has to be assigned tasks.
 
@@ -151,36 +151,31 @@ Activation: Active | Mining: ONLINE | Initial tier: 1 | Ongoing tier: 1 | Weight
 
 ---
 
-## `updateStake`
-Update stake of an active resource node.
+## `updateDeposit`
+Update deposit of an active resource node.
 
 ```shell
-updateStake <stakeDelta> <fee> [gas] <isIncrStake> 
+updateDeposit <depositDelta> <fee> [gas] 
 ```
 
 !!! tip
 
-    `stakeDelta` is the absolute amount of difference between the original and the updated stake. It should be a positive valid token, in the unit of `stos`/`gwei`/`wei`.
+    `depositDelta` is the absolute amount of difference between the original and the updated deposit. It should be a positive valid token, in the unit of `stos`/`gwei`/`wei`.
 
-    `isIncrStake` is a boolean flag with `false` for decreasing the original stake and `true` for increasing the original stake.
-
-    When a resource node is suspended, use this command to update its state and re-start mining by increasing its stake.
+    When a resource node is suspended, use this command to update its state and re-start mining by increasing its deposit.
 
 Example:
 
-The following command will increase 1stos to stake, use 10000gwei for tx fees and 1000000 for tx gas.
+The following command will increase 1stos to deposit, use 10000gwei for tx fees and 1000000 for tx gas.
 
 ```shell
->updateStake 1stos 1000000gwei 1000000 true
+>updateDeposit 1stos 1000000gwei 1000000
 Request Accepted
->[INFO] 2023/01/12 11:03:34 update_stake.go:27: Sending update stake message to SP! stsds1ttpyyh9p7udalhwcz7sh5f5zfzuhpm0h3c0hzc
-[INFO] 2023/01/12 11:03:34 update_stake.go:40: get RspUpdateStakePP RES_SUCCESS 
-[INFO] 2023/01/12 11:03:35 update_stake.go:54: The UpdateStake transaction was broadcast
 ```
 
 !!! tip
 
-    When a resource node is `Mining: SUSPEND` due to poor performance(e.g., frequently offline, task uncompleted, unstable connection, unreachable node, etc.), use this command to update its state and re-start mining by increasing its stake.
+    When a resource node is `Mining: SUSPEND` due to poor performance(e.g., frequently offline, task uncompleted, unstable connection, unreachable node, etc.), use this command to update its state and re-start mining by increasing its deposit.
 
 <br>
 

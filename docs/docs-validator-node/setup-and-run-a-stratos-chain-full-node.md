@@ -20,13 +20,14 @@ The Stratos-chain validator is a full-node that participates in the Stratos Chai
 
 ## Requirements
 
-Here are the recommended hardware/software to run a Stratos-chain full-node:
+Here are the required hardware/software to run a Stratos-chain full-node:
 
-<b>Recommended Hardware</b>
+<b>Minimum Hardware Requirements</b>
 
-* CPU           i5 (4 cores)
-* RAM           16GB
-* Hard disk     2TB
+* CPU: &nbsp;&nbsp;&nbsp;          8 Cores, 2.5 GHz base frequency per core
+* RAM: &nbsp;&nbsp;&nbsp;          32GB
+* Storage: &nbsp;&nbsp;&nbsp;      2TB
+* Min. stake: &nbsp;&nbsp;&nbsp;   1 STOS
 
 <b>Software(tested version)</b>
 
