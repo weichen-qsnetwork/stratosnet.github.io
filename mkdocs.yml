@@ -2,6 +2,7 @@ site_name: Stratos Documentation
 site_url: https://docs.thestratos.org
 theme:
   name: material
+  custom_dir: overrides
   font:
     text: Roboto
   logo: assets/logo.png
@@ -107,4 +108,4 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     
 
-copyright: <p> &copy; 2021-<script>document.write(new Date().getFullYear())</script> Stratos</p>
+copyright: <p> &copy; 2021-<script>document.write(new Date().getFullYear())</script> Stratos Network</p>

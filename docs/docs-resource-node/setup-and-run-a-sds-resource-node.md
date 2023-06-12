@@ -18,13 +18,18 @@ Note that provides their resource(disk/bandwidth/computation power) for SDS is c
 
     Unlike other projects, Stratos does not require expensive GPUs and high wattage power supplies, but the node needs to provide enough bandwidth and storage capacity to ensure the traffic on the node can reach the reward requirements.
 
+<br>
 
-- <b>Recommended Hardware</b>
+- <b>Minimum Hardware Requirements</b>
 
-    * CPU           i5 (4 cores)
-    * RAM           16GB
-    * Hard disk     2TB
-    * Bandwidth     100M
+| Type | CPU | RAM | Storage | Bandwidth | Stake |
+| ---- | --- | --- | ------- | --------- | ----- |
+| TIER 1 | 8 Cores[¹](#Requirements), 2.5GHz[²](#Requirements) | 16 GB | 4 TB | Up: 50Mbps Down: 100Mbps | 800 STOS |
+| TIER 2 | 16 Cores[¹](#Requirements), 2.5GHz[²](#Requirements) | 32 GB | 8 TB | Up: 100Mbps Down: 100Mbps | 1600 STOS |
+| TIER 3 | 32 Cores[¹](#Requirements), 2.5GHz[²](#Requirements) | 64 GB | 16 TB | Up: 1Gbps Down 1Gbps | 3200 STOS |
+
+<small> ¹ &nbsp;&nbsp; Can be achieved using dual CPU server configurations (eg. 2cpu x 4cores, 2cpu x 8cores, etc, as long as the frequency per core is respected).<br>
+² &nbsp;&nbsp; 2.5GHz refers to Base Frequency, not Turbo/Boost Frequency. </small>
 
 <br>
 
