@@ -35,7 +35,7 @@ nav:
     - Changes in Tropos-5: docs-testnet/tropos-5-changes.md
     - Rewards Distribution: docs-testnet/incentive-rewards-distribution.md
     - Migrate Rewards: docs-testnet/migrate-rewards.md
-  - Stratos Node:
+  - Stratos Chain Node:
     - HOWTOs:
       - Full-Chain Node: docs-validator-node/setup-and-run-a-stratos-chain-full-node.md
       - Become a Validator: docs-validator-node/how-to-become-a-validator.md
