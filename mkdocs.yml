@@ -35,7 +35,7 @@ nav:
     - Changes in Tropos-5: docs-testnet/tropos-5-changes.md
     - Rewards Distribution: docs-testnet/incentive-rewards-distribution.md
     - Migrate Rewards: docs-testnet/migrate-rewards.md
-  - Validator Node:
+  - Stratos Node:
     - HOWTOs:
       - Full-Chain Node: docs-validator-node/setup-and-run-a-stratos-chain-full-node.md
       - Become a Validator: docs-validator-node/how-to-become-a-validator.md
@@ -45,6 +45,19 @@ nav:
       - stchaind Commands Part 2: docs-validator-node/stchaind-commands-part-2.md
       - gRPC Queries: docs-validator-node/stratos-chain-grpc-queries.md
       - REST APIs: docs-validator-node/stratos-chain-rest-apis.md
+    - EVM:
+      - Node config: docs-evm/node-config.md
+      - Network details:
+        - Network: docs-evm/network-details/network.md
+        - STOS Gas token: docs-evm/network-details/gas-token.md
+      - Deploying on Stratos:
+        - Using Hardhat: docs-evm/deploy-smart-contracts/hardhat.md
+        - Using Truffle: docs-evm/deploy-smart-contracts/truffle.md
+      - Wallets:
+        - Hello MetaMask: docs-evm/wallets/metamask/hello.md
+        - Configure Stratos on MetaMask: docs-evm/wallets/metamask/configure-on-metamask.md
+        - Multiple Accounts: docs-evm/wallets/metamask/multiple-accounts.md
+      - Available dapps: docs-evm/available-dapps.md
   - Resource Node:
     - HOWTOs:
       - SDS Resource Node: docs-resource-node/setup-and-run-a-sds-resource-node.md
@@ -87,6 +100,8 @@ markdown_extensions:
   - footnotes
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.mark
   - attr_list
   - pymdownx.emoji:
