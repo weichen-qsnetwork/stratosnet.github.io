@@ -612,7 +612,7 @@ Sending coins to another account.
 
 ```{ .yaml .no-copy }
 Usage:
-  rpc_client send <amount> <toAddress> <fee> <gas> [flags]
+  rpc_client send <toAddress> <amount> <fee> <gas> [flags]
 
 Flags:
   -h, --help   help for send
@@ -625,7 +625,7 @@ Global Flags:
 Example:
 
 ```shell
-rpc_client send 100wei st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 0.01stos 60000 \
+rpc_client send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 60000 \
 --url http://127.0.0.1:4444 \
 --wallet st14rhrt576gvj6cl46tjn4pctghllmn63tm69e72
 ```

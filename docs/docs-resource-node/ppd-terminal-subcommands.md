@@ -43,8 +43,8 @@ maintenance start <duration>                                   put the node in m
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node
 performancemeasure                                             turn on performance measurement log for 60 seconds
-withdraw <amount> <fee> optional<targetAddr> optional<gas>     withdraw matured reward
-send <amount> <toAddress> <fee> optional<gas>                  sending coins to another account
+withdraw <amount> <fee> optional<targetAddr> optional<gas>     withdraw matured reward (from address is the configured node wallet)
+send <toAddress> <amount> <fee> optional<gas>                  sending coins to another account (from address is the configured node wallet)
 ```
 
 <br>
@@ -779,7 +779,7 @@ Withdraw matured reward.
 Sending coins to another account.
 
 ```shell
-> send 100wei st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 0.01stos 6000000
+> send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
 > [INFO] 2023/07/10 11:32:43 send.go:35: Send transaction delivered.
 ```
 <br>
