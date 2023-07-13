@@ -24,6 +24,8 @@ Available Commands:
   putstream   upload a file
   share       share a file from uploaded files
   stopshare   stop sharing a file
+  withdraw    withdraw matured reward
+  send        sending coins to another account
 
 Flags:
   -h, --help            help for rpc_client
@@ -549,6 +551,105 @@ Result:
 [INFO] 2023/03/20 12:34:53 main.go:913: - request stop sharing (method: user_requestStopShare)
 [INFO] 2023/03/20 12:34:54 main.go:932: - received response (return: SUCCESS)
 ```
+
+<br>
+
+---
+
+## - withdraw
+
+Withdraw matured reward.
+
+```{ .yaml .no-copy }
+Usage:
+  rpc_client withdraw <amount> <targetAddress> <fee> <gas> [flags]
+
+Flags:
+  -h, --help   help for withdraw
+
+Global Flags:
+  -u, --url string      url to the RPC server, e.g. http://3.24.59.6:8235 (default "http://127.0.0.1:4444")
+  -w, --wallet string   wallet address to be used (default: the first wallet in folder ./account/)
+```
+
+Example:
+
+```shell
+rpc_client withdraw 100wei st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 0.01stos 60000 \
+--url http://127.0.0.1:4444 \
+--wallet st14rhrt576gvj6cl46tjn4pctghllmn63tm69e72
+```
+
+Result:
+
+``` { .yaml .no-copy }
+[INFO] 2023/07/11 14:10:31 rpc_client.go:1390: - request withdraw (method: owner_requestWithdraw)
+[INFO] 2023/07/11 14:10:31 rpc_client.go:1411: - received response (return: SUCCESS)
+```
+
+!!! tip
+
+    You can use 'stchaind' binary to withdraw instead.
+    
+    1: Prepare the stchaind binary.
+
+    2: Convert the sds wallet key file into stchaind format using bip39 mnemonic.
+        ./stchaind keys add testuser --home node/stchaind --keyring-backend test --hd-path "m/44'/606'/0'/0/0"
+    
+    3: Send the 'withdraw' tx to the node through the rpc interface of the stratos-chain 
+        ./stchaind tx pot withdraw --amount=100ustos --from=st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l \
+                                   --target-address=st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l --chain-id=testchain \
+                                   --keyring-backend=test --home=./node/stchaind --gas=auto --gas-prices=1gwei \
+                                   --node "tcp://localhost:26657"
+
+<br>
+
+---
+
+## - send
+
+Sending coins to another account.
+
+```{ .yaml .no-copy }
+Usage:
+  rpc_client send <toAddress> <amount> <fee> <gas> [flags]
+
+Flags:
+  -h, --help   help for send
+
+Global Flags:
+  -u, --url string      url to the RPC server, e.g. http://3.24.59.6:8235 (default "http://127.0.0.1:4444")
+  -w, --wallet string   wallet address to be used (default: the first wallet in folder ./account/)
+```
+
+Example:
+
+```shell
+rpc_client send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 60000 \
+--url http://127.0.0.1:4444 \
+--wallet st14rhrt576gvj6cl46tjn4pctghllmn63tm69e72
+```
+
+Result:
+
+``` { .yaml .no-copy }
+[INFO] 2023/07/11 14:20:40 rpc_client.go:1437: - request send (method: owner_requestSend)
+[INFO] 2023/07/11 14:20:40 rpc_client.go:1458: - received response (return: SUCCESS)
+```
+
+!!! tip
+
+    You can use 'stchaind' binary to send instead.
+    
+    1: Prepare the stchaind binary.
+
+    2: Convert the sds wallet key file into stchaind format using bip39 mnemonic.
+        ./stchaind keys add testuser --home node/stchaind --keyring-backend test --hd-path "m/44'/606'/0'/0/0"
+    
+    3: Send the 'send' tx to the node through the rpc interface of the stratos-chain 
+        ./stchaind tx bank send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l st1edp9gkppxzjvcg9nwheh6tp9rsgafatckfdl6m 10000wei \
+                            --chain-id=testchain  --keyring-backend=test --home=./node/stchaind --gas=auto --gas-prices=1gwei \
+                            --node "tcp://localhost:26657"
 
 <br>
 
