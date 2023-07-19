@@ -18,11 +18,6 @@ description: The Stratos Network official documentation page for SDS and Stratos
 | Description | Link |
 | ----------- | :--: |
 | About Stratos and Whitepaper | [Link](docs-about/about-stratos) |
-| Stratos token (STOS) Metrics | [Link](docs-about/stratos-token-metrics) |
-| Stratos token (STOS) Economy | [Link](docs-about/stratos-token-economy) |
-| Changes in Tropos-5 incentive testnet | [Link](docs-testnet/tropos-5-changes) |
-| Rewards distribution in Tropos-5 incentive testnet | [Link](docs-testnet/incentive-rewards-distribution) |
-| Migrate rewards from previous testnet versions to Tropos-5 | [Link](docs-testnet/migrate-rewards) |
 | HOWTO: Setup a Full-Chain node | [Link](docs-validator-node/setup-and-run-a-stratos-chain-full-node) |
 | HOWTO: Become a Validator | [Link](docs-validator-node/how-to-become-a-validator) |
 | HOWTO: Setup a SDS Resource node | [Link](docs-resource-node/setup-and-run-a-sds-resource-node) |

@@ -173,7 +173,7 @@ Global Flags(can be used for all stchaind commands):
 
 !!! tip
 
-    - `--chain-id`: the current `chain-id` may change when updating in testing phase . When it is applied, user needs to point out current `chain-id` which can be found on [this page](https://explorer-tropos.thestratos.org/), right next to the search bar at the top of the page 
+    - `--chain-id`: the current `chain-id` may change when updating in testing phase . When it is applied, user needs to point out current `chain-id` which can be found on [this page](https://explorer-mesos.thestratos.org/), right next to the search bar at the top of the page 
 
 
     - `--home`: this directory contains node's account information. By default, node's account info is saved or created under `$HOME/.stchaind`. In this case, user does not need to add `--home` flag in the commands. Otherwise, user has to use this flag to specify the path to the node's root directory(default '$HOME') explicitly if not using the default directory. In the following instruction, we suppose the node info has been installed or created under `$HOME/.stchaind` and skip the `--home` flag. User can add it where applicable.
@@ -215,7 +215,7 @@ Example:
 
 ```shell
 stchaind tx bank send st1sqzsk8mplxx22fdgg878ccc3329gfd9g7d9g9d st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx 1gwei \
---chain-id=tropos-5  \
+--chain-id=mesos-1  \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -290,7 +290,7 @@ Example:
 ```shell
 stchaind tx distribution withdraw-rewards stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  \
+--chain-id=mesos-1  \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -332,7 +332,7 @@ Example:
 ```shell
 stchaind tx distribution withdraw-all-rewards \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  \
+--chain-id=mesos-1  \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -489,12 +489,6 @@ stchaind query distribution params
 
 Submit a proposal along with an initial deposit. Proposal title, description, type and deposit can be given directly or through a proposal JSON file.
 
-!!! tip
-
-    - In the `Tropos Incentive Testnet` testing phase, the deposit should use `utros`(NOT `stos`, `gwei` or `wei`). Otherwise, you will get an error and the deposit tokens won't be back.
-
-    - The minimum deposit is `10000000000utros`.
-
 Except for itself, the command `submit-proposal` also provides three sub-commands, `param-change`,
 `community-pool-spend` and `software-upgrade`, to submit a proposal for changing global parameters,
 distributing funds in `community-pool` and upgrading software.
@@ -552,7 +546,7 @@ Where `proposal.json` contains:
       "title": "Test Proposal",
       "description": "My awesome proposal",
       "type": "Text",
-      "deposit": "100000000000utros"
+      "deposit": "100000000000gwei"
     }
 ```
 
@@ -563,7 +557,7 @@ stchaind tx gov submit-proposal \
 --title="Test Proposal" \
 --description="My awesome proposal" \
 --type="Text" \
---deposit="100000000000utros" \
+--deposit="100000000000gwei" \
 --from=<name|address of private key>
 ```
 
@@ -574,9 +568,9 @@ stchaind tx gov submit-proposal \
 --title="Test Proposal" \
 --description="My awesome proposal" \
 --type="Text" \
---deposit="100000000000utros" \
+--deposit="100000000000gwei" \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  \
+--chain-id=mesos-1  \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -617,7 +611,7 @@ A sample of `param_change.json` could be:
             "value": {"max_deposit_period":"72800000000000"}
         }
     ],
-    "deposit": "1000000000000utros"
+    "deposit": "1000000000000gwei"
 }
 ```
 
@@ -626,7 +620,7 @@ A sample of `param_change.json` could be:
 ```shell
 stchaind tx gov submit-proposal param-change ./helpers/param_change.json \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -657,7 +651,7 @@ The `proposal.json` could be:
       ],
       "deposit": [
         {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "1000000000000"
         }
       ]
@@ -669,7 +663,7 @@ The `proposal.json` could be:
 ```shell
 stchaind tx gov submit-proposal community-pool-spend ./helpers/proposal.json \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -694,9 +688,9 @@ stchaind tx gov submit-proposal software-upgrade="v0.3.1" \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
 --description=test1 \
 --title=test1 \
---deposit=100000000000utros \
+--deposit=100000000000gwei \
 --info=testinfo \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -707,12 +701,6 @@ stchaind tx gov submit-proposal software-upgrade="v0.3.1" \
 ### -`deposit`
 
 Deposit tokens for an active proposal by `proposal-id` which can be found with the command `stchaind query gov proposals`.
-
-!!! tip
-
-    - In the `Tropos Incentive Testnet` testing phase, the deposit should use `utros`, NOT `stos`, `gwei` or `wei`. Otherwise, you will get an error and the deposit tokens won't be back.</b>
-
-    - <b>The minimum deposit is `10000000000utros`</b>
 
 
 ``` { .yaml .no-copy }
@@ -743,9 +731,9 @@ Example:
 
 
 ```shell
-stchaind tx gov deposit 7 100000000utros \
+stchaind tx gov deposit 7 100000000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -786,7 +774,7 @@ Example:
 ```shell
 stchaind tx gov vote 7 yes \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -834,7 +822,7 @@ final_tally_result:
 submit_time: 2021-07-23T14:40:04.976927421Z
 deposit_end_time: 2021-07-23T14:41:44.976927421Z
 total_deposit:
-- denom: utros
+- denom: gwei
   amount: "100010000"
 voting_start_time: 2021-07-23T14:40:41.961523583Z
 voting_end_time: 2021-07-23T14:42:21.961523583Z
@@ -896,7 +884,7 @@ Result:
   submit_time: 2021-07-19T15:38:08.619640056Z
   deposit_end_time: 2021-07-19T15:39:48.619640056Z
   total_deposit:
-  - denom: utros
+  - denom: gwei
     amount: "100010000"
   voting_start_time: 2021-07-19T15:38:23.789218262Z
   voting_end_time: 2021-07-19T15:40:03.789218262Z
@@ -920,7 +908,7 @@ Result:
   submit_time: 2021-07-23T14:40:04.976927421Z
   deposit_end_time: 2021-07-23T14:41:44.976927421Z
   total_deposit:
-  - denom: utros
+  - denom: gwei
     amount: "100010000"
   voting_start_time: 2021-07-23T14:40:41.961523583Z
   voting_end_time: 2021-07-23T14:42:21.961523583Z
@@ -1029,7 +1017,7 @@ Result:
 proposal_id: 7
 depositor: st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda
 amount:
-- denom: utros
+- denom: gwei
   amount: "100000000"
 ```
 
@@ -1067,7 +1055,7 @@ Result:
 - proposal_id: 7
   depositor: st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda
   amount:
-  - denom: utros
+  - denom: gwei
     amount: "100000000"
 ```
 
@@ -1111,7 +1099,7 @@ Example:
 ```shell
 stchaind tx slashing unjail \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -1222,7 +1210,7 @@ Example:
 ```shell
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 1000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -1263,7 +1251,7 @@ Example:
 ```shell
 stchaind tx staking redelegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k stvaloper1gtw399h9vfnekqsz3dg4n6mj0qgdpnh30x66xa 1000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -1305,7 +1293,7 @@ Example:
 ```shell
 stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 10000gwei \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -1378,7 +1366,7 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y 
+--chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y 
 ```
 
 The value of `--pubkey` can be retrieved by using the command `stchaind tendermint show-validator`
@@ -1436,7 +1424,7 @@ stchaind tx staking edit-validator \
 --keyring-backend=test \
 --min-self-delegation=100  \
 --memo="Change 'min-self-delegation' from 1 to 100" \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>

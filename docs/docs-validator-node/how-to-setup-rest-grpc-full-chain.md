@@ -5,7 +5,7 @@ description: Guide on how to configure Full-Chain node as REST or gRPC server.
 
 In order to work properly, a SDS node needs to generate, sign and broadcast transaction to the Stratos chain through a Full-Chain node.
 
-Stratos provides a public endpoint at _rest-tropos.thestratos.org_ for cases when there's only a SDS node running and a Full-Chain is not available.
+Stratos provides a public endpoint at _rest-mesos.thestratos.org_ for cases when there's only a SDS node running and a Full-Chain is not available.
 
 However, this setup is particularly useful if you run both a Full-Chain and a SDS node because you can setup your own REST/gRPC endpoint in your Full-Chain node so it can be used for your SDS node. This means that you will have improved performance, faster responses and you won't be dependent on the public endpoint which may get overloaded at times.
 
@@ -13,7 +13,7 @@ This setup is also useful for server farms running multiple SDS nodes.
 
 !!! tip
 
-    Currently, in Tropos-5 incentive testnet, SDS nodes are using REST API but this will be changed to gRPC API once mainnet is launched.
+    Currently, in mesos-1 incentive testnet, SDS nodes are using REST API but this will be changed to gRPC API once mainnet is launched.
 
 <br>
 
@@ -46,7 +46,7 @@ curl http://localhost:1317/bank/balances/st1pgzvq9p5gyxu7gpe8l33g8nzq0xsfyeaeww3
 
 {"height":"1062014","result":[
   {
-    "denom": "utros",
+    "denom": "gwei",
     "amount": "166304372501"
   },
   {

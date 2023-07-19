@@ -29,13 +29,7 @@ nav:
   - About:
     - Welcome: index.md
     - About Stratos: docs-about/about-stratos.md
-    - STOS Token Metrics: docs-about/stratos-token-metrics.md
     - STOS Token Economy: docs-about/stratos-token-economy.md
-  - Testnet:
-    - Introduction: docs-testnet/introduction.md
-    - Changes in Tropos-5: docs-testnet/tropos-5-changes.md
-    - Rewards Distribution: docs-testnet/incentive-rewards-distribution.md
-    - Migrate Rewards: docs-testnet/migrate-rewards.md
   - Stratos Chain Node:
     - HOWTOs:
       - Full-Chain Node: docs-validator-node/setup-and-run-a-stratos-chain-full-node.md
@@ -46,6 +40,7 @@ nav:
       - stchaind Commands Part 2: docs-validator-node/stchaind-commands-part-2.md
       - gRPC Queries: docs-validator-node/stratos-chain-grpc-queries.md
       - REST APIs: docs-validator-node/stratos-chain-rest-apis.md
+      - Network: docs-validator-node/network.md
     - EVM:
       - Node config: docs-evm/node-config.md
       - Network details:
@@ -70,7 +65,7 @@ nav:
 
 plugins:
   - search
-  - social
+#  - social
 
 extra:
   social:

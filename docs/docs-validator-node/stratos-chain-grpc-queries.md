@@ -728,7 +728,7 @@ Response:
     {
       "reward_from_mining_pool": [
         {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "7813154022"
         }
       ],
@@ -770,7 +770,7 @@ Response:
     "mature_total_reward": [],
     "immature_total_reward": [
       {
-        "denom": "utros",
+        "denom": "gwei",
         "amount": "93757827824"
       },
       {
@@ -827,15 +827,15 @@ Response:
     "mining_reward_params": [
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "0"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "16819200000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "80000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -844,15 +844,15 @@ Response:
       },
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "16819200000000000"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "25228800000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "40000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -861,15 +861,15 @@ Response:
       },
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "25228800000000000"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "29433600000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "20000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -878,15 +878,15 @@ Response:
       },
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "29433600000000000"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "31536000000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "10000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -895,15 +895,15 @@ Response:
       },
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "31536000000000000"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "32587200000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "5000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -912,15 +912,15 @@ Response:
       },
       {
         "total_mined_valve_start": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "32587200000000000"
         },
         "total_mined_valve_end": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "40000000000000000"
         },
         "mining_reward": {
-          "denom": "utros",
+          "denom": "gwei",
           "amount": "2500000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -929,7 +929,7 @@ Response:
       }
     ],
     "bond_denom": "wei",
-    "reward_denom": "utros",
+    "reward_denom": "gwei",
     "mature_epoch": "2016",
     "community_tax": "20000000000000000",
     "initial_total_supply": {
@@ -958,7 +958,7 @@ Response:
 ```json
 {
   "total_mined_token": {
-    "denom": "utros",
+    "denom": "gwei",
     "amount": "959999999923"
   }
 }

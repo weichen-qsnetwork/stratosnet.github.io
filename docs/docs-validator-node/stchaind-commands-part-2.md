@@ -85,7 +85,7 @@ Transaction example:
  --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
  --moniker=resource-node0 \
  --node-type=1 \
- --chain-id=tropos-5 \
+ --chain-id=mesos-1 \
  --keyring-backend=test \
  --gas=auto \
  --gas-prices=1000000000wei -y
@@ -284,7 +284,7 @@ stchaind tx register update-resource-node \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=resource-nodeupdate \
 --node-type=7 \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -370,7 +370,7 @@ stchaind tx register update-resource-node \
 --network-address=stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=resource-nodeupdate \
---node-type=7 --chain-id=tropos-5 \
+--node-type=7 --chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -428,7 +428,7 @@ Transaction example:
 stchaind tx register remove-resource-node \
 --network-address=stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -543,7 +543,7 @@ stchaind tx register create-meta-node \
 --pubkey=stsdspub1zcjduepqv7sj69c52rsdu5m8nk6tg4v5y8fh43w2hl9aa7mp3qgr9ym0feyshrc4wv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=meta-node0 \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -613,7 +613,7 @@ stchaind tx register meta-node-reg-vote \
 --candidate-owner-address=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --opinion=true \
 --voter-network-address=stsds13yakj2xgzzdfcw7kd5gtfcfv2k6sn5eg4vdfem \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -677,7 +677,7 @@ stchaind tx register update-meta-node \
 --network-address=stsds1faej5w4q6hgnt0ft598dlm408g4p747y4krwca \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --moniker=meta-node \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -737,7 +737,7 @@ Transaction example:
 stchaind tx register remove-meta-node \
 --network-address=stsds1faej5w4q6hgnt0ft598dlm408g4p747y4krwca \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -826,7 +826,7 @@ stchaind tx register update-meta-node-deposit \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --deposit-delta=100gwei \
 --incr-deposit=true \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -1040,7 +1040,7 @@ Transaction example:
  --uploader=st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw \
  --reporter=stsds14c3em44vlh276cujnr2ez802uyjyeqrrsu9fuh \
  --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
- --chain-id=tropos-5 \
+ --chain-id=mesos-1 \
  --keyring-backend=test \
  --gas=auto \
  --gas-prices=1000000000wei -y
@@ -1090,7 +1090,7 @@ Transaction example:
 
 ```shell
  stchaind tx sds prepay st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh 10stos \
- --chain-id=tropos-5 \
+ --chain-id=mesos-1 \
  --keyring-backend=test \
  --gas=auto \
  --gas-prices=1000000000wei -y
@@ -1208,7 +1208,7 @@ Transaction example:
 stchaind tx pot foundation-deposit \
 --amount=40000stos \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei
@@ -1267,9 +1267,9 @@ Transaction example:
 
 ```shell
 stchaind tx pot withdraw \
---amount=100utros \
+--amount=100gwei \
 --target-address=st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx \
---from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh --chain-id=tropos-5 \
+--from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh --chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -1326,10 +1326,10 @@ Transaction example:
 
 ```shell
 stchaind tx pot legacy-withdraw \
---amount=100utros \
+--amount=100gwei \
 --target-address=st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --keyring-backend=test \
 --gas=auto \
 --gas-prices=1000000000wei -y
@@ -1389,75 +1389,75 @@ mining_reward_params:
   meta_node_percentage_in_ten_thousand: "2000"
   mining_reward:
     amount: "80000000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "6000"
   total_mined_valve_end:
     amount: "16819200000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "0"
-    denom: utros
+    denom: gwei
 - block_chain_percentage_in_ten_thousand: "2000"
   meta_node_percentage_in_ten_thousand: "1800"
   mining_reward:
     amount: "40000000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "6200"
   total_mined_valve_end:
     amount: "25228800000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "16819200000000000"
-    denom: utros
+    denom: gwei
 - block_chain_percentage_in_ten_thousand: "2000"
   meta_node_percentage_in_ten_thousand: "1600"
   mining_reward:
     amount: "20000000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "6400"
   total_mined_valve_end:
     amount: "29433600000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "25228800000000000"
-    denom: utros
+    denom: gwei
 - block_chain_percentage_in_ten_thousand: "2000"
   meta_node_percentage_in_ten_thousand: "1400"
   mining_reward:
     amount: "10000000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "6600"
   total_mined_valve_end:
     amount: "31536000000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "29433600000000000"
-    denom: utros
+    denom: gwei
 - block_chain_percentage_in_ten_thousand: "2000"
   meta_node_percentage_in_ten_thousand: "1200"
   mining_reward:
     amount: "5000000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "6800"
   total_mined_valve_end:
     amount: "32587200000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "31536000000000000"
-    denom: utros
+    denom: gwei
 - block_chain_percentage_in_ten_thousand: "2000"
   meta_node_percentage_in_ten_thousand: "1000"
   mining_reward:
     amount: "2500000000"
-    denom: utros
+    denom: gwei
   resource_node_percentage_in_ten_thousand: "7000"
   total_mined_valve_end:
     amount: "40000000000000000"
-    denom: utros
+    denom: gwei
   total_mined_valve_start:
     amount: "32587200000000000"
-    denom: utros
-reward_denom: utros
+    denom: gwei
+reward_denom: gwei
 ```
 
 
@@ -2170,7 +2170,7 @@ Example:
 ```shell
 stchaind query txs \
 --events 'message.sender=st1gtw399h9vfnekqsz3dg4n6mj0qgdpnh3c2n66k' \
---chain-id=tropos-5 \
+--chain-id=mesos-1 \
 --limit=20
 ```
 
