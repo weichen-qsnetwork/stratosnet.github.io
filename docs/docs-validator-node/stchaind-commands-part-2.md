@@ -1383,81 +1383,85 @@ stchaind query pot params
 
 bond_denom: wei
 community_tax: "0.020000000000000000"
+initial_total_supply:
+  amount: "400000000000000000000000000"
+  denom: wei
 mature_epoch: "2016"
 mining_reward_params:
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "2000"
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "2000"
   mining_reward:
-    amount: "80000000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "6000"
+    amount: "80000000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "6000"
   total_mined_valve_end:
-    amount: "16819200000000000"
-    denom: gwei
+    amount: "16819200000000000000000000"
+    denom: wei
   total_mined_valve_start:
     amount: "0"
-    denom: gwei
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "1800"
+    denom: wei
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "1800"
   mining_reward:
-    amount: "40000000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "6200"
+    amount: "40000000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "6200"
   total_mined_valve_end:
-    amount: "25228800000000000"
-    denom: gwei
+    amount: "25228800000000000000000000"
+    denom: wei
   total_mined_valve_start:
-    amount: "16819200000000000"
-    denom: gwei
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "1600"
+    amount: "16819200000000000000000000"
+    denom: wei
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "1600"
   mining_reward:
-    amount: "20000000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "6400"
+    amount: "20000000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "6400"
   total_mined_valve_end:
-    amount: "29433600000000000"
-    denom: gwei
+    amount: "29433600000000000000000000"
+    denom: wei
   total_mined_valve_start:
-    amount: "25228800000000000"
-    denom: gwei
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "1400"
+    amount: "25228800000000000000000000"
+    denom: wei
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "1400"
   mining_reward:
-    amount: "10000000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "6600"
+    amount: "10000000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "6600"
   total_mined_valve_end:
-    amount: "31536000000000000"
-    denom: gwei
+    amount: "31536000000000000000000000"
+    denom: wei
   total_mined_valve_start:
-    amount: "29433600000000000"
-    denom: gwei
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "1200"
+    amount: "29433600000000000000000000"
+    denom: wei
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "1200"
   mining_reward:
-    amount: "5000000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "6800"
+    amount: "5000000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "6800"
   total_mined_valve_end:
-    amount: "32587200000000000"
-    denom: gwei
+    amount: "32587200000000000000000000"
+    denom: wei
   total_mined_valve_start:
-    amount: "31536000000000000"
-    denom: gwei
-- block_chain_percentage_in_ten_thousand: "2000"
-  meta_node_percentage_in_ten_thousand: "1000"
+    amount: "31536000000000000000000000"
+    denom: wei
+- block_chain_percentage_in_bp: "2000"
+  meta_node_percentage_in_bp: "1000"
   mining_reward:
-    amount: "2500000000"
-    denom: gwei
-  resource_node_percentage_in_ten_thousand: "7000"
+    amount: "2500000000000000000"
+    denom: wei
+  resource_node_percentage_in_bp: "7000"
   total_mined_valve_end:
-    amount: "40000000000000000"
-    denom: gwei
+    amount: "40000000000000000000000000"
+    denom: wei
   total_mined_valve_start:
-    amount: "32587200000000000"
-    denom: gwei
-reward_denom: gwei
+    amount: "32587200000000000000000000"
+    denom: wei
+reward_denom: wei
+
 ```
 
 

@@ -136,13 +136,12 @@ echo $HOME
 ``` { .yaml .no-copy }
 stchaind query bank balances st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 balances:
-- amount: "1000000000000000"
-  denom: utros
-- amount: "959999999522216000000000"
+- amount: "499999996283820000000"
   denom: wei
 pagination:
   next_key: null
   total: "0"
+
 ```
 
 
@@ -389,7 +388,7 @@ stchaind tx staking edit-validator \
 Example:
 
 ```shell
-stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 1000gwei \
+stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100stos \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
 --chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei
 ```
@@ -401,7 +400,7 @@ stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 10
 Example:
 
 ```shell
-stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 10000gwei \
+stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 100stos \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh 
 --chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```

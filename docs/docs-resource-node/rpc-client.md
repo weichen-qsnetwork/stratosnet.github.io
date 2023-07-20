@@ -5,6 +5,9 @@ description: List and descriptions of SDS RPC Client commands.
 
 [\\]: <> (Add how to install when rpc_client is available in main repo.)
 
+!!! danger "Warning"
+
+    Oudated documentation. Due to be updated in the following days.
 
 ## - `help`
 

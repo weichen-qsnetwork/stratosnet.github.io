@@ -44,15 +44,13 @@ Usage example:
 ```json
 curl http://localhost:1317/bank/balances/st1pgzvq9p5gyxu7gpe8l33g8nzq0xsfyeaeww3ru
 
-{"height":"1062014","result":[
-  {
-    "denom": "gwei",
-    "amount": "166304372501"
-  },
+
+{"height":"46397","result":[
   {
     "denom": "wei",
-    "amount": "1178011342927397401552"
+    "amount": "499999996283820000000"
   }
+]}
 ```
 
 You can see all the REST queries [here](../stratos-chain-rest-apis).

@@ -823,22 +823,13 @@ https://rest-mesos.thestratos.org/bank/balances/st1pvyjzlhwrpgklu0044at4t6qh7m23
 ```
 Response Example:
 ```json
-{
-    "balances": [
-        {
-            "denom": "gwei",
-            "amount": "1000000000000000"
-        },
-        {
-            "denom": "wei",
-            "amount": "959989996222216000000000"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "2"
-    }
-}
+
+{"height":"46424","result":[
+  {
+    "denom": "wei",
+    "amount": "49999999628382000000000"
+  }
+]}
 ```
 </details>
 <br>
@@ -875,22 +866,18 @@ https://rest-mesos.thestratos.org/bank/total
 ```
 Response Example:
 ```json
-{
-    "supply": [
-        {
-            "denom": "gwei",
-            "amount": "1000000000000000"
-        },
-        {
-            "denom": "wei",
-            "amount": "21000515645592831741552108"
-        }
-    ],
-    "pagination": {
-        "next_key": null,
-        "total": "2"
+
+{"height":"46428","result":{
+  "supply": [
+    {
+      "denom": "wei",
+      "amount": "400000000000000000000000000"
     }
-}
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}}
 ```
 </details>
 <br>
@@ -1561,7 +1548,7 @@ Response Example:
             "deposit_end_time": "2022-07-21T23:37:29.577871179Z",
             "total_deposit": [
                 {
-                    "denom": "gwei",
+                    "denom": "wei",
                     "amount": "100000000000"
                 }
             ],
@@ -1595,7 +1582,7 @@ Response Example:
             "deposit_end_time": "2022-07-21T23:40:40.359241471Z",
             "total_deposit": [
                 {
-                    "denom": "gwei",
+                    "denom": "wei",
                     "amount": "1000000000000"
                 }
             ],
@@ -1660,7 +1647,7 @@ Response Example:
             "deposit_end_time": "2022-07-21T23:37:29.577871179Z",
             "total_deposit": [
                 {
-                    "denom": "gwei",
+                    "denom": "wei",
                     "amount": "100000000000"
                 }
             ],
@@ -1713,7 +1700,7 @@ Response Example:
         "deposit_end_time": "2022-07-21T23:40:40.359241471Z",
         "total_deposit": [
             {
-                "denom": "gwei",
+                "denom": "wei",
                 "amount": "1000000000000"
             }
         ],
@@ -1767,7 +1754,7 @@ Response Example:
     "deposit_params": {
         "min_deposit": [
             {
-                "denom": "gwei",
+                "denom": "wei",
                 "amount": "10000000000"
             }
         ],
@@ -1805,7 +1792,7 @@ Response Example:
             "depositor": "st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk",
             "amount": [
                 {
-                    "denom": "gwei",
+                    "denom": "wei",
                     "amount": "1000000000000"
                 }
             ]
@@ -1840,7 +1827,7 @@ Response Example:
         "depositor": "st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk",
         "amount": [
             {
-                "denom": "gwei",
+                "denom": "wei",
                 "amount": "1000000000000"
             }
         ]
@@ -1965,7 +1952,7 @@ Response Example:
     "result": {
         "min_deposit": [
             {
-                "denom": "gwei",
+                "denom": "wei",
                 "amount": "10000000000"
             }
         ],
@@ -5414,7 +5401,7 @@ Response Example:
       "wallet_address": "st1qk5crq35zzus7c3ztx6znez8xe3wmn9y755uzl",
       "reward_from_mining_pool": [
         {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "3813153"
         }
       ],
@@ -5429,7 +5416,7 @@ Response Example:
       "wallet_address": "st1pfsrjnx74vwfpd96haml5054q9upvx4jtwmhxy",
       "reward_from_mining_pool": [
         {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "7813153114"
         }
       ],
@@ -5444,7 +5431,7 @@ Response Example:
       "wallet_address": "st19wcqrjdpl3259f9flfc4zhy04m22g0r6ndk9er",
       "reward_from_mining_pool": [
         {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "3813153"
         }
       ],
@@ -5477,10 +5464,6 @@ Response Example:
     "mature_total_reward": [],
     "immature_total_reward": [
       {
-        "denom": "gwei",
-        "amount": "46878920500"
-      },
-      {
         "denom": "wei",
         "amount": "34050759021267"
       }
@@ -5508,7 +5491,7 @@ Response Example:
     "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em",
     "reward_from_mining_pool": [
       {
-        "denom": "gwei",
+        "denom": "wei",
         "amount": "7813151751"
       }
     ],
@@ -5539,10 +5522,6 @@ Response Example:
     "wallet_address": "st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em",
     "mature_total_reward": [],
     "immature_total_reward": [
-      {
-        "denom": "gwei",
-        "amount": "93757827824"
-      },
       {
         "denom": "wei",
         "amount": "88509725445757"
@@ -5584,20 +5563,20 @@ Response Example:
   "height": "19637",
   "result": {
     "bond_denom": "wei",
-    "reward_denom": "gwei",
+    "reward_denom": "wei",
     "mature_epoch": "2016",
     "mining_reward_params": [
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "0"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "16819200000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "80000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5606,15 +5585,15 @@ Response Example:
       },
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "16819200000000000"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "25228800000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "40000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5623,15 +5602,15 @@ Response Example:
       },
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "25228800000000000"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "29433600000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "20000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5640,15 +5619,15 @@ Response Example:
       },
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "29433600000000000"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "31536000000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "10000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5657,15 +5636,15 @@ Response Example:
       },
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "31536000000000000"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "32587200000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "5000000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5674,15 +5653,15 @@ Response Example:
       },
       {
         "total_mined_valve_start": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "32587200000000000"
         },
         "total_mined_valve_end": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "40000000000000000"
         },
         "mining_reward": {
-          "denom": "gwei",
+          "denom": "wei",
           "amount": "2500000000"
         },
         "block_chain_percentage_in_bp": "2000",
@@ -5713,7 +5692,7 @@ Response Example:
 {
   "height": "19033",
   "result": {
-    "denom": "gwei",
+    "denom": "wei",
     "amount": "959999999923"
   }
 }

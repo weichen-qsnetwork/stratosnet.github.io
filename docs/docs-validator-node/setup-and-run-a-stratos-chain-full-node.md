@@ -35,7 +35,7 @@ Here are the required hardware/software to run a Stratos-chain full-node:
 <b>Software (tested version)</b>
 
 * Ubuntu 18.04+
-* Go 1.18+ linux/amd64
+* Go 1.19+ linux/amd64
 
 
 <br>
@@ -44,7 +44,7 @@ Here are the required hardware/software to run a Stratos-chain full-node:
 
 ## Setup Environment
 
-In order to run a Stratos-chain full-node, you may need to build `stratos-chain` source code yourself which requires `Go 1.18+`, `git`, `curl` and `make` installed.
+In order to run a Stratos-chain full-node, you may need to build `stratos-chain` source code yourself which requires `Go 1.19+`, `git`, `curl` and `make` installed.
 
 This process depends on your operating system.
 
@@ -65,7 +65,7 @@ sudo apt upgrade
 # Install git, snap and make(you can also install them separately as your needs)
 sudo apt install git build-essential curl tmux snapd libgmp3-dev flex bison --yes
     
-# Install Go 1.18+ with Snap and export environment variables(You can also install Go 1.18+ in your way)
+# Install Go 1.19+ with Snap and export environment variables(You can also install Go 1.19+ in your way)
 sudo snap install go --classic
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export GOBIN="$GOPATH/bin"' >> ~/.profile
@@ -135,7 +135,85 @@ Once the user account `stratos` is created, switch and login the system using `s
 
 ### Get release files
 
-Before the following steps, please make sure you have `Go 1.18+` installed [link](https://golang.org/doc/install).
+!!! tip
+
+    There are two ways to get the these binary executables:
+
+    - Download pre-compiled executabled (for Ubuntu 18.04+ x86_64).
+    - Download source code and compile it yourself.
+    
+    Please choose only one of them based on your operating system.
+
+<br>
+
+#### Pre-compiled executables
+
+The following binary `stchaind` has been built and ready to be downloaded directly.
+
+```shell
+# Make sure we are inside the $HOME folder
+cd $HOME
+wget https://github.com/stratosnet/stratos-chain/releases/download/v0.10.0/stchaind
+```
+
+!!! tip
+
+    💡 This binary is built for Ubuntu 18.04+ amd64. if you have other Linux kernels, please follow the next step to build your own binary with source code. For ease of use, we recommend saving this binary in your `$HOME` folder. 
+
+<br>
+
+- Check the granularity
+
+```shell
+# Make sure we are inside the $HOME folder and check these two binary executables
+cd $HOME
+
+# Check granularity
+md5sum stchain*
+
+## Expected output
+## e7e52a3831f8c22864badbf4c268adb5  stchaind
+```
+
+<br>
+
+- Add execute permission to this binary
+
+```shell
+# Make sure the file can be executed
+chmod +x stchaind
+```
+
+<br>
+
+- Add the binary to the search path
+
+```shell
+mkdir ~/bin 
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile 
+source ~/.profile
+cp stchaind ~/bin 
+```
+
+- Verify installation
+
+```shell
+stchaind version
+
+# Should return v0.10.0
+```
+
+<br>
+
+!!! tip
+
+    If you have any issues with the pre-compiled binary, continue this guide to locally compile yourself. Otherwise, go to the next step.
+
+<br>
+
+#### Compile the source code
+
+Before the following steps, please make sure you have `Go 1.19+` installed [link](https://golang.org/doc/install).
 
 <br>
 
@@ -195,8 +273,8 @@ stchaind init "<your_node_moniker>" --chain-id mesos-1
 - Download the `genesis.json` and `config.toml` files
 
 ```shell
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/genesis.json
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/config.toml
+wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/mesos-1/genesis.json
+wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/mesos-1/config.toml
 ```
 
 
@@ -230,7 +308,7 @@ wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/con
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = "your_node_moniker"
+moniker = "node-name"
 
 # If this node is many blocks behind the tip of the chain, FastSync
 # allows them to catchup quickly by downloading blocks in parallel
@@ -424,7 +502,7 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = ""
+seeds = "2bc1ca52aeafe05606de3abdaad62faa1e2382aa@100.20.165.122:26656,ec9ed77773131b6b17d5ca6e69d15a01ea443ea9@35.233.251.35:26656"
 
 # Comma separated list of nodes to keep persistent connections to
 persistent_peers = ""
@@ -464,7 +542,7 @@ send_rate = 5120000
 recv_rate = 5120000
 
 # Set true to enable the peer-exchange reactor
-pex = false
+pex = true
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
@@ -473,6 +551,7 @@ pex = false
 seed_mode = false
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
+#
 private_peer_ids = ""
 
 # Toggle to disable guard against peers connecting from the same ip.
@@ -688,7 +767,7 @@ namespace = "tendermint"
 
 - Change `moniker` in the downloaded `config.toml` file
 
-Please change your node moniker by modifying the `config.toml` file. Open this file with an editor, search `moniker` (usually at Line #16) in the file to find the “moniker” field. 
+Please change your node moniker by modifying the `config.toml` file. Open this file with an editor, search `moniker` (usually at Line #18) in the file to find the “moniker” field. 
 
 Change it to any value you like. It’s your node name that will show on the network.
 

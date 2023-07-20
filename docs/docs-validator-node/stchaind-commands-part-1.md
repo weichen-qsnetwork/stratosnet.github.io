@@ -12,18 +12,20 @@ on the node can reach the reward requirements.
 
 We recommend the following to run your node:
 
-```shell
-* CPU i5 4 cores
-* 16GB memory
-* 2TB hard disk
-```
+<b>Minimum Hardware Requirements</b>
 
-Software(tested version):
+| CPU | RAM | Storage | Stake |
+| --- | --- | ------- | ----- |
+| 8 Cores[¹](#), 2.5GHz[²](#) | 32 GB | 2 TB | 1 STOS[³](#) |
 
-```shell
+<small> ¹ &nbsp;&nbsp; Can be achieved using dual CPU server configurations (eg. 2cpu x 8cores, as long as the frequency per core is respected).<br>
+² &nbsp;&nbsp; 2.5GHz refers to Base Frequency, not Turbo/Boost Frequency. <br>
+³ &nbsp;&nbsp; Minimum stake is 1 stos until all 100 validator spots are filled. After that, is marked decided.</small>
+
+<b>Software (tested version)</b>
+
 * Ubuntu 18.04+
-* Go 1.18+ linux/amd64 (optional, if compile the binary with source code)
-```
+* Go 1.19+ linux/amd64
 
 <br>
 
@@ -182,6 +184,41 @@ Global Flags(can be used for all stchaind commands):
 
 ---
 
+## Denomination
+
+When executing commands that require a certain amount of tokens, you can use either denomination:
+
+- 1 stos =
+- 1,000,000,000 gwei =
+- 1,000,000,000,000,000,000 wei
+
+For example, the following commands will result in transfering the same value (100 stos):
+
+``` shell
+stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100stos \
+--from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-prices=1000000000wei
+
+stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100000000000gwei \
+--from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-prices=1000000000wei
+
+stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100000000000000000000wei \
+--from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-prices=1000000000wei
+```
+
+---
+
 ## Bank Module
 
 ### -`send`
@@ -214,7 +251,7 @@ Flags:
 Example:
 
 ```shell
-stchaind tx bank send st1sqzsk8mplxx22fdgg878ccc3329gfd9g7d9g9d st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx 1gwei \
+stchaind tx bank send st1sqzsk8mplxx22fdgg878ccc3329gfd9g7d9g9d st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx 1stos \
 --chain-id=mesos-1  \
 --keyring-backend=test \
 --gas=auto \
@@ -822,8 +859,8 @@ final_tally_result:
 submit_time: 2021-07-23T14:40:04.976927421Z
 deposit_end_time: 2021-07-23T14:41:44.976927421Z
 total_deposit:
-- denom: gwei
-  amount: "100010000"
+- denom: wei
+  amount: "100010000000000000000"
 voting_start_time: 2021-07-23T14:40:41.961523583Z
 voting_end_time: 2021-07-23T14:42:21.961523583Z
 ```
@@ -884,8 +921,8 @@ Result:
   submit_time: 2021-07-19T15:38:08.619640056Z
   deposit_end_time: 2021-07-19T15:39:48.619640056Z
   total_deposit:
-  - denom: gwei
-    amount: "100010000"
+  - denom: wei
+    amount: "100010000000000000000"
   voting_start_time: 2021-07-19T15:38:23.789218262Z
   voting_end_time: 2021-07-19T15:40:03.789218262Z
 
@@ -908,8 +945,8 @@ Result:
   submit_time: 2021-07-23T14:40:04.976927421Z
   deposit_end_time: 2021-07-23T14:41:44.976927421Z
   total_deposit:
-  - denom: gwei
-    amount: "100010000"
+  - denom: wei
+    amount: "100010000000000000000"
   voting_start_time: 2021-07-23T14:40:41.961523583Z
   voting_end_time: 2021-07-23T14:42:21.961523583Z
 ```
@@ -1017,7 +1054,7 @@ Result:
 proposal_id: 7
 depositor: st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda
 amount:
-- denom: gwei
+- denom: wei
   amount: "100000000"
 ```
 
@@ -1055,7 +1092,7 @@ Result:
 - proposal_id: 7
   depositor: st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda
   amount:
-  - denom: gwei
+  - denom: wei
     amount: "100000000"
 ```
 
@@ -1351,7 +1388,7 @@ Flags:
     * `commission-rate`: the commission rate on block rewards and fees charged to delegators
     * `commission-max-rate`: the maximum commission rate which this validator can charge. This parameter cannot be changed after create-validator is processed.
     * `commission-max-change-rate`: the maximum daily increase of the validator commission. This parameter cannot be changed after create-validator is processed.
-    * `min-self-delegation`: minimum amount of tokens the validator needs to have bonded at all time. If the validator's self-delegated stake falls below this limit, their entire staking pool will unbond. "1" = 1000000gwei.
+    * `min-self-delegation`: minimum amount of tokens the validator needs to have bonded at all time. If the validator's self-delegated stake falls below this limit, their entire staking pool will unbond.
     * `amount`: the amount of tokens to be bonded to the validator at creation. This value should be greater than the value of `min-self-delegation`
 
 Example:
