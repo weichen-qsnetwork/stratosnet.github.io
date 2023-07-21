@@ -3,6 +3,11 @@ title: SDS ppd terminal subcommands
 description: List and descriptions of all Stratos SDS resource node ppd terminal subcommands.
 ---
 
+!!! danger "Warning"
+
+    Oudated documentation. Due to be updated in the following days.
+
+
 `ppd terminal` subcommands are used to operate PP(resource) node in `ppd terminal` command-line terminal
 
 ## `help`
