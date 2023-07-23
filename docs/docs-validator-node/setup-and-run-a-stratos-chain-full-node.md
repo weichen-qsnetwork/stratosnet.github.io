@@ -273,8 +273,8 @@ stchaind init "<your_node_moniker>" --chain-id mesos-1
 - Download the `genesis.json` and `config.toml` files
 
 ```shell
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/mesos-1/genesis.json
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/mesos-1/config.toml
+wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/genesis.json
+wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/config.toml
 ```
 
 
