@@ -3,6 +3,10 @@ title: Setup and run a SDS Resource Node
 description: How to setup and run a Stratos SDS Resource node. Tutorial and examples.
 ---
 
+!!! danger "Warning"
+
+    Oudated documentation. Due to be updated in the following days.
+
 
 The Stratos Decentralized Storage (SDS) network is a scalable, reliable, self-balancing elastic acceleration network. We can simply take it as a decentralized file system suitable for running on general-purpose hardware.
 

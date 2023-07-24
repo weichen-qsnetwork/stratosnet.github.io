@@ -3,6 +3,11 @@ title: SDS ppd terminal subcommands
 description: List and descriptions of all Stratos SDS resource node ppd terminal subcommands.
 ---
 
+!!! danger "Warning"
+
+    Oudated documentation. Due to be updated in the following days.
+
+
 `ppd terminal` subcommands are used to operate PP(resource) node in `ppd terminal` command-line terminal
 
 ## `help`
@@ -43,6 +48,8 @@ maintenance start <duration>                                   put the node in m
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node
 performancemeasure                                             turn on performance measurement log for 60 seconds
+withdraw <amount> <fee> optional<targetAddr> optional<gas>     withdraw matured reward (from address is the configured node wallet)
+send <toAddress> <amount> <fee> optional<gas>                  sending coins to another account (from address is the configured node wallet)
 ```
 
 <br>
@@ -758,6 +765,31 @@ Turn on performance measurement log for 60 seconds.
 ```shell
 > performancemeasure
 ```
+<br>
+
+---
+
+## `withdraw`
+Withdraw matured reward.
+
+```shell
+> withdraw st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
+> [INFO] 2023/07/10 11:28:58 withdraw.go:37: Withdraw transaction delivered.
+```
+<br>
+
+---
+
+## `send`
+Sending coins to another account.
+
+```shell
+> send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
+> [INFO] 2023/07/10 11:32:43 send.go:35: Send transaction delivered.
+```
+<br>
+
+---
 
 You can exit the `ppd terminal` command-line terminal by typing `exit` and leave the `ppd start` terminal to run the resource node in background.
 

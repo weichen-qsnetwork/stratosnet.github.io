@@ -136,13 +136,12 @@ echo $HOME
 ``` { .yaml .no-copy }
 stchaind query bank balances st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 balances:
-- amount: "1000000000000000"
-  denom: utros
-- amount: "959999999522216000000000"
+- amount: "499999996283820000000"
   denom: wei
 pagination:
   next_key: null
   total: "0"
+
 ```
 
 
@@ -200,7 +199,7 @@ A validator can be crested by sending a `create-validator` transaction command
     * `commission-max-change-rate`: The maximum daily increase of the validator commission. This flags cannot be changed after create-validator is processed
     * `min-self-delegation`: Minimum amount of tokens the validator needs to have bonded at all time. It is a strictly positive integer that represents the minimum amount of self-delegated staking token your validator must always have. A validator with a self delegation lower than this number will automatically be unbonded.
     * the minimum amount of tokens that must be delegated to be a bonded validator is "1".
-    * the current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-tropos.thestratos.org/) right next to the search bar at the top of the page. Currently, it is 'tropos-5'.
+    * the current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-mesos.thestratos.org/) right next to the search bar at the top of the page. Currently, it is 'mesos-1'.
     * in the testing phase, `--keyring-backend=test`
 
 Example:
@@ -214,7 +213,7 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -326,7 +325,7 @@ unbonding_time: "1970-01-01T00:00:00Z"
 
     - From all validator candidates, only the top 100 validators with the most total stake are the active validators. If a validator's total stake falls below the top 100, then that validator loses their validator privileges. 
 
-    - The validator cannot participate in consensus until the stake is high enough to be in the top 100. In [`Stratos Exporer`](https://explorer-tropos.thestratos.org/), the validator is shown in `inactive` list, but not `active` list.
+    - The validator cannot participate in consensus until the stake is high enough to be in the top 100. In [`Stratos Exporer`](https://explorer-mesos.thestratos.org/), the validator is shown in `inactive` list, but not `active` list.
 
 <br>
 
@@ -339,7 +338,7 @@ We listed some examples of commonly used commands for validators
 !!! tip
 
     - You may need to replace the values in these examples with your own data
-    - The current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-tropos.thestratos.org/) right next to the search bar at the top of the page.
+    - The current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-mesos.thestratos.org/) right next to the search bar at the top of the page.
     - In the testing phase, `--keyring-backend=test`
 
 <br>
@@ -364,7 +363,7 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 \
---chain-id=tropos-5 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -379,7 +378,7 @@ stchaind tx staking edit-validator \
 --keyring-backend=test \
 --min-self-delegation=100  \
 --memo="Change 'min-self-delegation' from 1 to 100" \
---chain-id=tropos-5 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -389,9 +388,9 @@ stchaind tx staking edit-validator \
 Example:
 
 ```shell
-stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 1000gwei \
+stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100stos \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei
+--chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei
 ```
 
 <br>
@@ -401,9 +400,9 @@ stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 10
 Example:
 
 ```shell
-stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 10000gwei \
+stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 100stos \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh 
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -451,7 +450,7 @@ Example:
 ```shell
 stchaind tx distribution withdraw-rewards stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -463,7 +462,7 @@ Example:
 ```shell
 stchaind tx distribution withdraw-all-rewards \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -520,7 +519,7 @@ Example:
 
 ```shell
 stchaind tx slashing unjail --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=tropos-5 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
 ``` 
 
 <br>
@@ -584,7 +583,7 @@ Although this validator has been created, it will not show in the validator set.
 You need to delegate more tokens to this validator until the amount of stake is more than `min-self-delegation`.
 
 In addition, since we limited the number of active validators to the most staked 100 candidates, if your validator's total stake less than that of the 100th validator, your validator will lose its validator privileges and will not display in the `active` validator set.
-The minimum stake of an `active` validator(stake of the 100th validator) can can be found at [`Stratos Exporer`](https://explorer-tropos.thestratos.org/).
+The minimum stake of an `active` validator(stake of the 100th validator) can can be found at [`Stratos Exporer`](https://explorer-mesos.thestratos.org/).
 
 To solve this problem, you can get more tokens delegated until the total stake of your validator is more than the minimum stake of an `active` validator using the following command
 
@@ -640,7 +639,7 @@ If the problem still persists, please make sure you have enough tokens delegated
 
 There are three ways to check it:
 
-* [Stratos Explorer](https://explorer-tropos.thestratos.org/validators)
+* [Stratos Explorer](https://explorer-mesos.thestratos.org/validators)
 * `status` command:
 
 ```shell
@@ -659,7 +658,7 @@ Response:
         },
         "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
         "listen_addr": "tcp://0.0.0.0:26656",
-        "network": "tropos-5",
+        "network": "mesos-1",
         "version": "0.34.21",
         "channels": "40202122233038606100",
         "moniker": "node",
@@ -711,7 +710,7 @@ Response:
       },
       "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
       "listen_addr": "tcp://0.0.0.0:26656",
-      "network": "tropos-5",
+      "network": "mesos-1",
       "version": "0.34.21",
       "channels": "40202122233038606100",
       "moniker": "node",
