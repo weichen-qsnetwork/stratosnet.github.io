@@ -7,6 +7,7 @@ description: Guide on how to use the bridge between Goerli and Mesos
 
 - EXOSwap currently bridges tokens between Stratos EVM-compatible TestNet (Mesos) and Ethereum TestNet (Goerli).
 - The EXOSwap Bridge is available on Mesos so users can get familiar with it before using it on MainNet with real value tokens.
+- The values used in TestNet (gas amount, bridge token ratio) are random values and do not reflect the values in MainNet. 
 - The operation is performed through the Metamask wallet.
 - STOS tokens on Mesos TestNet have no value.
 
