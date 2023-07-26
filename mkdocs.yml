@@ -30,17 +30,18 @@ nav:
     - Welcome: index.md
     - About Stratos: docs-about/about-stratos.md
     - STOS Token Economy: docs-about/stratos-token-economy.md
-  - Stratos Chain Node:
+  - Stratos Chain:
     - HOWTOs:
-      - Full-Chain Node: docs-validator-node/setup-and-run-a-stratos-chain-full-node.md
-      - Become a Validator: docs-validator-node/how-to-become-a-validator.md
-      - Full-Chain as REST/gRPC: docs-validator-node/how-to-setup-rest-grpc-full-chain.md
+      - Full-Chain Node: docs-stratos-chain/setup-and-run-a-stratos-chain-full-node.md
+      - Become a Validator: docs-stratos-chain/how-to-become-a-validator.md
+      - Full-Chain as REST/gRPC: docs-stratos-chain/how-to-setup-rest-grpc-full-chain.md
+      - Use the Bridge on Testnet: docs-stratos-chain/how-to-use-bridge-testnet.md
     - Operating:
-      - stchaind Commands Part 1: docs-validator-node/stchaind-commands-part-1.md
-      - stchaind Commands Part 2: docs-validator-node/stchaind-commands-part-2.md
-      - gRPC Queries: docs-validator-node/stratos-chain-grpc-queries.md
-      - REST APIs: docs-validator-node/stratos-chain-rest-apis.md
-      - Network: docs-validator-node/network.md
+      - stchaind Commands Part 1: docs-stratos-chain/stchaind-commands-part-1.md
+      - stchaind Commands Part 2: docs-stratos-chain/stchaind-commands-part-2.md
+      - gRPC Queries: docs-stratos-chain/stratos-chain-grpc-queries.md
+      - REST APIs: docs-stratos-chain/stratos-chain-rest-apis.md
+      - Network: docs-stratos-chain/network.md
     - EVM:
       - Node config: docs-evm/node-config.md
       - Network details:
