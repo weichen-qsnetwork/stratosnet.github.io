@@ -1,5 +1,5 @@
 # SDS IPFS Command Handbook
-##IPFS Client
+## IPFS Client
 The `ppd ipfs` command launches an RPC-style API over HTTP client to allow user interact with a SDS Network. The API aligns 
 with the Kubo RPC API of IPFS so that any application that supports IPFS Kubo RPC API could be updated to support SDS network
 with little effort. The client needs to communicate with a SDS resource node to interact with the network. For setting up a 
@@ -48,18 +48,18 @@ resource node
     ```
 <br>
 
-##RPC Commands
-###/api/v0/add
+## RPC Commands
+### /api/v0/add
 Upload a file to SDS.
 Arguments
 - arg [string]: The path to the file on the local driver. Required: yes.
 
-####cURL Example
+#### cURL Example
 ``` shell
 curl -X POST  "localhost:6798/api/v0/add?arg=testfile"
 ```
 
-###/api/v0/get
+### /api/v0/get
 Download a file from SDS.
 Arguments
 - arg [string]: sdm path to the file in the SDS. The format is `<sdm://account/filehash>`. Required: yes.
@@ -72,22 +72,22 @@ Arguments
 
     The downloaded files will be saved into the folder `download` by default under the root directory of your resource node, like
 
-####cURL Example
+#### cURL Example
 ```shell
 curl -X POST  "localhost:6798/api/v0/get?arg=sdm://st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4/v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg"
 ```
 
-###/api/v0/list
+### /api/v0/list
 Lists all files uploaded by account (wallet).
 Arguments
 - page [string]: page number. Each page contains 20 elements. Required: no.
 
-####cURL Example
+#### cURL Example
 ```shell
 curl -X POST  "localhost:6798/api/v0/list?page=0"
 ```
 
-##IPFS Migrate
+## IPFS Migrate
 The `ppd ipfs migrate` command migrates a file from IPFS to SDS network. It first downloads the file from the IPS by the 
 given CID and then uploads it to the SDS network.
 
