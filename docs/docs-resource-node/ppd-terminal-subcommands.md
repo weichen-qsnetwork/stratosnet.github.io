@@ -265,10 +265,7 @@ Request Accepted
 Upload a media file for streaming
 
 Streaming is the continuous transmission of audio or video files(media files) from a server to a client.
-In order to upload a streaming file, first you need to install a tool `ffmpeg` for transcoding multimedia files.   
-Please notice that once a video file is uploaded via this command in streaming format, it is not allowed to be 
-downloaded via regular `get` command in the current version. Instead, it has to be played through the APIs that are 
-designed for playing streaming videos.
+In order to upload a streaming file, first you need to install a tool `ffmpeg` for transcoding multimedia files.
 
 In Linux Terminal:
 
