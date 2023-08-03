@@ -95,10 +95,36 @@ given CID and then uploads it to the SDS network.
 ppd ipfs migrate <filecid> <filename>
 ```
 `filecid` is the cid of the file to downloaded from IPFS.  
-`filename` is an optional parameter. When it is given, the file will be renamed to the given `filename` before it is uploaded 
+`filename` is an optional parameter. When it is given, the file will be renamed to `filename` before it is uploaded 
 to the SDS network.
 
 Example:
-```shell
+``` { .yaml .no-copy }
 ipfs -m httpRpc migrate QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq spaceship.jpg
+
+API server listening at: [::]:40255
+[INFO] 2023/08/03 09:16:03 file.go:126: -- Getting an IPFS node running -- 
+Spawning Kubo node on a temporary repo
+2023/08/03 09:16:03 failed to sufficiently increase receive buffer size (was: 208 kiB, wanted: 2048 kiB, got: 416 kiB). See https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size for details.
+[INFO] 2023/08/03 09:16:13 file.go:147: IPFS node is running
+[INFO] 2023/08/03 09:16:13 file.go:149: -- getting back files --
+[INFO] 2023/08/03 09:16:13 file.go:157: output folder: /tmp/ipfs/QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq
+[INFO] 2023/08/03 09:16:14 file.go:176: got file back from IPFS (IPFS path: /ipfs/QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq) and wrote it to /tmp/ipfs/QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq/spaceship.jpg
+[DEBUG] 2023/08/03 09:16:14 file.go:48: filehash v05ahm50sk6ldkpg2j11c5qdm5q1arair6rvuivo
+[INFO] 2023/08/03 09:16:14 rootcmd.go:59: - start uploading the file: /tmp/ipfs/QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq/spaceship.jpg
+[INFO] 2023/08/03 09:16:14 rootcmd.go:67: - request get ozone (method: user_requestGetOzone)
+[DEBUG] 2023/08/03 09:16:18 requester.go:36: -->  {"jsonrpc":"2.0","id":1,"method":"user_requestGetOzone","params":[{"walletaddr":"st1vvysda6ylqz2adauqg4djsz4rx6hv6mqv9fepp"}]}
+[DEBUG] 2023/08/03 09:16:18 requester.go:57: <--  {"jsonrpc":"2.0","id":1,"result":{"return":"0","ozone":"19660978","sequencynumber":"SN:0000000000000000011"}}
+
+[INFO] 2023/08/03 09:16:18 rootcmd.go:81: - request uploading file (method: user_requestUpload)
+[DEBUG] 2023/08/03 09:16:18 requester.go:38: -->  {"jsonrpc":"2.0","id":1,"method":"user_requestUpload","params":[{"filename":"/tmp/ipfs/QmSgvgwxZGaBLqkGyWemEDqikCqU52XxsYLKtdy3vGZ8uq/spaceship.jpg","filesize":276382,"filehash":"v05a ... "}]}
+[DEBUG] 2023/08/03 09:16:18 requester.go:57: <--  {"jsonrpc":"2.0","id":1,"result":{"return":"1","offsetstart":0,"offsetend":276382}}
+
+[INFO] 2023/08/03 09:16:18 rootcmd.go:91: - received response (return: UPLOAD_DATA)
+[INFO] 2023/08/03 09:16:18 rootcmd.go:103: - request upload date (method: user_uploadData)
+[DEBUG] 2023/08/03 09:16:18 requester.go:38: -->  {"jsonrpc":"2.0","id":1,"method":"user_uploadData","params":[{"filehash":"v05ahm50sk6ldkpg2j11c5qdm5q1arair6rvuivo","data":"/9j/4AAQSkZJRgABAQEASABIAAD/4gIcSUNDX1BST0ZJTEUAAQEAAAIMbGNtcwIQAABtbnRyUkdCIFhZWiAH3AABABkAAwApADlhY3NwQV ... "}]}
+[DEBUG] 2023/08/03 09:16:18 requester.go:57: <--  {"jsonrpc":"2.0","id":1,"result":{"return":"0"}}
+
+[INFO] 2023/08/03 09:16:18 rootcmd.go:111: - uploading is done
+uploading is done
 ```
