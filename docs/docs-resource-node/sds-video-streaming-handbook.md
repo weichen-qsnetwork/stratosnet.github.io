@@ -5,10 +5,9 @@ SDS supports uploading `mp4` video file in Apple’s HLS (Http live streaming) f
 video player.
 
 ### Upload streaming file
-There are two ways of uploading file, via command line tool or remote RPC api call.   
-Please note that once a video file is uploaded via this command in streaming format, it is not allowed to be
-downloaded via regular `get` command in the current version. Instead, it has to be played through the APIs that are
-designed for playing streaming videos.
+There are two ways of uploading file, via command line tool or remote RPC api call. Please note that once a video file is 
+uploaded via this command in streaming format, it is not allowed to be downloaded via regular `get` command in the current 
+version. Instead, it has to be played through the APIs that are designed for playing streaming videos.
 
 #### Requirements
 1. To upload video in streaming format, a SDS resource node needs to be set up and joins the SDS. For detailed guideline on
@@ -34,7 +33,6 @@ designed for playing streaming videos.
 
 
 #### Upload via command line tool `ppd terminal`
-
 
 In order to upload video stream by command line tool, you need to open A NEW COMMAND-LINE TERMINAL, and enter the root directory of the same resource node.
 

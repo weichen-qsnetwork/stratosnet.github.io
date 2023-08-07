@@ -34,15 +34,15 @@ Use "ppd ipfs [command] --help" for more information about a command.
 
 <br>
 
-There are two modes to communicate to a SDS resouce node and it could be switched by the --rpcMode flag
+There are two modes to communicate to a SDS resource node, and it could be switched by the --rpcMode flag
 
  - `httpRpc` mode is to send RPC request over http. In this mode the `httpRpcUrl` flag must point to the rpc port of the 
 resource node 
     ``` shell
     ppd ipfs --rpcMode httpRpc --httpRpcUrl http://<node url>:<node rpc port>
     ```
- - `ipc` mode is to send PRC request over IPC (Inter-process communication). The path to the ipc endpoint in mode is set 
-    by the flag `ipcEndpoint` flag. The default path will be used when flag is not set.
+ - `ipc` mode is to send PRC requests over IPC (Inter-process communication). The path to the ipc endpoint is set 
+    by the flag `ipcEndpoint`. The default path will be used when flag is not set.
     ```  shell
     ppd ipfs --rpcMode ipc --ipcEndpoint <path to the ipc endpoint>
     ```
@@ -50,7 +50,7 @@ resource node
 
 ## RPC Commands
 ### /api/v0/add
-Upload a file to SDS.
+Upload a file to SDS.  
 Arguments
 - arg [string]: The path to the file on the local driver. Required: yes.
 
@@ -60,7 +60,7 @@ curl -X POST  "localhost:6798/api/v0/add?arg=testfile"
 ```
 
 ### /api/v0/get
-Download a file from SDS.
+Download a file from SDS.  
 Arguments
 - arg [string]: sdm path to the file in the SDS. The format is `<sdm://account/filehash>`. Required: yes.
 
@@ -78,7 +78,7 @@ curl -X POST  "localhost:6798/api/v0/get?arg=sdm://st172v4u8ysfgaphjs8uyy0svvc6d
 ```
 
 ### /api/v0/list
-Lists all files uploaded by account (wallet).
+Lists all files uploaded by account (wallet).  
 Arguments
 - page [string]: page number. Each page contains 20 elements. Required: no.
 
