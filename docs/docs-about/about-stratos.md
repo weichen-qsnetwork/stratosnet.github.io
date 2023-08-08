@@ -3,11 +3,23 @@ title: About Stratos Project and Whitepaper
 description: Stratos project description and whitepaper.
 ---
 
+## What is Stratos ?
+
+Stratos is a large-scale distributed infrastructure network designed to provide a comprehensive set of resources, including computation, storage, and network traffic, all in one platform. It leverages Proof-of-Traffic algorithms to reward participants and contributors based on their contributions to the network's traffic. Additionally, Stratos utilizes its own blockchain to measure the usage of computing resources, while incorporating the Practical Byzantine Fault-Tolerant consensus algorithm (PBFT) to integrate the network Proof-of-Traffic consensus algorithm deeply. This enables Stratos to provide settlement services and financial payment services for network providers and users in a highly efficient, fair, and transparent manner.
+
+The primary goal of Stratos is to serve as a decentralized data mesh for blockchain applications. It seeks to define the next generation of decentralized computing services, catering to Dapp (Decentralized Application) developers like those working on projects such as Uniswap, AAVE, and NFT Dapps. By using Stratos, developers can deploy, store, and execute their code and data on decentralized infrastructure, thereby eliminating the need for complex network deployment. This allows developers to focus solely on their product's business logic without having to worry about the underlying infrastructure, leading to more effective development and lower costs.
+
+In essence, Stratos aims to establish a distributed network ecosystem that brings together infrastructure providers, middleware developers, and Dapp developers. This collaborative environment encourages shared value creation and efficient cooperation to deliver credible, reliable, and cost-effective applications for the prosperity of blockchain-based solutions. One of Stratos' main promises is to offer an indestructible environment for all Dapps, ensuring that no one can take down applications hosted on the platform. This enhanced resilience and reliability foster a robust ecosystem for blockchain applications to thrive.
+
+---
+
 ## The Meaning of ‘Stratos’
 
 The name Stratos comes from the word ‘stratosphere’. The stratosphere is an important layer of the earth’s atmosphere. The bottom of the stratosphere is 10 km above the ground, 8 km at the poles, and its upper boundary is about 50 km above the ground. The air in the stratosphere mainly flows in the horizontal direction, while the flow of air in the vertical direction is weak, so the layers of air are stable and there is almost no vertical convection.
 
 Stratos is the infrastructure for decentralized services. If I can compare the earth to the blockchain ecosystem, then Stratos is the stratosphere surrounding the blockchain environment, providing blockchain applications with decentralized storage, decentralized databases, and decentralized computing services.
+
+---
 
 ## The Significance of Decentralization
 
@@ -27,6 +39,8 @@ Since the birth of the blockchain industry in 2010, the sector has been looking 
 
 The infrastructure of Stratos decentralized services, whether from design or development, is not only for the blockchain industry but also for better serving centralized traditional industries. Stratos will eventually commercialize the provision of decentralized services, providing decentralized systems with more efficient, secure, and stable infrastructure and services for centralized traditional businesses.
 
+---
+
 ## Stratos Past And Present
 
 The Stratos team is a group of top-notch developers. The team members come from Canadian National Railways, Amazon, Expedia, Alibaba, and many other well-known companies. Everyone has world-class enterprise-level development experience.
@@ -35,8 +49,9 @@ One-third of the team members are from Mindgeek, a top 10 Internet company with 
 
 Thanks to the great amount of practical experience and the basis of Google GFS and Hadoop HDFS architecture, the team expands the distributed storage to decentralized storage solutions. Stratos decentralized storage is born with the high-performance storage module.
 
+---
 
-## Stratos is composed of 4 modules and 3 layers.
+## Stratos Components
 
 This can sound a bit technical, but bear with me. The 4 modules Stratos services are composed of include blockchain, decentralized storage, decentralized databases, and decentralized computing. Just as the earth needs air, water, soil, and sunlight, each of these four elements is indispensable to the provision of the necessary conditions for the growth of everything. Different combinations of these four modules will also provide various decentralized services for the blockchain industry and traditional industries.
 
@@ -53,6 +68,8 @@ The design of three layers and three consensuses smartly solves the impossible t
 The three layers are also three types of nodes. Miners can choose to join the Stratos network based on their varying hardware specifications and requirements.
 
 The four modules of Stratos are composed of three layers, combining different consensus mechanisms to form Stratos’s internal solid triangle, which can provide customers with stable, reliable, and efficient decentralized services.
+
+---
 
 ## Whitepaper
 

@@ -1,30 +1,38 @@
 ---
-title: use state sync to start stratos-chain
+title: How to use state sync to start stratos-chain
 description: This document describes how to start the stratos-chain using state sync.
 ---
 
 ## Introduction
 
 State sync allows a new node to join a network by fetching a snapshot of the application state at a recent height instead of fetching and replaying all historical blocks. 
+
 Since the application state is generally much smaller than the blocks, and restoring it is much faster than replaying blocks, this can reduce the time to sync with the network from days to minutes.
 
-<br>
+!!! warning
+
+	State Sync feature only works with new node installations.
 
 ---
 
 ## Start a node using stateSync:
 
-### 1, Get the lateset block height & hash
+### 1. Get the latest block info
 
 ```shell
-$ curl -s http://rpc-mesos.thestratos.org/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash'
-
-1121
-B30FF86E21244137A23E93814B8DFC29EFDA5277793D242DEC131AE54A87A949
+curl -s http://rpc-mesos.thestratos.org/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash'
 ```
 
-### 2, Set config.toml
-Need to set 2 rpc_servers , the more, the better.
+```
+Example response:
+
+124855
+35174E85F15D74FD2948A29BCC84CC62535EEDEB4CECD9F669C4CDB2FE087034
+```
+
+### 2. Setup config.toml
+
+Need to set at least 2 rpc_servers. The more, the better.
 
 ```toml
 #######################################################
@@ -45,8 +53,8 @@ enable = true
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = "35.160.97.156:26657,rpc-mesos.thestratos.org:80"
-trust_height = 1121
-trust_hash = "B30FF86E21244137A23E93814B8DFC29EFDA5277793D242DEC131AE54A87A949"
+trust_height = 124855
+trust_hash = "35174E85F15D74FD2948A29BCC84CC62535EEDEB4CECD9F669C4CDB2FE087034"
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
@@ -64,20 +72,22 @@ chunk_request_timeout = "10s"
 chunk_fetchers = "4"
 ```
 
-### 3, Using `--state-sync.snapshot-interval` & `--state-sync.snapshot-keep-recent` parameter when start the chain.
+
+### 3. Start the node
+
+Node can now be started with the usual command:
 
 ```shell
-./build/stchaind --home build/node/stchaind --keyring-backend test --chain-id mesos1 --state-sync.snapshot-interval 1000 --state-sync.snapshot-keep-recent 2 start
+stchaind start
 ```
-
-
-<br>
 
 ---
 
-## Become StateSync snapshot provider:
+## Become snapshot provider
 
-To provide the snapshot, the operator must enable the `snapshot-interval` in the node configuration
+
+
+To provide the StateSync snapshot, the operator must enable the `snapshot-interval` in the node configuration:
 
 ```toml
 # snapshot-interval specifies the block interval at which local state sync snapshots are
@@ -87,3 +97,7 @@ snapshot-interval = 1000
 # snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
 snapshot-keep-recent = 2
 ```
+
+---
+
+<br>

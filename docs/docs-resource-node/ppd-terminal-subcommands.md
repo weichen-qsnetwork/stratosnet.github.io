@@ -3,11 +3,6 @@ title: SDS ppd terminal subcommands
 description: List and descriptions of all Stratos SDS resource node ppd terminal subcommands.
 ---
 
-!!! danger "Warning"
-
-    Oudated documentation. Due to be updated in the following days.
-
-
 `ppd terminal` subcommands are used to operate PP(resource) node in `ppd terminal` command-line terminal
 
 ## `help`
@@ -17,17 +12,20 @@ Show all the `ppd terminal` sub-commands' description.
 >help
 
 help                                                           show all the commands
-wallets                                                        acquire all wallet wallets address
+wallets                                                        acquire all wallet wallets' address
 newwallet                                                      create new wallet, input password in prompt
+login <walletAddress> ->password                               unlock and log in wallet, input password in prompt
 registerpeer                                                   register peer to index node
 rp                                                             register peer to index node
 activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
 updateDeposit <depositDelta> <fee> optional<gas>               send transaction to stchain to update active pp's deposit
 deactivate <fee> optional<gas>                                 send transaction to stchain to stop being an active PP node
 startmining                                                    start mining
-prepay <amount> <fee> optional<gas>                            prepay stos to get ozone
-put <filepath>                                                 upload file, need to consume ozone
-putstream <filepath>                                           upload video file for streaming, need to consume ozone (alpha version, encode format config impossible)
+prepay <amount> <fee> optional<beneficiary> <gas>              prepay stos to get ozone
+put <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
+                                                               upload file, need to consume ozone
+putstream <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
+                                                               upload video file for streaming, need to consume ozone. (alpha version, encode format config impossible)
 list <filename>                                                query uploaded file by self
 list <page id>                                                 query all files owned by the wallet, paginated
 delete <filehash>                                              delete file
@@ -37,13 +35,15 @@ sharefile <filehash> <duration> <is_private>                   share an uploaded
 allshare                                                       list all shared files
 getsharefile <sharelink> <password>                            download a shared file, need to consume ozone
 cancelshare <shareID>                                          cancel a shared file
+clearexpshare                                                  clear all expired share links
 ver                                                            version
 monitor                                                        show monitor
 stopmonitor                                                    stop monitor
 monitortoken                                                   show token for pp monitor service
 config  <key> <value>                                          set config key value
-getoz <walletAddress> ->password                               get current ozone balance
+getoz <walletAddress>                                          get current ozone balance
 status                                                         get current resource node status
+filestatus <filehash>                                          get current state of an uploaded file
 maintenance start <duration>                                   put the node in maintenance mode for the requested duration (in seconds)
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node
@@ -56,12 +56,80 @@ send <toAddress> <amount> <fee> optional<gas>                  sending coins to 
 
 ---
 
+## `wallets`
+acquire all wallets' addresses
+
+```yaml
+wallets
+```
+
+Example:
+
+```yaml
+>wallets
+[INFO] 2023/01/12 11:18:07 account.go:109: st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf
+[INFO] 2023/01/12 11:18:07 account.go:109: st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx
+```
+
+<br>
+
+---
+
+## `newwallet`
+create a new wallet or recover an existing wallet, input password after prompt
+
+```yaml
+newwallet <wallet_name>
+```
+
+Example:
+
+```yaml
+>newwallet mySecondWallet
+Enter wallet nickname: mySecondWallet
+Enter password: 
+Enter password again: 
+input bip39 mnemonic (leave blank to generate a new one)
+input hd-path for the account, default: "m/44'/606'/0'/0/0" : 
+save the mnemonic phase properly for future recovery: 
+=======================================================================  
+mother bracket treat warfare become win ivory harvest course reform theory issue group super alpha library despair sustain orient shrug lizard bulk mistake magnet
+======================================================================= 
+
+[INFO] 2023/01/12 11:17:00 setup_wallet.go:61: Wallet st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf has been generated successfully
+Do you want to use this wallet as your node wallet: Y(es)/N(o): y
+[INFO] 2023/01/12 11:17:03 setting.go:291: finished changing configuration file  wallet_address:  st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf
+```
+
+<br>
+
+---
+
+## `login`
+Unlock and login with a different wallet.
+
+```yaml
+login <walletAddress> ->password
+```
+
+Example:
+
+```yaml
+>login st1rzjelmydhv96pngkf35lcdknl59gkh72a3dyjn
+input password
+password:
+```
+
+<br>
+
+---
+
 ## `rp` or `registerpeer`
 Register a Resource Node to an SP(meta) node.
 
 Example:
 
-```shell
+```yaml
 >rp
 >[INFO] 2023/01/11 19:10:45 register_new_pp.go:25: get RspRegisterNewPP
 [INFO] 2023/01/11 19:10:45 register_new_pp.go:31: get RspRegisterNewPP RES_SUCCESS 
@@ -75,7 +143,7 @@ Example:
     `rp` or `registerpeer` command may raise an error because of its CPU chips which are not supported by SDS currently. For instance
 
 
-```shell
+```yaml
 # Run on Macs with an Arm-based M1 chip
 
 >rp
@@ -90,7 +158,7 @@ Example:
 ## `activate`
 Send transaction to Stratos chain to become an active Resource Node
 
-```shell
+```yaml
 activate <amount> <fee> [gas] 
 ```
 
@@ -104,7 +172,7 @@ activate <amount> <fee> [gas]
 
 Example:
 
-```shell
+```yaml
 >activate 2stos 0.01stos 1000000
 Request Accepted
 [INFO] 2023/01/12 18:49:39 activate.go:66: get RspActivatePP RES_SUCCESS 
@@ -116,52 +184,10 @@ Request Accepted
 
 ---
 
-## `startmining`(deprecated)
-Resource node will start to receive tasks from meta nodes and thus gain mining rewards.
-From SDS v0.7.0, user does not need to use this command any more since resource node will start mining automatically when the status of a resource node is `Mining: ONLINE`.
-
-Example:
-```shell
-startmining
-```
-
-<br>
-
----
-
-## `status`
-Query the current status of a resource node.
-
-```shell
-status
-```
-
-Example:
-```shell
->status
-Request Accepted
->[INFO] 2023/01/12 10:57:01 get_pp_status.go:80: *** current node status ***
-Activation: Active | Mining: ONLINE | Initial tier: 1 | Ongoing tier: 1 | Weight score: 5000
-```
-
-!!! tip
-
-    `Activation` indicates the activation state of a resource node, including `Active`, `Inactive` and `Unbonding`.
-
-    `Mining` indicates the mining state of a resource node, including `ONLINE`, `OFFLINE`, `SUSPEND` and `MAINTENANCE`.
-
-    When a resource node becomes `Mining: SUSPEND` due to its poor performance, user may use `updateDeposit` command to update its state and re-start mining by increasing its deposit.
-
-    Meta Node assigns a `Weight score` to Resource Node depending on its performance. The more `Weight score` a Resource Node has, the more priority it has to be assigned tasks.
-
-<br>
-
----
-
 ## `updateDeposit`
 Update deposit of an active resource node.
 
-```shell
+```yaml
 updateDeposit <depositDelta> <fee> [gas] 
 ```
 
@@ -175,7 +201,7 @@ Example:
 
 The following command will increase 1stos to deposit, use 10000gwei for tx fees and 1000000 for tx gas.
 
-```shell
+```yaml
 >updateDeposit 1stos 1000000gwei 1000000
 Request Accepted
 ```
@@ -188,11 +214,41 @@ Request Accepted
 
 ---
 
+## `deactivate`
+send transaction to Stratos-chain to stop being an active resource node
+
+```yaml
+deactivate <fee> <gas>
+```
+
+Example:
+
+```yaml
+>deactivate 10000000gwei 1000000
+```
+
+<br>
+
+---
+
+## `startmining`(deprecated)
+Resource node will start to receive tasks from meta nodes and thus gain mining rewards.
+From SDS v0.7.0, user does not need to use this command any more since resource node will start mining automatically when the status of a resource node is `Mining: ONLINE`.
+
+Example:
+```yaml
+startmining
+```
+
+<br>
+
+---
+
 ## `prepay`
 Ozone is the unit of traffic used by SDS. Operations involving network traffic require ozone to be executed.
 User can always `prepay` stos to get Ozone any time before uploading/downloading files.
 
-```shell
+```yaml
 prepay <amount> <fee> [gas]
 ```
 
@@ -204,7 +260,7 @@ prepay <amount> <fee> [gas]
 
 Example:
 
-```shell
+```yaml
 >prepay 1stos 6000000gwei 6000000
 Request Accepted
 >[INFO] 2023/01/12 10:59:07 prepay.go:24: Sending prepay message to SP! st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4
@@ -217,38 +273,17 @@ Request Accepted
 
 ---
 
-## `getoz`
-Query ozone balance of a node's wallet
-
-```shell
-getoz <walletAddress>
-```
-
-Example:
-
-```shell
->getoz st14d6vt45ws2fz9kgma5wlcfc283xr6pqgp3sklu
-input password
-password: 
-Request Accepted
-> [INFO] 2023/01/12 11:01:27 get_wallet_oz.go:42: get GetWalletOz RSP, the current ozone balance of st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4 = 1008215085885, 
-```
-
-<br>
-
----
-
 ## `put`
 upload a file. It will consume Ozone.
 
-```shell
+```yaml
 put <filepath>
 ```
 `filepath` is the location of the file to upload, starting from your resource node folder. It is better to be an absolute path.
 
 Example:
 
-```shell
+```yaml
 >put relayd/node1/relayd.toml
 [INFO] 2023/01/12 12:00:05 requests.go:178: fileName~~~~~~~~~~~~~~~~~~~~~~~~ relayd.toml
 [INFO] 2023/01/12 12:00:05 requests.go:184: fileHash~~~~~~~~~~~~~~~~~~~~~~ v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg
@@ -267,9 +302,12 @@ Upload a media file for streaming
 Streaming is the continuous transmission of audio or video files(media files) from a server to a client.
 In order to upload a streaming file, first you need to install a tool `ffmpeg` for transcoding multimedia files.
 
+!!! note
+    Please note that once a media file is uploaded via this command in streaming format, it is not allowed to be downloaded via regular get command in the current version. Instead, it has to be played through the APIs that are designed for playing streaming videos.
+
 In Linux Terminal:
 
-```shell
+```yaml
 sudo apt update
 sudo apt install ffmpeg
 
@@ -278,7 +316,7 @@ ffmpeg -version
 ```
 In MacOS Terminal:
 
-```shell
+```yaml
 brew update
 brew install ffmpeg
 ```
@@ -287,7 +325,7 @@ brew install ffmpeg
 
 Then, use `putstream` command to upload a media file
 
-```shell
+```yaml
 putstream <filepath>
 ```
 
@@ -295,7 +333,7 @@ putstream <filepath>
 
 Example:
 
-```shell
+```yaml
 putstream example_01.mp4
 ```
 
@@ -306,7 +344,7 @@ putstream example_01.mp4
 ## `list` or `ls`
 List all uploaded files
 
-```shell
+```yaml
 ls
 ```
 
@@ -317,13 +355,13 @@ ls
 ## `list <filename>`
 Query a specific uploaded file by name
 
-```shell
+```yaml
 ls filename
 ```
 
 Example:
 
-```shell
+```yaml
 >ls relayd.toml
 Request Accepted
 >[INFO] 2023/01/12 12:01:58 find_file.go:71: _______________________________
@@ -341,13 +379,13 @@ Request Accepted
 ## `list <page_id>`
 Query all files owned, paginated by 20 items per page by default, starting with page 0.
 
-```shell
+```yaml
 ls page_id
 ```
 
 Example:
 
-```shell
+```yaml
 >ls 0
 Request Accepted
 >[INFO] 2023/01/12 12:03:07 find_file.go:71: _______________________________
@@ -362,10 +400,29 @@ Request Accepted
 
 ---
 
+## `delete`
+Delete an uploaded file
+
+```yaml
+delete <filehash>
+```
+
+Example:
+
+```yaml
+>delete v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg
+Request Accepted
+>[INFO] 2023/01/12 12:04:51 delete_file.go:36: delete success
+```
+
+<br>
+
+---
+
 ## `get`
 Download an uploaded file
 
-```shell
+```yaml
 get <sdm://account/filehash> [saveAs]
 ```
 
@@ -399,34 +456,13 @@ get <sdm://account/filehash> [saveAs]
 
 Example:
 
-```shell
+```yaml
 >get sdm://st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4/v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg
 Request Accepted
 >[INFO] 2023/01/12 12:47:31 query_file_info.go:253: get，RspFileStorageInfo
 
 [INFO] 2023/01/12 12:47:31 download_slice.go:391: download starts: 
 [INFO] 2023/01/12 12:47:31 download_task.go:431: downloaded：100.00 % 
-
-[INFO] 2023/01/12 12:47:31 print.go:20: ####################################################################################################
-```
-
-<br>
-
----
-
-## `delete`
-Delete an uploaded file
-
-```shell
-delete <filehash>
-```
-
-Example:
-
-```shell
->delete v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg
-Request Accepted
->[INFO] 2023/01/12 12:04:51 delete_file.go:36: delete success
 ```
 
 <br>
@@ -436,7 +472,7 @@ Request Accepted
 ## `sharefile`
 Share(public) an uploaded file
 
-```shell
+```yaml
 sharefile <filehash> <duration> <is_private>
 ```
 
@@ -450,7 +486,7 @@ sharefile <filehash> <duration> <is_private>
 
 Example:
 
-```shell
+```yaml
 >sharefile v05ahm51l6v6tm2vqc682b9sicom61fgkoqdl0pg 0 1
 Request Accepted
 >[INFO] 2023/01/12 12:53:04 share.go:131: ShareId 348f79a5a0963a56
@@ -465,12 +501,12 @@ Request Accepted
 ## `allshare`
 List All Shared Files.
 
-```shell
+```yaml
 allshare
 ```
 
 Example:
-```shell
+```yaml
 >allshare
 Request Accepted
 > [INFO] 2023/01/12 12:30:21 share.go:75: _______________________________
@@ -490,7 +526,7 @@ Request Accepted
 ## `getsharefile`
 Download a shared file.
 
-```shell
+```yaml
 getsharefile <sharelink> [password]
 ```
 
@@ -504,7 +540,7 @@ getsharefile <sharelink> [password]
 
 Example:
 
-```shell
+```properties                                                  
 >getsharefile 4RREV0_e9546b33e3d63285
 Request Accepted
 > [INFO] 2023/01/12 12:31:38 share.go:216: get RspGetShareFile RES_SUCCESS request success
@@ -524,14 +560,14 @@ Request Accepted
 ## `cancelshare`
 Cancel file share
 
-```shell
+```yaml
 cancelshare <shareID>
 ```
 > `shareID` could be found when your use `allshare` to list all available shared files
 
 Example:
 
-```shell
+```yaml
 >cancelshare e9546b33e3d63285
 Request Accepted
 >[INFO] 2023/01/12 12:52:20 share.go:172: cancel share success: e9546b33e3d63285
@@ -541,16 +577,45 @@ Request Accepted
 
 ---
 
+## `clearexpshare`
+Deletes all the expired shared links.
+
+```yaml
+clearexpshare
+```
+
+Example:
+
+```yaml
+>clearexpshare
+Request Accepted
+[INFO] 2023/08/08 09:41:24 clear_expired_share.go:52: ClearExpiredShareLinks done, 8 cleared, 0 remaining
+```
+
+## `ver`
+show current SDS version
+
+Example:
+
+```yaml
+>ver
+version: v0.10.0
+```
+
+<br>
+
+---
+
 ## `monitor`
 View resource utilization.
 
-```shell
+```yaml
 monitor
 ```
 
 Example:
 
-```shell
+```yaml
 # show the resource utilization monitor
 >monitor
 [INFO] 2023/01/12 11:13:09 sys.go:143: __________________________________________________________________________
@@ -573,7 +638,7 @@ Example:
 ## `stopmonitor`
 Hide the resource utilization monitor
 
-```shell
+```yaml
 stopmonitor
 ```
 
@@ -584,7 +649,7 @@ stopmonitor
 ## `monitortoken`
 show token for Resource Node monitor service.
 
-```shell
+```yaml
 > monitortoken
 Monitor token is: dddd608cc1c0efaf6b87267088dbc4b099b0db0758f476e625763580991a086c
 ```
@@ -594,97 +659,90 @@ The returned token can be used for logging in to resource node monitor.
 
 ---
 
-## `wallets`
-acquire all wallets' addresses
-
-```shell
-wallets
-```
-
-Example:
-
-```shell
->wallets
-[INFO] 2023/01/12 11:18:07 account.go:109: st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf
-[INFO] 2023/01/12 11:18:07 account.go:109: st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx
-```
-
-<br>
-
----
-
-## `ver`
-show current SDS version
-
-Example:
-
-```shell
->ver
-version: v0.9.0
-```
-
-<br>
-
----
-
-## `deactivate`
-send transaction to Stratos-chain to stop being an active resource node
-
-```shell
-deactivate <fee> <gas>
-```
-
-Example:
-
-```shell
->deactivate 10000000gwei 1000000
-```
-
-<br>
-
----
-
-## `newwallet`
-create a new wallet or recover an existing wallet, input password after prompt
-
-```shell
-newwallet <wallet_name>
-```
-
-Example:
-
-```shell
->newwallet mySecondWallet
-Enter wallet nickname: mySecondWallet
-Enter password: 
-Enter password again: 
-input bip39 mnemonic (leave blank to generate a new one)
-input hd-path for the account, default: "m/44'/606'/0'/0/0" : 
-save the mnemonic phase properly for future recovery: 
-=======================================================================  
-mother bracket treat warfare become win ivory harvest course reform theory issue group super alpha library despair sustain orient shrug lizard bulk mistake magnet
-======================================================================= 
-
-[INFO] 2023/01/12 11:17:00 setup_wallet.go:61: Wallet st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf has been generated successfully
-Do you want to use this wallet as your node wallet: Y(es)/N(o): y
-[INFO] 2023/01/12 11:17:03 setting.go:291: finished changing configuration file  wallet_address:  st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf
-```
-
-<br>
-
----
-
 ## `config`
 
 Set config key value pairs in the file `configs/config.toml`, separated by one space(note: no quotes for string input).
 
-```shell
+```yaml
 config <key> <value>
 ```
 Example:
 
-```shell
+```yaml
 config wallet_password stratos
+```
+
+<br>
+
+---
+
+## `getoz`
+Query ozone balance of a node's wallet
+
+```yaml
+getoz <walletAddress>
+```
+
+Example:
+
+```yaml
+>getoz st14d6vt45ws2fz9kgma5wlcfc283xr6pqgp3sklu
+input password
+password: 
+Request Accepted
+> [INFO] 2023/01/12 11:01:27 get_wallet_oz.go:42: get GetWalletOz RSP, the current ozone balance of st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4 = 1008215085885, 
+```
+
+<br>
+
+---
+
+## `status`
+Query the current status of a resource node.
+
+```yaml
+status
+```
+
+Example:
+```yaml
+>status
+Request Accepted
+>[INFO] 2023/01/12 10:57:01 get_pp_status.go:80: *** current node status ***
+Activation: Active | Registration Status: Registered | Mining: ONLINE | Initial tier: 1 | Ongoing tier: 1 | Weight score: 5480
+```
+
+!!! tip
+
+    `Activation` indicates the activation state of a resource node, including `Active`, `Inactive` and `Unbonding`.
+
+    `Registration` indicates the registration of a resource node, including `Unregistered`, `Registering` and `Registered`.
+
+    `Mining` indicates the mining state of a resource node, including `ONLINE`, `OFFLINE`, `SUSPEND` and `MAINTENANCE`.
+
+    When a resource node becomes `Mining: SUSPEND` due to its poor performance, user may use `updateDeposit` command to update its state and re-start mining by increasing its deposit.
+
+    Meta Node assigns a `Weight score` to Resource Node depending on its performance. The more `Weight score` a Resource Node has, the more priority it has to be assigned tasks.
+
+<br>
+
+---
+
+## `filestatus`
+Shows current state of an uploaded file.
+
+```yaml
+filestatus <filehash>
+```
+
+Example:
+
+```yaml
+>filestatus v05ahm57vf1fh2k9k3c84acha4q4m1pj6ufdppho
+Request Accepted
+>[INFO] 2023/08/08 10:01:43 query_file_info.go:255: get RspFileStatus
+[INFO] 2023/08/08 10:01:43 query_file_info.go:277: RspFileStatus: {"return":"0","file_upload_state":3,"user_has_file":true,"replicas":3}
+ 
 ```
 
 <br>
@@ -694,7 +752,7 @@ config wallet_password stratos
 ## `maintenance start`
 Claim a maintenance. Put the resource node in maintenance mode for the requested duration (in seconds).
 
-```shell
+```yaml
 maintenance start <duration> 
 ```
 
@@ -709,7 +767,7 @@ maintenance start <duration>
 
 Example:
 
-```shell
+```yaml
 >maintenance start 600
 Request Accepted
 >[INFO] 2023/01/12 12:57:21 maintenance.go:19: Sending maintenance start request to SP!
@@ -728,7 +786,7 @@ Note: `Mining: MAINTENANCE` indicates that this node is in `maintenance` mode.
 ## `maintenance stop`
 stop the current maintenance.
 
-```shell
+```yaml
 >maintenance stop
 Request Accepted
 >[INFO] 2023/01/12 12:58:35 maintenance.go:26: Sending maintenance stop request to SP!
@@ -747,7 +805,7 @@ Activation: Active | Mining: ONLINE | Initial tier: 1 | Ongoing tier: 1 | Weight
 ## `downgradeinfo`
 Get the information of last downgrade happened on this resource node.
 
-```shell
+```yaml
 > downgradeinfo
 Request Accepted
 > [INFO] 2023/01/12 10:43:12 get_pp_downgrade_info.go:24: PP downgrade happened at: 111624 (heights) ago, 
@@ -762,7 +820,7 @@ at SP node stsds15sya4n40da64z6n6hvk0p9f7sx72hqpjjnrf9y, score decreased by 9999
 ## `performancemeasure`
 Turn on performance measurement log for 60 seconds.
 
-```shell
+```yaml
 > performancemeasure
 ```
 <br>
@@ -772,7 +830,7 @@ Turn on performance measurement log for 60 seconds.
 ## `withdraw`
 Withdraw matured reward.
 
-```shell
+```yaml
 > withdraw st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
 > [INFO] 2023/07/10 11:28:58 withdraw.go:37: Withdraw transaction delivered.
 ```
@@ -783,7 +841,7 @@ Withdraw matured reward.
 ## `send`
 Sending coins to another account.
 
-```shell
+```yaml
 > send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
 > [INFO] 2023/07/10 11:32:43 send.go:35: Send transaction delivered.
 ```

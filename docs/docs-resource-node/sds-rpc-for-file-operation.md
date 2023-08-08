@@ -3,9 +3,6 @@ title: SDS RPC for file operations
 description: List of RPC for file operations with Stratos SDS nodes.
 ---
 
-!!! danger "Warning"
-
-    Oudated documentation. Due to be updated in the following days.
 
 The API is based on JSON-RPC 2.0 specs. The user works as a client and a resource node provides service as a server.
 
