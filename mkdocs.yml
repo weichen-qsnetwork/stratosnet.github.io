@@ -26,14 +26,16 @@ theme:
       accent: teal
 
 nav:
-  - About:
-    - Welcome: index.md
+  - Home: index.md
+  - Introduction:
     - About Stratos: docs-about/about-stratos.md
     - STOS Token Economy: docs-about/stratos-token-economy.md
+    - Updates: docs-about/changes.md
   - Stratos Chain:
     - HOWTOs:
       - Full-Chain Node: docs-stratos-chain/setup-and-run-a-stratos-chain-full-node.md
       - Become a Validator: docs-stratos-chain/how-to-become-a-validator.md
+      - Use of State Sync: docs-stratos-chain/how-to-start-with-state-sync.md       
       - Full-Chain as REST/gRPC: docs-stratos-chain/how-to-setup-rest-grpc-full-chain.md
       - Use the Bridge on Testnet: docs-stratos-chain/how-to-use-bridge-testnet.md
     - Operating:
@@ -58,6 +60,8 @@ nav:
   - Resource Node:
     - HOWTOs:
       - SDS Resource Node: docs-resource-node/setup-and-run-a-sds-resource-node.md
+      - Migrate IPFS: docs-resource-node/sds-ipfs-handbook.md
+      - Video Streaming: docs-resource-node/sds-video-streaming-handbook.md
     - Operating:
       - ppd Commands: docs-resource-node/ppd-terminal-subcommands.md
       - SDS RPC: docs-resource-node/sds-rpc-for-file-operation.md

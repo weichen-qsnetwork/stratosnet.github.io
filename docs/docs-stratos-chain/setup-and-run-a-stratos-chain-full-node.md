@@ -869,7 +869,7 @@ All below steps require root privileges
 
 Create the `/lib/systemd/system/stratos.service` file with the following content
 
-```shell
+```toml
 [Unit]
 Description=Stratos Chain Node
 After=network-online.target
@@ -1093,7 +1093,7 @@ stchaind keys list --keyring-backend=<keyring's backend>
 
 Example:
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind keys list --keyring-backend=test
    - name: user0
      type: local
@@ -1132,7 +1132,7 @@ stchaind keys show <your wallet name> --keyring-backend=<keyring's backend>
 
 Example:
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind keys show myWallet1 --keyring-backend=test
    - name: myWallet1
      type: local
@@ -1171,7 +1171,7 @@ stchaind query account <your wallet address>
 
 Example:
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query account st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx
 |
 '@type': /cosmos.auth.v1beta1.BaseAccount
@@ -1191,7 +1191,7 @@ stchaind query bank balances <your wallet address>
 
 Example:
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query bank balances st1d3qtsjyypa639q9kf0wmuf2dn4a7zrnujw84q4
 |
 balances:
@@ -1230,8 +1230,10 @@ Let us assume:
 * `to address`: st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg
 * `amount`: 10stos
 
-``` { .yaml .no-copy }
-stchaind tx bank send st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg 10stos --chain-id=mesos-1  --keyring-backend=test --gas=100000 --gas-prices=1000000000wei -y
+``` { .properties .no-copy }
+stchaind tx bank send st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg 10stos \
+--chain-id=mesos-1  --keyring-backend=test --gas=100000 --gas-prices=1000000000wei -y
+
 code: 0
 codespace: ""
 data: ""

@@ -1,6 +1,7 @@
 ---
 title: Welcome
 description: The Stratos Network official documentation page for SDS and Stratos-chain.
+template: home.html
 ---
 
 #

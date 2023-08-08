@@ -63,7 +63,7 @@ Please refer to [full-node setup guide](../setup-and-run-a-stratos-chain-full-no
 After the node has finished sync, your Stratos-chain wallet has been created and charged with an amount of tokens,
 `$HOME` directory will have a `.stchaind` directory.
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 .
 ├── config
 │   ├── addrbook.json
@@ -133,7 +133,7 @@ echo $HOME
 
 ## Check your wallet account balance and account type
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query bank balances st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 balances:
 - amount: "499999996283820000000"
@@ -145,7 +145,7 @@ pagination:
 ```
 
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query account st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 |
 '@type': /cosmos.auth.v1beta1.BaseAccount
@@ -213,7 +213,11 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 \
---chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -253,7 +257,7 @@ In the response of `query staking validators` command in next step, the value of
 
 ### View all validators
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query staking validators
 - |
 pagination:
@@ -291,7 +295,7 @@ validators:
 stchaind query staking validator <your_validator_operator_address>
 ```
 
-``` { .yaml .no-copy }
+``` { .properties .no-copy }
 stchaind query staking validator stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 |
 commission:
@@ -363,7 +367,11 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 \
---chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -378,7 +386,11 @@ stchaind tx staking edit-validator \
 --keyring-backend=test \
 --min-self-delegation=100  \
 --memo="Change 'min-self-delegation' from 1 to 100" \
---chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -390,7 +402,11 @@ Example:
 ```shell
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100stos \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei
 ```
 
 <br>
@@ -401,8 +417,12 @@ Example:
 
 ```shell
 stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 100stos \
---from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh 
---chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -450,7 +470,11 @@ Example:
 ```shell
 stchaind tx distribution withdraw-rewards stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -462,7 +486,11 @@ Example:
 ```shell
 stchaind tx distribution withdraw-all-rewards \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ```
 
 <br>
@@ -519,7 +547,11 @@ Example:
 
 ```shell
 stchaind tx slashing unjail --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=mesos-1 \
+--keyring-backend=test \
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei -y
 ``` 
 
 <br>
@@ -592,7 +624,9 @@ stchaind tx staking delegate <validator-addr> <amount> \
 --from=<name|address of private key> \
 --chain-id=<current chain-id> \
 --keyring-backend=<keyring's backend'> \
---gas=auto --gas-prices=1000000000wei
+--gas=auto \
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei
 ```
 
 <br>
