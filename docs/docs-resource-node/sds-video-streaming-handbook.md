@@ -106,6 +106,7 @@ rpc_client putstream /home/user/tmp/file_example_MP4_640_3MG.mp4 \
 To play and cache the video steaming file, the resource node has to be a non-active resource node.
 
 ### Play the cache the video streaming file
+
 To stream the video, we use the videojs as the player in the front-end [template html file](https://github.com/stratosnet/sds/blob/main/pp/api/frontend/video_stream_template.html)
 , however, any player that can play the HLS format file could be used. The way how the hls video streaming works with videojs, 
 is to put the api url that gets the `.m3u8` file as the source and put `application/x-mpegURL` as the type. Then the player

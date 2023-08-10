@@ -141,7 +141,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 
 ---
 
-## Setup SDS resource node
+## Compile SDS resource node
 
 <br>
 
@@ -199,7 +199,7 @@ cd rsnode
 
 <br>
 
-### Configure SDS resource node
+## Configure SDS resource node
 
 Next, you need to generate the configuration file and its accounts of this resource node. The command `ppd config` will help you to generate necessary configurations.
 
@@ -379,6 +379,8 @@ url = '52.196.88.238:9090'
 <br>
 
 - <b>Edit your external ip address:</b>
+
+Replace `99.99.99.99` with your external ip address.
 
 This ip address and port must be accessible from the Internet. If you are behind a router, the following port must be forwarded.
 

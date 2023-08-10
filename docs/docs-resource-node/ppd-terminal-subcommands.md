@@ -92,9 +92,9 @@ Enter password again:
 input bip39 mnemonic (leave blank to generate a new one)
 input hd-path for the account, default: "m/44'/606'/0'/0/0" : 
 save the mnemonic phase properly for future recovery: 
-=======================================================================  
+-=======================================================================  
 mother bracket treat warfare become win ivory harvest course reform theory issue group super alpha library despair sustain orient shrug lizard bulk mistake magnet
-======================================================================= 
+-======================================================================= 
 
 [INFO] 2023/01/12 11:17:00 setup_wallet.go:61: Wallet st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf has been generated successfully
 Do you want to use this wallet as your node wallet: Y(es)/N(o): y
