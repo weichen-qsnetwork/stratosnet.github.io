@@ -13,7 +13,7 @@ This setup is also useful for server farms running multiple SDS nodes.
 
 !!! tip
 
-    Currently, in mesos-1 incentive testnet, SDS nodes are using REST API but this will be changed to gRPC API once mainnet is launched.
+    Currently, in mesos-1 testnet, SDS nodes are using REST API but this will be changed to gRPC API once mainnet is launched.
 
 <br>
 
