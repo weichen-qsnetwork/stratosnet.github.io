@@ -118,15 +118,16 @@ wget https://go.dev/dl/go1.19.12.linux-amd64.tar.gz
 # Unzip it to /usr/local directory:
 sudo tar -C /usr/local -xzf go1.19.12.linux-amd64.tar.gz
 
+# Add the Go PATH:
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+source ~/.profile
+
 # Verify with
 go version
 
 # You should see:
 # go version go1.19.12 linux/amd64
 
-# Add the Go PATH:
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
-source ~/.profile
 ```
 
 <br>
@@ -141,7 +142,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 
 ---
 
-## Setup SDS resource node
+## Compile SDS resource node
 
 <br>
 
@@ -379,6 +380,8 @@ url = '52.196.88.238:9090'
 <br>
 
 - <b>Edit your external ip address:</b>
+
+Replace `99.99.99.99` with your external ip address.
 
 This ip address and port must be accessible from the Internet. If you are behind a router, the following port must be forwarded.
 

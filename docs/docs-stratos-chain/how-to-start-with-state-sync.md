@@ -17,22 +17,41 @@ Since the application state is generally much smaller than the blocks, and resto
 
 ## Start a node using stateSync:
 
-### 1. Get the latest block info
+### 1. Get the last block height
 
 ```shell
-curl -s http://rpc-mesos.thestratos.org/block | jq -r '.result.block.header.height + "\n" + .result.block_id.hash'
+curl -s http://rpc-mesos.thestratos.org/block | jq -r '.result.block.header.height'
 ```
 
 ```
 Example response:
-
-124855
-35174E85F15D74FD2948A29BCC84CC62535EEDEB4CECD9F669C4CDB2FE087034
+326121
 ```
 
-### 2. Setup config.toml
+### 2. Get the hash for the block
 
-Need to set at least 2 rpc_servers. The more, the better.
+Since snapshots are generated every 1,000 blocks, you'll need to obtain the hash for the block number at 1,000-interval heights. 
+
+For example, in the above response we got `326121` so we will need to request the hash for height `326000`.
+
+If latest block would have been `374521`, we will request the hash for `374000` and so on.
+
+Always use the most recent block height, rounded down to the nearest lower multiple of 1,000.
+
+```shell
+curl -s http://rpc-mesos.thestratos.org/block?height=326000 | jq -r '.result.block_id.hash'
+```
+
+```
+Example response:
+C524665A353CB6C5E03D4B73B3151FA00862704A0966E01C5E97F1DE1B08B1B4
+```
+
+### 3. Setup config.toml
+
+Edit the state sync section of `.stchaind/config/config.toml` as follows:
+
+Remember to use the latest height rounded down to last 1,000 round number and its hash.
 
 ```toml
 #######################################################
@@ -53,8 +72,8 @@ enable = true
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = "35.160.97.156:26657,rpc-mesos.thestratos.org:80"
-trust_height = 124855
-trust_hash = "35174E85F15D74FD2948A29BCC84CC62535EEDEB4CECD9F669C4CDB2FE087034"
+trust_height = 326000
+trust_hash = "C524665A353CB6C5E03D4B73B3151FA00862704A0966E01C5E97F1DE1B08B1B4"
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
@@ -72,8 +91,19 @@ chunk_request_timeout = "10s"
 chunk_fetchers = "4"
 ```
 
+### 4. Disable JSON-RPC
 
-### 3. Start the node
+The EVM RPC will prevent your node from starting using state sync, so you can temporarily disable it by editing `.stchaind/config/app.toml`:
+
+You can re-enable it once node's sync is up to date (node restart required).
+
+```
+[json-rpc]
+# Enable defines if the gRPC server should be enabled.
+enable = false
+```
+
+### 5. Start the node
 
 Node can now be started with the usual command:
 
