@@ -14,7 +14,6 @@ Show all the `ppd terminal` sub-commands' description.
 help                                                           show all the commands
 wallets                                                        acquire all wallet wallets' address
 newwallet                                                      create new wallet, input password in prompt
-login <walletAddress> ->password                               unlock and log in wallet, input password in prompt
 registerpeer                                                   register peer to index node
 rp                                                             register peer to index node
 activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
@@ -99,25 +98,6 @@ mother bracket treat warfare become win ivory harvest course reform theory issue
 [INFO] 2023/01/12 11:17:00 setup_wallet.go:61: Wallet st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf has been generated successfully
 Do you want to use this wallet as your node wallet: Y(es)/N(o): y
 [INFO] 2023/01/12 11:17:03 setting.go:291: finished changing configuration file  wallet_address:  st16v5pcrj9m6fgmwm7w0fn6dyxe8er3dk2nqqrhf
-```
-
-<br>
-
----
-
-## `login`
-Unlock and login with a different wallet.
-
-```yaml
-login <walletAddress> ->password
-```
-
-Example:
-
-```yaml
->login st1rzjelmydhv96pngkf35lcdknl59gkh72a3dyjn
-input password
-password:
 ```
 
 <br>
@@ -661,7 +641,7 @@ The returned token can be used for logging in to resource node monitor.
 
 ## `config`
 
-Set config key value pairs in the file `configs/config.toml`, separated by one space(note: no quotes for string input).
+Change a config key value pair in the file `configs/config.toml`(note: need quotes for string input. Cannot have a space character in the string).
 
 ```yaml
 config <key> <value>
@@ -669,7 +649,7 @@ config <key> <value>
 Example:
 
 ```yaml
-config wallet_password stratos
+config keys.wallet_password 'stratos'
 ```
 
 <br>
