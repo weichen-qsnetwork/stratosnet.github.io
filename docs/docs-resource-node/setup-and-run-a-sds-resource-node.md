@@ -374,7 +374,7 @@ nano config/config.toml
 
 ```toml
 # Network address of the chain Eg: "127.0.0.1:9090"
-url = '52.196.88.238:9090'
+grpc_server = '52.196.88.238:9090'
 ```
 
 <br>
@@ -439,7 +439,7 @@ gas_adjustment = 1.3
 # Connect to the chain using an insecure connection (no TLS) Eg: true
 insecure = true
 # Network address of the chain Eg: "127.0.0.1:9090"
-url = '52.196.88.238:9090'
+grpc_server = '52.196.88.238:9090'
 
 # Structure of the home folder. Default paths (eg: "./storage" become relative to the node home. Other paths are relative to the working directory
 [home]
