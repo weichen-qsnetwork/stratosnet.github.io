@@ -192,7 +192,7 @@ chmod +x stchaind
 mkdir ~/bin 
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile 
 source ~/.profile
-cp stchaind ~/bin 
+mv stchaind ~/bin 
 ```
 
 - Verify installation
@@ -817,6 +817,13 @@ After you finished the above steps, your `$HOME` folder should include the follo
 
 ## Start the full-chain node
 
+!!! tip
+
+    Joining the network at a later time will require your node to download all the past blocks which, depending on how far ahead the network is, could take hours or even days.
+
+    Stratos Chain now supports StateSync which enables your node to use a snapshot of the current chain and start the sync from there, which will only take a couple of minutes.
+
+    You can find the StateSyn Doc [here](../how-to-start-with-state-sync/).
 
 There are three ways to run your Stratos-chain full-node. 
 
@@ -1248,6 +1255,22 @@ timestamp: ""
 tx: null
 txhash: BA96CF87646592487ABB9DDDE8FA86FE71441226281B04E15C5C66EDE415FBC6
 ```
+
+<br>
+
+---
+
+## Validator
+
+At this point, you have a Full-Chain Node. 
+
+Full-Chain nodes are also important to the network as they are able to handle queries from a client and provide scale for the validator. They are also able to mantain historical information about the state of the chain.
+
+But they are not able to accept transactions from clients, validate them and insert them into the blockchain, like Validators do. So they won't be earning any rewards.
+
+To convert your Full-Node to a Validator, please follow the next guide.
+
+[How To Become a Validator](../how-to-become-a-validator/)
 
 <br>
 
