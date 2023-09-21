@@ -26,7 +26,7 @@ keywords:
     | Thegraph (rpc) | [`https://web3-thegraph-mesos.thestratos.org/rpc/`](https://web3-thegraph-mesos.thestratos.org/rpc/)
     | Thegraph (ipfs) | [`https://web3-thegraph-mesos.thestratos.org/ipfs/`](https://web3-thegraph-mesos.thestratos.org/ipfs/)
 
-=== "Stratos"
+=== "Stratos Mainnet"
 
     🎉Finally!!! Stratos Mainnet has been launched and it is open for developers🎉
 
