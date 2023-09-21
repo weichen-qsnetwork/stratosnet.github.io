@@ -26,7 +26,7 @@ Here are the required hardware/software to run a Stratos-chain full-node:
 
 | CPU | RAM | Storage | Stake |
 | --- | --- | ------- | ----- |
-| 8 Cores[¹](#), 2.5GHz[²](#) | 32 GB | 2 TB | 1 STOS[³](#) |
+| 8 Cores[¹](#requirements), 2.5GHz[²](#requirements) | 32 GB | 2 TB | 1 STOS[³](#requirements) |
 
 <small> ¹ &nbsp;&nbsp; Can be achieved using dual CPU server configurations (eg. 2cpu x 8cores, as long as the frequency per core is respected).<br>
 ² &nbsp;&nbsp; 2.5GHz refers to Base Frequency, not Turbo/Boost Frequency. <br>
@@ -63,15 +63,8 @@ sudo apt update
 sudo apt upgrade
     
 # Install git, snap and make(you can also install them separately as your needs)
-sudo apt install git build-essential curl tmux snapd libgmp3-dev flex bison --yes
+sudo apt install git build-essential curl tmux libgmp3-dev flex bison --yes
     
-# Install Go 1.19+ with Snap and export environment variables(You can also install Go 1.19+ in your way)
-sudo snap install go --classic
-echo 'export GOPATH="$HOME/go"' >> ~/.profile
-echo 'export GOBIN="$GOPATH/bin"' >> ~/.profile
-echo 'export PATH="$GOBIN:$PATH"' >> ~/.profile
-source ~/.profile
-
 # Install PBC library
 wget https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz
 tar xfz pbc-0.5.14.tar.gz && cd pbc-0.5.14
@@ -79,27 +72,6 @@ tar xfz pbc-0.5.14.tar.gz && cd pbc-0.5.14
 make
 sudo make install
 sudo ldconfig
-```
-
-<br>
-
-
-### MacOS Users
-
-
-To install the required build tools, you can easily [install Xcode from the Mac App Store](https://apps.apple.com/hk/app/xcode/id497799835?l=en&mt=12).
-
-The best practice to install Go is to use [Homebrew](https://brew.sh/).
-
-```shell
-# Install software using Homebrew
-brew install go git curl
-
-# Export environment variables
-echo 'export GOPATH="$HOME/go"' >> ~/.profile
-echo 'export GOBIN="$GOPATH/bin"' >> ~/.profile
-echo 'export PATH="$GOBIN:$PATH"' >> ~/.profile
-source ~/.profile
 ```
 
 <br>
@@ -153,12 +125,8 @@ The following binary `stchaind` has been built and ready to be downloaded direct
 ```shell
 # Make sure we are inside the $HOME folder
 cd $HOME
-wget https://github.com/stratosnet/stratos-chain/releases/download/v0.10.0/stchaind
+wget https://github.com/stratosnet/stratos-chain/releases/download/v0.11.0/stchaind
 ```
-
-!!! tip
-
-    💡 This binary is built for Ubuntu 18.04+ amd64. if you have other Linux kernels, please follow the next step to build your own binary with source code. For ease of use, we recommend saving this binary in your `$HOME` folder. 
 
 <br>
 
@@ -169,10 +137,10 @@ wget https://github.com/stratosnet/stratos-chain/releases/download/v0.10.0/stcha
 cd $HOME
 
 # Check granularity
-md5sum stchain*
+md5sum stchaind
 
 ## Expected output
-## e7e52a3831f8c22864badbf4c268adb5  stchaind
+## c3e55667fd2eb0a345dde80a56068a6a  stchaind
 ```
 
 <br>
@@ -200,20 +168,32 @@ mv stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.10.0
+# Should return v0.11.0
 ```
-
-<br>
 
 !!! tip
 
-    If you have any issues with the pre-compiled binary, continue this guide to locally compile yourself. Otherwise, go to the next step.
+    💡 This binary is built for Ubuntu 18.04+ amd64. if you have other Linux kernels or you have any issues with the pre-compiled binary please, follow the next step to build your own binary from source code.
+
+    Otherwise, continue with [Networks](#networks).
+
 
 <br>
 
 #### Compile the source code
 
-Before the following steps, please make sure you have `Go 1.19+` installed [link](https://golang.org/doc/install).
+Before the following steps, please make sure you have `Go 1.19+` installed .
+
+```shell
+# Check if go is already installed:
+go version
+
+# If it's not, you can install it with snapd:
+sudo apt install snapd
+sudo snap install go --classic
+```
+
+Alternatively, you can follow the official instructions: [link](https://golang.org/doc/install)
 
 <br>
 
@@ -222,7 +202,7 @@ Before the following steps, please make sure you have `Go 1.19+` installed [link
 ```shell
 git clone https://github.com/stratosnet/stratos-chain.git
 cd stratos-chain
-git checkout tags/v0.10.0
+git checkout tags/v0.11.0
 make build
 ```
 
@@ -243,526 +223,89 @@ cp build/stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.10.0
+# Should return v0.11.0
 ```
 
 <br>
 
 ---
 
-## Get genesis and config file
+### Networks
 
-- Initialize your node
+!!! important ""
 
-```shell
+    Currently, there are two live blockchains you can join:
+
+    - `Mainnet` (Stratos) which is using real tokens and it's a production environment. 
+
+    - `Testnet` (Mesos) which is using test tokens. You can setup a validator here at first if you want to test your system, see how things work, etc, without the risk of losing real tokens if something goes wrong.
+
+    - This guide applies to both, with a few small differences:
+
+
+    | Variable⤵  | Mainnet | Testnet |
+    | :------- | :------- | :----- |
+    | chain-id | stratos-1 | mesos-1 |
+    | keyring-backend | file / os / pass | test |
+
+### keyring-backend
+
+!!! important ""
+
+    On Testnet, the `keyring's backend` is `test`, i.e., `--keyring-backend=test`
+
+    - The `test` backend is a password-less variation of the `file` backend. Keys are stored unencrypted on disk.
+
+    On Mainnet, the `keyring's backend` can be `file`, `os` or `pass` e.g., `--keyring-backend=file`
+
+    - The `file` backend stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time it is accessed. (Recommended)
+    - The `os` backend relies on operating system-specific defaults to handle key storage securely since operating system's default credentials managers are designed to meet users' most common needs and provide them with a comfortable experience without compromising on security.
+    - The `pass` backend uses the pass utility to manage on-disk encryption of keys' sensitive data and metadata. Keys are stored inside gpg encrypted files within app-specific directories. More info at passwordstore.org
+
+---
+
+### Initialize the node
+
+
+```sh
 # Make sure we are inside the home directory
 cd $HOME
-    
+
 # Create folders and initialize the node
-stchaind init "<your_node_moniker>" --chain-id mesos-1
-    
+stchaind init "<your_node_moniker>" --chain-id <network_chain_id>
+
 # ignore the output since you need to download the genesis file 
 ```
 
-!!! tip
+!!! tip ""
 
-    💡 You can choose any `your_node_moniker` you prefer. It will be saved in the `config.toml` under the `.stchaind/config/` directory.
+    💡 You can choose any `your_node_moniker`. This will be your node name.
+
+    💡 `network_chain_id` is `stratos-1` for Mainnet or `mesos-1` for Testnet. See [Networks](#networks).
+
 
 <br>
 
 - Download the `genesis.json` and `config.toml` files
 
-```shell
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/genesis.json
-wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/config.toml
-```
+=== "Mainnet"
 
+    ```shell
+    wget https://raw.githubusercontent.com/stratosnet/mainnet/main/genesis/genesis.json
+    wget https://raw.githubusercontent.com/stratosnet/mainnet/main/config.toml
+    ```
 
-!!! tip
+=== "Testnet"
 
-    💡 We strongly recommend using this downloaded `config.toml` for v0.10.0, instead of the ones for previous versions to avoid any mismatching. 
+    ```shell
+    wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/genesis.json
+    wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/config.toml
+    ```
 
-    A sample of `config.toml` can be found below
-        
-<br>
+!!! tip ""
 
-<details>
-    <summary>Example of config.toml</summary>
+    💡 We strongly recommend using this downloaded `config.toml` for v0.11.0, instead of the ones for previous versions to avoid any mismatching. 
 
-```shell
-
-# This is a TOML config file.
-# For more information, see https://github.com/toml-lang/toml
-
-# NOTE: Any path below can be absolute (e.g. "/var/myawesomeapp/data") or
-# relative to the home directory (e.g. "data"). The home directory is
-# "$HOME/.tendermint" by default, but could be changed via $TMHOME env variable
-# or --home cmd flag.
-
-#######################################################################
-###                   Main Base Config Options                      ###
-#######################################################################
-
-# TCP or UNIX socket address of the ABCI application,
-# or the name of an ABCI application compiled in with the Tendermint binary
-proxy_app = "tcp://127.0.0.1:26658"
-
-# A custom human readable name for this node
-moniker = "node-name"
-
-# If this node is many blocks behind the tip of the chain, FastSync
-# allows them to catchup quickly by downloading blocks in parallel
-# and verifying their commits
-fast_sync = true
-
-# Database backend: goleveldb | cleveldb | boltdb | rocksdb | badgerdb
-# * goleveldb (github.com/syndtr/goleveldb - most popular implementation)
-#   - pure go
-#   - stable
-# * cleveldb (uses levigo wrapper)
-#   - fast
-#   - requires gcc
-#   - use cleveldb build tag (go build -tags cleveldb)
-# * boltdb (uses etcd's fork of bolt - github.com/etcd-io/bbolt)
-#   - EXPERIMENTAL
-#   - may be faster is some use-cases (random reads - indexer)
-#   - use boltdb build tag (go build -tags boltdb)
-# * rocksdb (uses github.com/tecbot/gorocksdb)
-#   - EXPERIMENTAL
-#   - requires gcc
-#   - use rocksdb build tag (go build -tags rocksdb)
-# * badgerdb (uses github.com/dgraph-io/badger)
-#   - EXPERIMENTAL
-#   - use badgerdb build tag (go build -tags badgerdb)
-db_backend = "goleveldb"
-
-# Database directory
-db_dir = "data"
-
-# Output level for logging, including package level options
-log_level = "info"
-
-# Output format: 'plain' (colored text) or 'json'
-log_format = "json"
-
-##### additional base config options #####
-
-# Path to the JSON file containing the initial validator set and other meta data
-genesis_file = "config/genesis.json"
-
-# Path to the JSON file containing the private key to use as a validator in the consensus protocol
-priv_validator_key_file = "config/priv_validator_key.json"
-
-# Path to the JSON file containing the last sign state of a validator
-priv_validator_state_file = "data/priv_validator_state.json"
-
-# TCP or UNIX socket address for Tendermint to listen on for
-# connections from an external PrivValidator process
-priv_validator_laddr = ""
-
-# Path to the JSON file containing the private key to use for node authentication in the p2p protocol
-node_key_file = "config/node_key.json"
-
-# Mechanism to connect to the ABCI application: socket | grpc
-abci = "socket"
-
-# If true, query the ABCI app on connecting to a new peer
-# so the app can decide if we should keep the connection or not
-filter_peers = false
-
-
-#######################################################################
-###                 Advanced Configuration Options                  ###
-#######################################################################
-
-#######################################################
-###       RPC Server Configuration Options          ###
-#######################################################
-[rpc]
-
-# TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:26657"
-
-# A list of origins a cross-domain request can be executed from
-# Default value '[]' disables cors support
-# Use '["*"]' to allow any origin
-cors_allowed_origins = []
-
-# A list of methods the client is allowed to use with cross-domain requests
-cors_allowed_methods = ["HEAD", "GET", "POST", ]
-
-# A list of non simple headers the client is allowed to use with cross-domain requests
-cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", "X-Server-Time", ]
-
-# TCP or UNIX socket address for the gRPC server to listen on
-# NOTE: This server only supports /broadcast_tx_commit
-grpc_laddr = ""
-
-# Maximum number of simultaneous connections.
-# Does not include RPC (HTTP&WebSocket) connections. See max_open_connections
-# If you want to accept a larger number than the default, make sure
-# you increase your OS limits.
-# 0 - unlimited.
-# Should be < {ulimit -Sn} - {MaxNumInboundPeers} - {MaxNumOutboundPeers} - {N of wal, db and other open files}
-# 1024 - 40 - 10 - 50 = 924 = ~900
-grpc_max_open_connections = 900
-
-# Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool
-unsafe = false
-
-# Maximum number of simultaneous connections (including WebSocket).
-# Does not include gRPC connections. See grpc_max_open_connections
-# If you want to accept a larger number than the default, make sure
-# you increase your OS limits.
-# 0 - unlimited.
-# Should be < {ulimit -Sn} - {MaxNumInboundPeers} - {MaxNumOutboundPeers} - {N of wal, db and other open files}
-# 1024 - 40 - 10 - 50 = 924 = ~900
-max_open_connections = 900
-
-# Maximum number of unique clientIDs that can /subscribe
-# If you're using /broadcast_tx_commit, set to the estimated maximum number
-# of broadcast_tx_commit calls per block.
-max_subscription_clients = 100
-
-# Maximum number of unique queries a given client can /subscribe to
-# If you're using GRPC (or Local RPC client) and /broadcast_tx_commit, set to
-# the estimated # maximum number of broadcast_tx_commit calls per block.
-max_subscriptions_per_client = 5
-
-# Experimental parameter to specify the maximum number of events a node will
-# buffer, per subscription, before returning an error and closing the
-# subscription. Must be set to at least 100, but higher values will accommodate
-# higher event throughput rates (and will use more memory).
-experimental_subscription_buffer_size = 200
-
-# Experimental parameter to specify the maximum number of RPC responses that
-# can be buffered per WebSocket client. If clients cannot read from the
-# WebSocket endpoint fast enough, they will be disconnected, so increasing this
-# parameter may reduce the chances of them being disconnected (but will cause
-# the node to use more memory).
-#
-# Must be at least the same as "experimental_subscription_buffer_size",
-# otherwise connections could be dropped unnecessarily. This value should
-# ideally be somewhat higher than "experimental_subscription_buffer_size" to
-# accommodate non-subscription-related RPC responses.
-experimental_websocket_write_buffer_size = 200
-
-# If a WebSocket client cannot read fast enough, at present we may
-# silently drop events instead of generating an error or disconnecting the
-# client.
-#
-# Enabling this experimental parameter will cause the WebSocket connection to
-# be closed instead if it cannot read fast enough, allowing for greater
-# predictability in subscription behaviour.
-experimental_close_on_slow_client = false
-
-# How long to wait for a tx to be committed during /broadcast_tx_commit.
-# WARNING: Using a value larger than 10s will result in increasing the
-# global HTTP write timeout, which applies to all connections and endpoints.
-# See https://github.com/tendermint/tendermint/issues/3435
-timeout_broadcast_tx_commit = "10s"
-
-# Maximum size of request body, in bytes
-max_body_bytes = 1000000
-
-# Maximum size of request header, in bytes
-max_header_bytes = 1048576
-
-# The path to a file containing certificate that is used to create the HTTPS server.
-# Might be either absolute path or path related to Tendermint's config directory.
-# If the certificate is signed by a certificate authority,
-# the certFile should be the concatenation of the server's certificate, any intermediates,
-# and the CA's certificate.
-# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
-# Otherwise, HTTP server is run.
-tls_cert_file = ""
-
-# The path to a file containing matching private key that is used to create the HTTPS server.
-# Might be either absolute path or path related to Tendermint's config directory.
-# NOTE: both tls-cert-file and tls-key-file must be present for Tendermint to create HTTPS server.
-# Otherwise, HTTP server is run.
-tls_key_file = ""
-
-# pprof listen address (https://golang.org/pkg/net/http/pprof)
-pprof_laddr = "localhost:6060"
-
-#######################################################
-###           P2P Configuration Options             ###
-#######################################################
-[p2p]
-
-# Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:26656"
-
-# Address to advertise to peers for them to dial
-# If empty, will use the same port as the laddr,
-# and will introspect on the listener or use UPnP
-# to figure out the address. ip and port are required
-# example: 159.89.10.97:26656
-external_address = ""
-
-# Comma separated list of seed nodes to connect to
-seeds = "2bc1ca52aeafe05606de3abdaad62faa1e2382aa@100.20.165.122:26656,ec9ed77773131b6b17d5ca6e69d15a01ea443ea9@35.233.251.35:26656"
-
-# Comma separated list of nodes to keep persistent connections to
-persistent_peers = ""
-
-# UPNP port forwarding
-upnp = false
-
-# Path to address book
-addr_book_file = "config/addrbook.json"
-
-# Set true for strict address routability rules
-# Set false for private or local networks
-addr_book_strict = false
-
-# Maximum number of inbound peers
-max_num_inbound_peers = 40
-
-# Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 10
-
-# List of node IDs, to which a connection will be (re)established ignoring any existing limits
-unconditional_peer_ids = ""
-
-# Maximum pause when redialing a persistent peer (if zero, exponential backoff is used)
-persistent_peers_max_dial_period = "0s"
-
-# Time to wait before flushing messages out on the connection
-flush_throttle_timeout = "100ms"
-
-# Maximum size of a message packet payload, in bytes
-max_packet_msg_payload_size = 1024
-
-# Rate at which packets can be sent, in bytes/second
-send_rate = 5120000
-
-# Rate at which packets can be received, in bytes/second
-recv_rate = 5120000
-
-# Set true to enable the peer-exchange reactor
-pex = true
-
-# Seed mode, in which node constantly crawls the network and looks for
-# peers. If another node asks it for addresses, it responds and disconnects.
-#
-# Does not work if the peer-exchange reactor is disabled.
-seed_mode = false
-
-# Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
-#
-private_peer_ids = ""
-
-# Toggle to disable guard against peers connecting from the same ip.
-allow_duplicate_ip = false
-
-# Peer connection configuration.
-handshake_timeout = "20s"
-dial_timeout = "3s"
-
-#######################################################
-###          Mempool Configuration Option          ###
-#######################################################
-[mempool]
-
-# Mempool version to use:
-#   1) "v0" - (default) FIFO mempool.
-#   2) "v1" - prioritized mempool.
-version = "v0"
-
-recheck = true
-broadcast = true
-wal_dir = ""
-
-# Maximum number of transactions in the mempool
-size = 5000
-
-# Limit the total size of all txs in the mempool.
-# This only accounts for raw transactions (e.g. given 1MB transactions and
-# max_txs_bytes=5MB, mempool will only accept 5 transactions).
-max_txs_bytes = 1073741824
-
-# Size of the cache (used to filter transactions we saw earlier) in transactions
-cache_size = 10000
-
-# Do not remove invalid transactions from the cache (default: false)
-# Set to true if it's not possible for any invalid transaction to become valid
-# again in the future.
-keep-invalid-txs-in-cache = false
-
-# Maximum size of a single transaction.
-# NOTE: the max size of a tx transmitted over the network is {max_tx_bytes}.
-max_tx_bytes = 1048576
-
-# Maximum size of a batch of transactions to send to a peer
-# Including space needed by encoding (one varint per transaction).
-# XXX: Unused due to https://github.com/tendermint/tendermint/issues/5796
-max_batch_bytes = 0
-
-# ttl-duration, if non-zero, defines the maximum amount of time a transaction
-# can exist for in the mempool.
-#
-# Note, if ttl-num-blocks is also defined, a transaction will be removed if it
-# has existed in the mempool at least ttl-num-blocks number of blocks or if it's
-# insertion time into the mempool is beyond ttl-duration.
-ttl-duration = "0s"
-
-# ttl-num-blocks, if non-zero, defines the maximum number of blocks a transaction
-# can exist for in the mempool.
-#
-# Note, if ttl-duration is also defined, a transaction will be removed if it
-# has existed in the mempool at least ttl-num-blocks number of blocks or if
-# it's insertion time into the mempool is beyond ttl-duration.
-ttl-num-blocks = 0
-
-#######################################################
-###         State Sync Configuration Options        ###
-#######################################################
-[statesync]
-# State sync rapidly bootstraps a new node by discovering, fetching, and restoring a state machine
-# snapshot from peers instead of fetching and replaying historical blocks. Requires some peers in
-# the network to take and serve state machine snapshots. State sync is not attempted if the node
-# has any local state (LastBlockHeight > 0). The node will have a truncated block history,
-# starting from the height of the snapshot.
-enable = false
-
-# RPC servers (comma-separated) for light client verification of the synced state machine and
-# retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
-# header hash obtained from a trusted source, and a period during which validators can be trusted.
-#
-# For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
-# weeks) during which they can be financially punished (slashed) for misbehavior.
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
-trust_period = "168h0m0s"
-
-# Time to spend discovering snapshots before initiating a restore.
-discovery_time = "15s"
-
-# Temporary directory for state sync snapshot chunks, defaults to the OS tempdir (typically /tmp).
-# Will create a new, randomly named directory within, and remove it when done.
-temp_dir = ""
-
-# The timeout duration before re-requesting a chunk, possibly from a different
-# peer (default: 1 minute).
-chunk_request_timeout = "10s"
-
-# The number of concurrent chunk fetchers to run (default: 1).
-chunk_fetchers = "4"
-
-#######################################################
-###       Fast Sync Configuration Connections       ###
-#######################################################
-[fastsync]
-
-# Fast Sync version to use:
-#   1) "v0" (default) - the legacy fast sync implementation
-#   2) "v1" - refactor of v0 version for better testability
-#   2) "v2" - complete redesign of v0, optimized for testability & readability
-version = "v0"
-
-#######################################################
-###         Consensus Configuration Options         ###
-#######################################################
-[consensus]
-
-wal_file = "data/cs.wal/wal"
-
-# How long we wait for a proposal block before prevoting nil
-timeout_propose = "3s"
-# How much timeout_propose increases with each round
-timeout_propose_delta = "500ms"
-# How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
-timeout_prevote = "1s"
-# How much the timeout_prevote increases with each round
-timeout_prevote_delta = "500ms"
-# How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
-timeout_precommit = "1s"
-# How much the timeout_precommit increases with each round
-timeout_precommit_delta = "500ms"
-# How long we wait after committing a block, before starting on the new
-# height (this gives us a chance to receive some more precommits, even
-# though we already have +2/3).
-timeout_commit = "5s"
-
-# How many blocks to look back to check existence of the node's consensus votes before joining consensus
-# When non-zero, the node will panic upon restart
-# if the same consensus key was used to sign {double_sign_check_height} last blocks.
-# So, validators should stop the state machine, wait for some blocks, and then restart the state machine to avoid panic.
-double_sign_check_height = 0
-
-# Make progress as soon as we have all the precommits (as if TimeoutCommit = 0)
-skip_timeout_commit = false
-
-# EmptyBlocks mode and possible interval between empty blocks
-create_empty_blocks = true
-create_empty_blocks_interval = "0s"
-
-# Reactor sleep duration parameters
-peer_gossip_sleep_duration = "100ms"
-peer_query_maj23_sleep_duration = "2s"
-
-#######################################################
-###         Storage Configuration Options           ###
-#######################################################
-[storage]
-
-# Set to true to discard ABCI responses from the state store, which can save a
-# considerable amount of disk space. Set to false to ensure ABCI responses are
-# persisted. ABCI responses are required for /block_results RPC queries, and to
-# reindex events in the command-line tool.
-discard_abci_responses = false
-
-#######################################################
-###   Transaction Indexer Configuration Options     ###
-#######################################################
-[tx_index]
-
-# What indexer to use for transactions
-#
-# The application will set which txs to index. In some cases a node operator will be able
-# to decide which txs to index based on configuration set in the application.
-#
-# Options:
-#   1) "null"
-#   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
-#       - When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
-#   3) "psql" - the indexer services backed by PostgreSQL.
-# When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "kv"
-
-# The PostgreSQL connection configuration, the connection format:
-#   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
-psql-conn = ""
-
-#######################################################
-###       Instrumentation Configuration Options     ###
-#######################################################
-[instrumentation]
-
-# When true, Prometheus metrics are served under /metrics on
-# PrometheusListenAddr.
-# Check out the documentation for the list of available metrics.
-prometheus = true
-
-# Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":26660"
-
-# Maximum number of simultaneous connections.
-# If you want to accept a larger number than the default, make sure
-# you increase your OS limits.
-# 0 - unlimited.
-max_open_connections = 3
-
-# Instrumentation namespace
-namespace = "tendermint"
-```
-
-
-</details>
-        
    <br>
 
 - Change `moniker` in the downloaded `config.toml` file
@@ -775,8 +318,9 @@ Change it to any value you like. It’s your node name that will show on the net
 # A custom human readable name for this node
 moniker = "<your_node_moniker>"
 ```
+<br>
 
-- Move the downloaded `config.toml` and `genesis.json` files to `$HOME/.stchaind/config/` folder. Replace if you already have these files.
+- Move the downloaded `config.toml` and `genesis.json` files to `stchaind` folder (default in `$HOME/.stchaind/config/`). Replace if you already have these files.
 
 ```shell
 mv config.toml $HOME/.stchaind/config/
@@ -809,7 +353,7 @@ After you finished the above steps, your `$HOME` folder should include the follo
 
 !!! tip
 
-    💡 By default, directory `.stchaind` will be created in the `$HOME` folder. The `.stchaind` folder contains the node's configurations and data.
+    💡 By default, directory `.stchaind` will be created in the `$HOME` folder. The `.stchaind` folder contains the nodes` configurations and data.
 
 <br>
 
@@ -823,7 +367,7 @@ After you finished the above steps, your `$HOME` folder should include the follo
 
     Stratos Chain now supports StateSync which enables your node to use a snapshot of the current chain and start the sync from there, which will only take a couple of minutes.
 
-    You can find the StateSyn Doc [here](../how-to-start-with-state-sync/).
+    You can find the StateSync Doc [here](../how-to-start-with-state-sync/).
 
 There are three ways to run your Stratos-chain full-node. 
 
@@ -1007,10 +551,6 @@ If it is `true`, it means your node is still syncing.
 
 Once the node finishes catch-up, you are ready to operate your node for various transactions(tx) and queries.
 
-!!! tip
-
-    💡 By default, the following commands can be applied in the node folder(`$HOME`) directory.
-
 In order to hold the tokens that you will later delegate to your validator node, or pay staking for your SDS resource node, first, you need to create a local wallet account.
 
 <br>
@@ -1019,15 +559,20 @@ In order to hold the tokens that you will later delegate to your validator node,
 
 To create a new wallet account, type the following command
 
+
 ```shell
-stchaind keys add <your wallet name> --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<keyring's backend>
+stchaind keys add <your wallet name> --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<your chosen keyring backend>
 ```
 
 !!! tip
 
-    💡 In the testing phase, the `keyring's backend` is `test`, i.e., `--keyring-backend=test`
+    💡 Choose a keyring-backend suited for the network you are running this chain installation on. See [keyring-backend](#keyring-backend).
 
-    Please select a wallet name that you will easily remember. This name will be used all over the places inside other commands later.
+    💡 Enter a wallet name that you will easily remember. This name will be used inside other commands later.
+
+
+
+
 
 After creating a new local wallet account, you will get its `address` and `pubkey`.
 
@@ -1058,11 +603,14 @@ venue chest pattern tool certain identify adult theme thing public foster promot
 If you already have a Stratos wallet account, you can recover it by typing the following command
 
 ```shell
-stchaind keys add <your wallet name> --recover --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<keyring's backend> 
+stchaind keys add <your wallet name> --recover --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<your chosen keyring backend>
 ```
 
 !!! tip
-    💡 In the testing phase, `--keyring-backend=test`
+
+    💡 Choose a keyring-backend suited for the network you are running this chain installation on. See [keyring-backend](#keyring-backend).
+
+    💡 Enter a wallet name that you will easily remember. This name will be used inside other commands later.
 
 Example:
 
@@ -1072,9 +620,9 @@ stchaind keys add myWallet1 --recover --hd-path="m/44'/606'/0'/0/0" --keyring-ba
 
 <br>
 
-After the above `keys add` command executed, a `keyring-test` folder will be created which contains your wallets' information with their addresses. 
+After the above `keys add` command executed, a `keyring-*` folder will be created which contains your wallets' information with their addresses. 
  
- The `keyring-test` folder looks like
+ The `keyring-*` folder looks like
 
 ``` { .yaml .no-copy }
 .
@@ -1154,7 +702,7 @@ stchaind keys show myWallet1 --keyring-backend=test
 
 ## Faucet
 
-Faucet will be available at *faucet-mesos.thestratos.org* to get test tokens into your wallet.
+Faucet will only be available on Testnet to get test tokens into your wallet.
 
 ```shell
 curl --header "Content-Type: application/json" --request POST --data '{"denom":"stos","address":"your wallet address"} ' https://faucet-mesos.thestratos.org/credit
@@ -1222,10 +770,9 @@ total: "0
  stchaind tx bank send <from address> <to address> <amount> --keyring-backend=<keyring's backend> --chain-id=<current chain-id> --gas=auto --gas-prices=1000000000wei
  ```
  
-!!! tip
+!!! tip ""
 
-    * The current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-mesos.thestratos.org/) right next to the search bar at the top of the page.
-    * In the testing phase, `--keyring-backend=test`
+    * For `chain-id` and `keyring-backend`, see [Networks](#networks).
     * Make sure your `<from address>` has enough tokens
     * Please wait for around 7 seconds for block generation after a transaction.
 

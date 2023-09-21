@@ -257,7 +257,7 @@ Request Accepted
 upload a file. It will consume Ozone.
 
 ```yaml
-put <filepath>
+put <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
 ```
 `filepath` is the location of the file to upload, starting from your resource node folder. It is better to be an absolute path.
 

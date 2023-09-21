@@ -38,7 +38,6 @@ nav:
       - Use of State Sync: docs-stratos-chain/how-to-start-with-state-sync.md
       - Full-Chain as REST/gRPC: docs-stratos-chain/how-to-setup-rest-grpc-full-chain.md
       - Use the Bridge on Testnet: docs-stratos-chain/how-to-use-bridge-testnet.md
-      - Pre-Mainnet Token Burn: docs-stratos-chain/pre-mainnet-token-burn.md
     - Operating:
       - stchaind Commands Part 1: docs-stratos-chain/stchaind-commands-part-1.md
       - stchaind Commands Part 2: docs-stratos-chain/stchaind-commands-part-2.md
@@ -123,6 +122,8 @@ extra_javascript:
   - js/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    
+
+validation:
+  unrecognized_links: ignore    
 
 copyright: <p> &copy; 2021-<script>document.write(new Date().getFullYear())</script> Stratos Network</p>

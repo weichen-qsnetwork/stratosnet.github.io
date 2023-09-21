@@ -95,7 +95,7 @@ After the node has finished sync, your Stratos-chain wallet has been created and
 
 !!! tip
 
-    By default, the `.stchaind` have been saved or created under the `$HOME` folder. If you are not sure what is your `$HOME` folder, in terminal, use `echo $HOME` to check. In the following instruction, we suppose you have entered the `$HOME` folder(use `cd $HOME`)
+    By default, the `.stchaind` have been saved or created under the `$HOME` folder. If you are not sure what is your `$HOME` folder, in terminal, use `echo $HOME` to check.
 
     In `config` folder:
 
@@ -111,20 +111,6 @@ After the node has finished sync, your Stratos-chain wallet has been created and
     * All `*.db` folders are `Tendermint` databases
     * `Tendermint` uses a `write ahead log` (WAL) for consensus
     * `priv_validator_state.json`holds the validator's state
-
-In Linux:
-
-``` { .yaml .no-copy }
-echo $HOME
-/home/<your login name>
-```
-
-In Mac:
-
-``` { .yaml .no-copy }
-echo $HOME
-/Users/<your login name>
-```
 
 <br>
 
@@ -199,8 +185,9 @@ A validator can be crested by sending a `create-validator` transaction command
     * `commission-max-change-rate`: The maximum daily increase of the validator commission. This flags cannot be changed after create-validator is processed
     * `min-self-delegation`: Minimum amount of tokens the validator needs to have bonded at all time. It is a strictly positive integer that represents the minimum amount of self-delegated staking token your validator must always have. A validator with a self delegation lower than this number will automatically be unbonded.
     * the minimum amount of tokens that must be delegated to be a bonded validator is "1".
-    * the current `chain-id` can be found on the [`Stratos Explorer`](https://explorer-mesos.thestratos.org/) right next to the search bar at the top of the page. Currently, it is 'mesos-1'.
-    * in the testing phase, `--keyring-backend=test`
+    * the current `chain-id` is `mesos-1` for Testnet and `stratos-1` for Mainnet 
+    * on Testnet, `--keyring-backend=test`
+    * on Mainnet, `--keyring-backend=file|os|pass`. You must use the same one you used when creating the wallet in previous guide (Setup Full-Chain Node).
 
 Example:
 ```shell

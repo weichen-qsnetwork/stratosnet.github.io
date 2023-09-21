@@ -113,20 +113,6 @@ In  `stchaind/keyring-test` folder:
     By default, the binary executable `stchaind` has been saved or created in the `$HOME` folder. If you are not sure what is your `$HOME` folder, in terminal, use `echo $HOME` to check. In the following instruction, we suppose you have entered the `$HOME` folder(use `cd $HOME`)
 
 
-In Linux:
-
-``` { .yaml .no-copy }
-$ echo $HOME
-/home/<your login name>
-```
-
-In Mac:
-
-``` { .yaml .no-copy }
-$ echo $HOME
-/Users/<your login name>
-```
-
 <br>
 
 ---
@@ -175,8 +161,11 @@ Global Flags(can be used for all stchaind commands):
 
 !!! tip
 
-    - `--chain-id`: the current `chain-id` may change when updating in testing phase . When it is applied, user needs to point out current `chain-id` which can be found on [this page](https://explorer-mesos.thestratos.org/), right next to the search bar at the top of the page 
+    - `--chain-id`: the current `chain-id` may change when updating in testing phase . When it is applied, user needs to point out current `chain-id` which is `mesos-1` for Testnet and `stratos-1` for Mainnet.
 
+    - on Testnet, `--keyring-backend=test`
+
+    - on Mainnet, `--keyring-backend=os|file|pass`. You must use the same one you used when creating the wallet in previous guide (Setup Full-Chain Node). 
 
     - `--home`: this directory contains node's account information. By default, node's account info is saved or created under `$HOME/.stchaind`. In this case, user does not need to add `--home` flag in the commands. Otherwise, user has to use this flag to specify the path to the node's root directory(default '$HOME') explicitly if not using the default directory. In the following instruction, we suppose the node info has been installed or created under `$HOME/.stchaind` and skip the `--home` flag. User can add it where applicable.
 

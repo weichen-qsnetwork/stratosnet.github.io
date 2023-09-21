@@ -21,6 +21,16 @@ hide:
   .md-typeset h2 {
     display: none;
   }
+
+  /* Table 100% width */
+
+.md-typeset__table {
+   min-width: 100%;
+}
+
+.md-typeset table:not([class]) {
+    display: table;
+}
 </style>
 
 <br><br>
