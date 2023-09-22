@@ -96,8 +96,7 @@ curl -X POST  "localhost:6798/api/v0/get?arg=sdm://st172v4u8ysfgaphjs8uyy0svvc6d
 
 <br>
 
-### /api/v0/list
-
+### /api/v0/ls
 Lists all files uploaded by account (wallet).  
 Arguments
 - page [string]: page number. Each page contains 20 elements. Required: no.
@@ -105,7 +104,7 @@ Arguments
 cURL Example
 
 ```shell
-curl -X POST  "localhost:6798/api/v0/list?page=0"
+curl -X POST  "localhost:6798/api/v0/ls?page=0"
 ```
 
 <br>
