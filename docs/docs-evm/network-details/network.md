@@ -7,7 +7,22 @@ keywords:
   - stratos
 ---
 
-> **_NOTE:_** Tropos network native token is **STOS** which will be used as gas fee.
+> **_NOTE:_** Stratos network native token is **STOS** which will be used as gas fee.
+
+
+=== "Stratos Mainnet"
+
+    🎉Finally!!! Stratos Mainnet has been launched and it is open for developers🎉
+
+    The documentation corresponding contains details for the RPC - HTTP, WS endpoints. There is also a full node setup if you wish to setup your own full node.
+
+    |              |                                        |
+    |--------------|----------------------------------------|
+    | NetworkName  | **Stratos**                                 |
+    | chainId      | `2048`                                  |
+    | Gas Token    | `STOS` ([For more info...](../gas-token)) |
+    | RPC          | `https://web3-rpc.thestratos.org` |
+    | Block Explorer |[`https://web3-explorer.thestratos.org`](https://web3-explorer.thestratos.org)|
 
 === "Mesos Testnet"
 
@@ -25,17 +40,3 @@ keywords:
     | Thegraph (graphql) | [`https://web3-thegraph-mesos.thestratos.org/subgraphs/name/`](https://web3-thegraph-mesos.thestratos.org/subgraphs/name/)
     | Thegraph (rpc) | [`https://web3-thegraph-mesos.thestratos.org/rpc/`](https://web3-thegraph-mesos.thestratos.org/rpc/)
     | Thegraph (ipfs) | [`https://web3-thegraph-mesos.thestratos.org/ipfs/`](https://web3-thegraph-mesos.thestratos.org/ipfs/)
-
-=== "Stratos Mainnet"
-
-    🎉Finally!!! Stratos Mainnet has been launched and it is open for developers🎉
-
-    The documentation corresponding contains details for the RPC - HTTP, WS endpoints. There is also a full node setup if you wish to setup your own full node.
-
-    |              |                                        |
-    |--------------|----------------------------------------|
-    | NetworkName  | **Stratos**                                 |
-    | chainId      | `2048`                                  |
-    | Gas Token    | `STOS` ([For more info...](../gas-token)) |
-    | RPC          | `https://web3-rpc.thestratos.org` |
-    | Block Explorer |[`https://web3-explorer.thestratos.org`](https://web3-explorer.thestratos.org)|
