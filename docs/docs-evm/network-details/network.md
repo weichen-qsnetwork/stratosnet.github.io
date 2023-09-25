@@ -19,7 +19,7 @@ keywords:
     |--------------|----------------------------------------|
     | NetworkName  | **Mesos**                                 |
     | chainId      | `2047`                                  |
-    | Gas Token    | `STOS Token` ([For more...](gas-token)) |
+    | Gas Token    | `STOS` ([For more info...](../gas-token)) |
     | RPC          | `https://web3-rpc-mesos.thestratos.org` |
     | Block Explorer |[`https://web3-explorer-mesos.thestratos.org`](https://web3-explorer-mesos.thestratos.org)|
     | Thegraph (graphql) | [`https://web3-thegraph-mesos.thestratos.org/subgraphs/name/`](https://web3-thegraph-mesos.thestratos.org/subgraphs/name/)
@@ -36,6 +36,6 @@ keywords:
     |--------------|----------------------------------------|
     | NetworkName  | **Stratos**                                 |
     | chainId      | `2048`                                  |
-    | Gas Token    | `STOS Token` ([For more...](gas-token)) |
+    | Gas Token    | `STOS` ([For more info...](../gas-token)) |
     | RPC          | `https://web3-rpc.thestratos.org` |
     | Block Explorer |[`https://web3-explorer.thestratos.org`](https://web3-explorer.thestratos.org)|
