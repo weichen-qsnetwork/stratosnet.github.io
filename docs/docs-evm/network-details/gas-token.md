@@ -8,7 +8,7 @@ keywords:
 ---
 
 
-=== "Stratos"
+=== "Stratos Mainnet"
 
     STOS is the native token of Stratos. This is similar to Ether in Ethereum. To interact with Stratos, STOS tokens are required to pay as gas fees.
 
