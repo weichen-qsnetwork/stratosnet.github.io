@@ -7,13 +7,8 @@ keywords:
   - stratos
 ---
 
-=== "Mesos Testnet"
 
-    STOS is the native token of Mesos. This is similar to Ether in Ethereum. To interact with Mesos network, STOS tokens are required to pay as gas fees.
-
-    On the Mesos chain, the Mesos tokens works as native token. This means that a user can pay gas with STOS as well as send STOS to other accounts same way as they use ETH to pay gas fees on Ethereum and send ETH to others.
-
-=== "Stratos"
+=== "Stratos Mainnet"
 
     STOS is the native token of Stratos. This is similar to Ether in Ethereum. To interact with Stratos, STOS tokens are required to pay as gas fees.
 
@@ -36,3 +31,9 @@ keywords:
             - (For web3) [MetaMask](https://metamask.io/)
 
       🎉Voila, you can start interacting with Stratos now 🎉
+
+=== "Mesos Testnet"
+
+    STOS is the native token of Mesos. This is similar to Ether in Ethereum. To interact with Mesos network, STOS tokens are required to pay as gas fees.
+
+    On the Mesos chain, the Mesos tokens works as native token. This means that a user can pay gas with STOS as well as send STOS to other accounts same way as they use ETH to pay gas fees on Ethereum and send ETH to others.
