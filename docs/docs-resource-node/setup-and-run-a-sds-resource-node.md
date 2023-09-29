@@ -489,7 +489,7 @@ auto_start = true
 # Should debug info be printed out in logs? Eg: false
 debug = false
 # When not 0, limit disk usage to this amount (in megabytes) Eg: 7629394 = 8 * 1000 * 1000 * 1000 * 1000 / 1024 / 1024  (8TB)
-max_disk_usage = 0
+max_disk_usage = 7629394
 
 [node.connectivity]
 # Is the node running on an internal network? Eg: false
