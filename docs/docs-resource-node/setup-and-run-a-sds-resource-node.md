@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.0
+git checkout tags/v0.11.1
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.0`.
+You should get `v0.11.1`.
 
 ---
 
@@ -373,6 +373,8 @@ nano config/config.toml
  ✏️ - <b>Edit the blockchain node address:</b>
 
 ```toml
+# Connect to the chain using an insecure connection (no TLS) Eg: true
+insecure = false
 # Network address of the chain Eg: "127.0.0.1:9090"
 grpc_server = 'grpc.thestratos.org:443'
 ```
@@ -448,18 +450,18 @@ app_ver = 11
 # Network connections from nodes below this version number will be rejected. Eg: 9
 min_app_ver = 11
 # Formatted version number. Eg: "v0.9.0"
-show = 'v0.11.0'
+show = 'v0.11.1'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
 # ID of the chain Eg: "tropos-5"
 chain_id = 'stratos-1'
 # Multiplier for the simulated tx gas cost Eg: 1.5
-gas_adjustment = 1.3
+gas_adjustment = 1.5
 # Connect to the chain using an insecure connection (no TLS) Eg: true
-insecure = true
+insecure = false
 # Network address of the chain Eg: "127.0.0.1:9090"
-grpc_server = '127.0.0.1:9090'
+grpc_server = 'grpc.thestratos.org:443'
 
 # Structure of the home folder. Default paths (eg: "./storage" become relative to the node home. Other paths are relative to the working directory
 [home]
