@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.0
+git checkout tags/v0.11.1
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.0`.
+You should get `v0.11.1`.
 
 ---
 
@@ -443,23 +443,23 @@ network_address = '34.82.40.37:8888'
 
 ```shell
 [version]
-# App version number. Eg: 9
+# App version number. Eg: 11
 app_ver = 11
-# Network connections from nodes below this version number will be rejected. Eg: 9
+# Network connections from nodes below this version number will be rejected. Eg: 11
 min_app_ver = 11
-# Formatted version number. Eg: "v0.9.0"
-show = 'v0.11.0'
+# Formatted version number. Eg: "v0.11.0"
+show = 'v0.11.1'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
-# ID of the chain Eg: "tropos-5"
+# ID of the chain Eg: "stratos-1"
 chain_id = 'stratos-1'
 # Multiplier for the simulated tx gas cost Eg: 1.5
-gas_adjustment = 1.3
+gas_adjustment = 1.5
 # Connect to the chain using an insecure connection (no TLS) Eg: true
-insecure = true
-# Network address of the chain Eg: "127.0.0.1:9090"
-grpc_server = '127.0.0.1:9090'
+insecure = false
+# Network address of the chain grpc Eg: "127.0.0.1:9090"
+grpc_server = 'grpc.thestratos.org:443'
 
 # Structure of the home folder. Default paths (eg: "./storage" become relative to the node home. Other paths are relative to the working directory
 [home]
@@ -474,11 +474,11 @@ storage_path = '/home/user/rsnode/storage'
 
 [keys]
 # Address of the P2P key. Eg: "stsdsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-p2p_address = 'stsds123123123123123123123123123123123123123'
-p2p_password = 'secret-password'
+p2p_address = 'stsdsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+p2p_password = 'my-passw0rd'
 # Address of the stratos wallet. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-wallet_address = 'st123123123123123123123123123123123123123'
-wallet_password = 'secret-password'
+wallet_address = 'stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+wallet_password = 'my-passw0rd'
 
 # Configuration of this node
 [node]
@@ -486,7 +486,7 @@ wallet_password = 'secret-password'
 auto_start = true
 # Should debug info be printed out in logs? Eg: false
 debug = false
-# When not 0, limit disk usage to this amount (in megabytes) Eg: 1048576 (1 TB)
+# When not 0, limit disk usage to this amount (in megabytes) Eg: 7629394 = 8 * 1000 * 1000 * 1000 * 1000 / 1024 / 1024  (8TB)
 max_disk_usage = 0
 
 [node.connectivity]
@@ -505,9 +505,9 @@ allow_owner_rpc = false
 
 # The first meta node to connect to when starting the node
 [node.connectivity.seed_meta_node]
-p2p_address = ''
-p2p_public_key = ''
-network_address = ''
+p2p_address = 'stsds10kmygjv7e2t39f6jka6445q20e9lv4a7u3qex3'
+p2p_public_key = 'stsdspub1srn3qetarx3x6f2x9wqfv3nh2aufxv03ncl5v6jkmyg666scvz6s4xgprq'
+network_address = '34.85.35.57:8888'
 
 # Configuration for the monitor server
 [monitor]
@@ -542,11 +542,12 @@ max_upload_rate = 0
 # Configuration for the web server (when running sdsweb)
 [web_server]
 # Location of the web server files Eg: "./web"
-path = '/storage/sds1/web'
+path = '/home/user/rsnode/sds1/web'
 # Port where the web server is hosted with sdsweb. If the port is opened and token_on_startup is true, anybody who loads the monitor UI will have full access to the monitor
 port = '18681'
-# Automatically enter monitor token when opening the monitor UI. This should be false if the web_server port is opened
+# Automatically enter monitor token when opening the monitor UI. This should be false if the web_server port is opened to internet and you don't want public access to your node monitor'
 token_on_startup = false
+
 
 ```
 
