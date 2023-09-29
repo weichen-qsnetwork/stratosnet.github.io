@@ -406,7 +406,8 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run:</b>
+✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.1)
+</b>
 
 ```toml
 # The first meta node to connect to when starting the node
@@ -414,6 +415,25 @@ network_port = '18081'
 p2p_address = ''
 p2p_public_key = ''
 network_address = ''
+
+```
+metanode you can start with
+```toml
+# europe
+p2p_address = 'stsds1ypxg8sj5vn4s4v0w965g4r9g3pt3vlz6wyzx0f'
+p2p_public_key = 'stsdspub1y6exsr8snwz65ev3pzq6k3yfy2ku3kexqdd0en35dnr8mxc9w6sq5jg6lf'
+network_address = '34.34.149.18:8888'
+
+# asian
+p2p_address = 'stsds10kmygjv7e2t39f6jka6445q20e9lv4a7u3qex3'
+p2p_public_key = 'stsdspub1srn3qetarx3x6f2x9wqfv3nh2aufxv03ncl5v6jkmyg666scvz6s4xgprq'
+network_address = '34.85.35.57:8888'
+
+# NA
+p2p_address = 'stsds1z96pm5ls0ff2y7y8adpy6r3l8jqeaud7envnqv'
+p2p_public_key = 'stsdspub1lf769k20k36e4gvnewcwdtfudzj95qk45d5f0p300jmr7e6y73zsdyh25y'
+network_address = '34.82.40.37:8888'
+
 ```
 
 <br>
