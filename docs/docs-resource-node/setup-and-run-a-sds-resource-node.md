@@ -373,6 +373,8 @@ nano config/config.toml
  ✏️ - <b>Edit the blockchain node address:</b>
 
 ```toml
+# Connect to the chain using an insecure connection (no TLS) Eg: true
+insecure = false
 # Network address of the chain Eg: "127.0.0.1:9090"
 grpc_server = 'grpc.thestratos.org:443'
 ```
