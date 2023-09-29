@@ -26,7 +26,7 @@ The following comparison demonstrates we can get the same response in both metho
 ## REST API
 Http `POST` request
 ```http
-https://rest-mesos.thestratos.org/bank/accounts/st1jfv3lyd67w5uywzywlsvgnym0hh9sqlujrw5l6/transfers
+https://rest.thestratos.org/bank/accounts/st1jfv3lyd67w5uywzywlsvgnym0hh9sqlujrw5l6/transfers
 ```
 Request body
 ```json
@@ -135,6 +135,10 @@ Output
 ***
 ## Stratos-chain REST APIs
 
+!!! tip
+
+    Replace `rest.thestratos.org` with `rest.thestratos.org` for Testnet queries.
+
 ### Node Status
 
 <details>
@@ -142,7 +146,7 @@ Output
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/node_info
+https://rest.thestratos.org/node_info
 ```
 Response Example:
 ```json
@@ -319,7 +323,7 @@ Tendermint APIs, such as query blocks, transactions and validator set
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/syncing
+https://rest.thestratos.org/syncing
 ```
 Response Example:
 ```json
@@ -335,7 +339,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/blocks/latest
+https://rest.thestratos.org/blocks/latest
 ```
 Response Example:
 ```json
@@ -408,7 +412,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/validatorsets/latest
+https://rest.thestratos.org/validatorsets/latest
 ```
 Response Example:
 ```json
@@ -443,7 +447,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/auth/v1beta1/accounts
+https://rest.thestratos.org/cosmos/auth/v1beta1/accounts
 ```
 Response Example:
 ```json
@@ -734,7 +738,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/auth/v1beta1/accounts/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/cosmos/auth/v1beta1/accounts/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 ```
 Response Example:
 ```json
@@ -759,7 +763,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/auth/v1beta1/params
+https://rest.thestratos.org/cosmos/auth/v1beta1/params
 ```
 Response Example:
 ```json
@@ -783,7 +787,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/auth/accounts/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/auth/accounts/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 ```
 Response Example:
 ```json
@@ -817,9 +821,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/bank/v1beta1/balances/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest.thestratos.org/cosmos/bank/v1beta1/balances/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 or 
-https://rest-mesos.thestratos.org/bank/balances/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest.thestratos.org/bank/balances/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 ```
 Response Example:
 ```json
@@ -839,7 +843,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/bank/v1beta1/params
+https://rest.thestratos.org/cosmos/bank/v1beta1/params
 ```
 Response Example:
 ```json
@@ -860,9 +864,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/bank/v1beta1/supply
+https://rest.thestratos.org/cosmos/bank/v1beta1/supply
 or
-https://rest-mesos.thestratos.org/bank/total
+https://rest.thestratos.org/bank/total
 ```
 Response Example:
 ```json
@@ -891,9 +895,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/bank/v1beta1/supply/wei
+https://rest.thestratos.org/cosmos/bank/v1beta1/supply/wei
 or
-https://rest-mesos.thestratos.org/bank/total/wei
+https://rest.thestratos.org/bank/total/wei
 ```
 Response Example:
 ```json
@@ -914,7 +918,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/bank/accounts/st1jfv3lyd67w5uywzywlsvgnym0hh9sqlujrw5l6/transfers
+https://rest.thestratos.org/bank/accounts/st1jfv3lyd67w5uywzywlsvgnym0hh9sqlujrw5l6/transfers
 ```
 Request Body
 ```json
@@ -990,7 +994,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/community_pool
+https://rest.thestratos.org/cosmos/distribution/v1beta1/community_pool
 ```
 Response Example:
 ```json
@@ -1014,7 +1018,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/rewards
+https://rest.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/rewards
 ```
 Response Example:
 ```json
@@ -1047,7 +1051,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/rewards/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/rewards/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 ```
 
 Response Example:
@@ -1070,7 +1074,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
+https://rest.thestratos.org/cosmos/distribution/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
 ```
 
 Response Example:
@@ -1091,7 +1095,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/withdraw_address
+https://rest.thestratos.org/cosmos/distribution/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/withdraw_address
 ```
 
 Response Example:
@@ -1109,7 +1113,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/commission
+https://rest.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/commission
 ```
 Response Example:
 ```json
@@ -1133,7 +1137,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 ```
 Response Example:
 ```json
@@ -1169,9 +1173,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/outstanding_rewards
+https://rest.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/outstanding_rewards
 or
-https://rest-mesos.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/outstanding_rewards
+https://rest.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/outstanding_rewards
 ```
 Response Example:
 ```json
@@ -1194,7 +1198,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/rewards
+https://rest.thestratos.org/distribution/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/rewards
 ```
 Response Example:
 ```json
@@ -1216,9 +1220,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/params
+https://rest.thestratos.org/cosmos/distribution/v1beta1/params
 or 
-https://rest-mesos.thestratos.org/distribution/parameters
+https://rest.thestratos.org/distribution/parameters
 ```
 Response Example:
 ```json
@@ -1239,7 +1243,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/slashes
+https://rest.thestratos.org/cosmos/distribution/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/slashes
 ```
 Response Example:
 ```json
@@ -1261,7 +1265,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/rewards
+https://rest.thestratos.org/distribution/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/rewards
 ```
 Request Body
 ```json
@@ -1321,7 +1325,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/rewards/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p
+https://rest.thestratos.org/distribution/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/rewards/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p
 ```
 Request Body
 ```json
@@ -1380,7 +1384,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/delegators/st1wkya79c9dvqrwc7um4n9vljc0duds3z5y56j7f/withdraw_address
+https://rest.thestratos.org/distribution/delegators/st1wkya79c9dvqrwc7um4n9vljc0duds3z5y56j7f/withdraw_address
 ```
 Request Body
 ```json
@@ -1439,7 +1443,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/distribution/validators/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p/rewards
+https://rest.thestratos.org/distribution/validators/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p/rewards
 ```
 Request Body
 ```json
@@ -1509,7 +1513,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals
+https://rest.thestratos.org/gov/proposals
 ```
 Response Example:
 ```json
@@ -1608,7 +1612,7 @@ Parameters:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals?status=PROPOSAL_STATUS_UNSPECIFIED
+https://rest.thestratos.org/gov/proposals?status=PROPOSAL_STATUS_UNSPECIFIED
 ```
 Response Example:
 ```json
@@ -1668,9 +1672,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/proposals/2
+https://rest.thestratos.org/cosmos/gov/v1beta1/proposals/2
 or
-https://rest-mesos.thestratos.org/gov/proposals/2
+https://rest.thestratos.org/gov/proposals/2
 ```
 Response Example:
 ```json
@@ -1717,7 +1721,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals/1/proposer
+https://rest.thestratos.org/gov/proposals/1/proposer
 ```
 Response Example:
 ```json
@@ -1743,7 +1747,7 @@ Request Example:
 ```
 
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/params/deposit
+https://rest.thestratos.org/cosmos/gov/v1beta1/params/deposit
 ```
 Response Example:
 ```json
@@ -1779,9 +1783,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/proposals/2/deposits
+https://rest.thestratos.org/cosmos/gov/v1beta1/proposals/2/deposits
 or
-https://rest-mesos.thestratos.org/gov/proposals/2/deposits
+https://rest.thestratos.org/gov/proposals/2/deposits
 ```
 Response Example:
 ```json
@@ -1815,9 +1819,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/proposals/2/deposits/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/cosmos/gov/v1beta1/proposals/2/deposits/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 or
-https://rest-mesos.thestratos.org/gov/proposals/2/deposits/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/gov/proposals/2/deposits/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 ```
 Response Example:
 ```json
@@ -1845,9 +1849,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals/1/votes
+https://rest.thestratos.org/gov/proposals/1/votes
 or
-https://rest-mesos.thestratos.org/gov/proposals/1/votes
+https://rest.thestratos.org/gov/proposals/1/votes
 ```
 Response Example:
 ```json
@@ -1889,9 +1893,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/proposals/1/votes/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/cosmos/gov/v1beta1/proposals/1/votes/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 or
-https://rest-mesos.thestratos.org/gov/proposals/1/votes/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
+https://rest.thestratos.org/gov/proposals/1/votes/st1v33vxhmu9kp9yrncfldvt0zg9qlcepc75lyggk
 ```
 Response Example:
 ```json
@@ -1920,9 +1924,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/gov/v1beta1/proposals/1/tally
+https://rest.thestratos.org/cosmos/gov/v1beta1/proposals/1/tally
 or
-https://rest-mesos.thestratos.org/gov/proposals/1/tally
+https://rest.thestratos.org/gov/proposals/1/tally
 ```
 Response Example:
 ```json
@@ -1943,7 +1947,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/parameters/deposit
+https://rest.thestratos.org/gov/parameters/deposit
 ```
 Response Example:
 ```json
@@ -1968,7 +1972,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/parameters/tallying
+https://rest.thestratos.org/gov/parameters/tallying
 ```
 Response Example:
 ```json
@@ -1989,7 +1993,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/parameters/voting
+https://rest.thestratos.org/gov/parameters/voting
 ```
 Response Example:
 ```json
@@ -2009,7 +2013,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals
+https://rest.thestratos.org/gov/proposals
 ```
 Request Body:
 ```json
@@ -2088,7 +2092,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals/param_change
+https://rest.thestratos.org/gov/proposals/param_change
 ```
 Request Body:
 ```json
@@ -2180,7 +2184,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals/1/deposits
+https://rest.thestratos.org/gov/proposals/1/deposits
 ```
 Request Body:
 ```json
@@ -2250,7 +2254,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/gov/proposals/1/votes
+https://rest.thestratos.org/gov/proposals/1/votes
 ```
 Request Body:
 ```json
@@ -2317,9 +2321,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/mint/v1beta1/params
+https://rest.thestratos.org/cosmos/mint/v1beta1/params
 or 
-https://rest-mesos.thestratos.org/minting/parameters
+https://rest.thestratos.org/minting/parameters
 ```
 Response Example:
 ```json
@@ -2344,9 +2348,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/mint/v1beta1/inflation
+https://rest.thestratos.org/cosmos/mint/v1beta1/inflation
  or
-https://rest-mesos.thestratos.org/minting/inflation
+https://rest.thestratos.org/minting/inflation
 ```
 Response Example:
 ```json
@@ -2363,9 +2367,9 @@ Response Example:
     Alias: /minting/annual-provisions
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/mint/v1beta1/annual_provisions
+https://rest.thestratos.org/cosmos/mint/v1beta1/annual_provisions
 or 
-https://rest-mesos.thestratos.org/minting/annual-provisions
+https://rest.thestratos.org/minting/annual-provisions
 ```
 Response Example:
 ```json
@@ -2386,9 +2390,9 @@ Response Example:
     Alias: /slashing/signing_infos
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/slashing/v1beta1/signing_infos
+https://rest.thestratos.org/cosmos/slashing/v1beta1/signing_infos
 or 
-https://rest-mesos.thestratos.org/slashing/signing_infos
+https://rest.thestratos.org/slashing/signing_infos
 ```
 Response Example:
 ```json
@@ -2419,9 +2423,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/slashing/v1beta1/params
+https://rest.thestratos.org/cosmos/slashing/v1beta1/params
 or
-https://rest-mesos.thestratos.org/slashing/parameters
+https://rest.thestratos.org/slashing/parameters
 ```
 Response Example:
 ```json
@@ -2443,7 +2447,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/slashing/v1beta1/signing_infos/stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802
+https://rest.thestratos.org/cosmos/slashing/v1beta1/signing_infos/stvalcons1rzn3d8qmgf7ejsfn77eag5zwjfufmvmu7sn802
 ```
 Response Example:
 ```json
@@ -2467,7 +2471,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/slashing/validators/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p/unjail
+https://rest.thestratos.org/slashing/validators/stvaloper1xnhfx7c0nev9me835409efjj7whd672x8ky28p/unjail
 ```
 Request Body
 ```shell
@@ -2530,9 +2534,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/delegations/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest.thestratos.org/cosmos/staking/v1beta1/delegations/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 or
-https://rest-mesos.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/delegations
+https://rest.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/delegations
 ```
 Response Example:
 ```json
@@ -2564,7 +2568,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/delegations/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a
+https://rest.thestratos.org/staking/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/delegations/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a
 ```
 Response Example:
 ```json
@@ -2593,7 +2597,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/redelegations
+https://rest.thestratos.org/staking/redelegations
 ```
 Response Example:
 ```json
@@ -2626,7 +2630,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/redelegations
+https://rest.thestratos.org/cosmos/staking/v1beta1/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/redelegations
 ```
 Response Example:
 ```json
@@ -2677,9 +2681,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegations
+https://rest.thestratos.org/cosmos/staking/v1beta1/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegations
 or
-https://rest-mesos.thestratos.org/staking/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegations
+https://rest.thestratos.org/staking/delegators/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegations
 ```
 Response Example:
 ```json
@@ -2712,7 +2716,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/delegators/st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh/unbonding_delegations/stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u
+https://rest.thestratos.org/staking/delegators/st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh/unbonding_delegations/stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u
 ```
 Response Example:
 ```json
@@ -2741,9 +2745,9 @@ Response Example:
     Alias: /staking/delegators/{delegatorAddr}/validators
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
+https://rest.thestratos.org/cosmos/staking/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
 or
-https://rest-mesos.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
+https://rest.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators
 ```
 Response Example:
 ```json
@@ -2794,9 +2798,9 @@ Response Example:
     Alias: /staking/delegators/{delegatorAddr}/validators/{validatorAddr}
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/cosmos/staking/v1beta1/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 or
-https://rest-mesos.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/staking/delegators/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 ```
 
 Response Example:
@@ -2838,9 +2842,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators
 or
-https://rest-mesos.thestratos.org/staking/validators
+https://rest.thestratos.org/staking/validators
 ```
 
 
@@ -2897,9 +2901,9 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 or
-https://rest-mesos.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
+https://rest.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu
 ```
 Response Example:
 ```json
@@ -2944,9 +2948,9 @@ Response Example:
     Alias: /staking/validators/{validatorAddr}/delegations
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations
 or
-https://rest-mesos.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations
+https://rest.thestratos.org/staking/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations
 ```
 Response Example:
 ```json
@@ -2978,7 +2982,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1pvyjzlhwrpgklu0044at4t6qh7m23k3k5xpswu/delegations/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 ```
 Response Example:
 ```json
@@ -3005,7 +3009,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/delegations/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegation
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/delegations/st1fw6tcpku363yz6le7569wzzg84val68e9eayq7/unbonding_delegation
 ```
 Response Example:
 ```json
@@ -3034,9 +3038,9 @@ Response Example:
     Alias: /staking/validators/{validatorAddr}/unbonding_delegations
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/unbonding_delegations
+https://rest.thestratos.org/cosmos/staking/v1beta1/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/unbonding_delegations
 or
-https://rest-mesos.thestratos.org/staking/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/unbonding_delegations
+https://rest.thestratos.org/staking/validators/stvaloper1v33vxhmu9kp9yrncfldvt0zg9qlcepc7rndg5a/unbonding_delegations
 ```
 Response Example:
 ```json
@@ -3070,9 +3074,9 @@ Response Example:
     Alias: /staking/pool
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/pool
+https://rest.thestratos.org/cosmos/staking/v1beta1/pool
 or
-https://rest-mesos.thestratos.org/staking/pool
+https://rest.thestratos.org/staking/pool
 ```
 Response Example:
 ```json
@@ -3093,9 +3097,9 @@ Response Example:
     Alias: /staking/parameters
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/params
+https://rest.thestratos.org/cosmos/staking/v1beta1/params
 or
-https://rest-mesos.thestratos.org/staking/parameters
+https://rest.thestratos.org/staking/parameters
 ```
 Response Example:
 ```json
@@ -3118,7 +3122,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/staking/v1beta1/historical_info/3306
+https://rest.thestratos.org/cosmos/staking/v1beta1/historical_info/3306
 ```
 Response Example:
 ```json
@@ -3194,7 +3198,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/delegations
+https://rest.thestratos.org/staking/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/delegations
 ```
 Request Body:
 ```json
@@ -3262,7 +3266,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/unbonding_delegations
+https://rest.thestratos.org/staking/delegators/st1xnhfx7c0nev9me835409efjj7whd672xs6d2m2/unbonding_delegations
 ```
 Request Body:
 ```json
@@ -3330,7 +3334,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/staking/delegators/st15xlpwafgnvvs5hdk8938dp2ve6cjmy4vcf4l76/redelegations
+https://rest.thestratos.org/staking/delegators/st15xlpwafgnvvs5hdk8938dp2ve6cjmy4vcf4l76/redelegations
 ```
 Request Body:
 ```json
@@ -3405,7 +3409,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
 ```
 Response Example:
 ```json
@@ -3479,7 +3483,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/blocks/latest
 ```
 
 Response Example:
@@ -3557,7 +3561,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/node_info
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/node_info
 ```
 
 Response Example:
@@ -4246,7 +4250,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/syncing
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/syncing
 ```
 Response Example:
 ```json
@@ -4265,7 +4269,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/latest
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/latest
 ```
 Response Example:
 ```json
@@ -4298,7 +4302,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/1000
+https://rest.thestratos.org/cosmos/base/tendermint/v1beta1/validatorsets/1000
 ```
 Response Example:
 ```json
@@ -4334,7 +4338,7 @@ Search, encode, or broadcast transactions.
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/tx/v1beta1/txs?events=tx.height=611
+https://rest.thestratos.org/cosmos/tx/v1beta1/txs?events=tx.height=611
 ```
 Response Example:
 ```json
@@ -4717,7 +4721,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/cosmos/tx/v1beta1/txs/AB0EF3761603145EDC1B4121C91B51001249186E1362E7148C82E7DB12F7BDF0
+https://rest.thestratos.org/cosmos/tx/v1beta1/txs/AB0EF3761603145EDC1B4121C91B51001249186E1362E7148C82E7DB12F7BDF0
 ```
 Response Example:
 ```json
@@ -5100,7 +5104,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/resource-node/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
+https://rest.thestratos.org/register/resource-node/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
 ```
 Response Example:
 ```json
@@ -5136,7 +5140,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/meta-node/stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64
+https://rest.thestratos.org/register/meta-node/stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64
 ```
 Response Example:
 ```json
@@ -5171,7 +5175,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/deposit
+https://rest.thestratos.org/register/deposit
 ```
 Response Example:
 ```json
@@ -5209,7 +5213,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/deposit/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
+https://rest.thestratos.org/register/deposit/address/stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv
 ```
 Response Example:
 ```json
@@ -5257,7 +5261,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/deposit/owner/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
+https://rest.thestratos.org/register/deposit/owner/st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh
 ```
 Response Example:
 ```json
@@ -5307,7 +5311,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/params
+https://rest.thestratos.org/register/params
 ```
 Response Example:
 ```json
@@ -5330,7 +5334,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/resource-count
+https://rest.thestratos.org/register/resource-count
 ```
 Response Example:
 ```json
@@ -5348,7 +5352,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/register/meta-count
+https://rest.thestratos.org/register/meta-count
 ```
 Response Example:
 ```json
@@ -5369,7 +5373,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/report/epoch/1
+https://rest.thestratos.org/pot/report/epoch/1
 ```
 Response Example:
 ```json
@@ -5390,7 +5394,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/rewards/epoch/1?page=1&limit=3
+https://rest.thestratos.org/pot/rewards/epoch/1?page=1&limit=3
 ```
 Response Example:
 ```json
@@ -5453,7 +5457,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?height=10000
+https://rest.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?height=10000
 ```
 Response Example:
 ```json
@@ -5481,7 +5485,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?epoch=10
+https://rest.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em?epoch=10
 ```
 Response Example:
 ```json
@@ -5512,7 +5516,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em
+https://rest.thestratos.org/pot/rewards/wallet/st18jxmc78ws5wq7q7umr6plpz8x0d9qtzu98v8em
 ```
 Response Example:
 ```json
@@ -5538,7 +5542,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/slashing/st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg?height=3877
+https://rest.thestratos.org/pot/slashing/st1am40hqkacscgwvvsjcxzxk49r8cuamgyrcgppg?height=3877
 ```
 Response Example:
 ```json
@@ -5555,7 +5559,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/params
+https://rest.thestratos.org/pot/params
 ```
 Response Example:
 ```json
@@ -5685,7 +5689,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/total-mined-token
+https://rest.thestratos.org/pot/total-mined-token
 ```
 Response Example:
 ```json
@@ -5705,7 +5709,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/pot/circulation-supply
+https://rest.thestratos.org/pot/circulation-supply
 ```
 Response Example:
 ```json
@@ -5731,7 +5735,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/sds/fileUpload/v05ahm51dd62ise3fo7ojqub90p0ql2c3jg37hk8
+https://rest.thestratos.org/sds/fileUpload/v05ahm51dd62ise3fo7ojqub90p0ql2c3jg37hk8
 ```
 Response Example:
 ```json
@@ -5752,7 +5756,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/sds/simPrepay/8000000000
+https://rest.thestratos.org/sds/simPrepay/8000000000
 ```
 Response Example:
 ```json
@@ -5769,7 +5773,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/sds/nozPrice
+https://rest.thestratos.org/sds/nozPrice
 ```
 Response Example:
 ```json
@@ -5786,7 +5790,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/sds/nozSupply
+https://rest.thestratos.org/sds/nozSupply
 ```
 Response Example:
 ```json
@@ -5806,7 +5810,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/sds/params
+https://rest.thestratos.org/sds/params
 ```
 Response Example:
 ```json
@@ -5834,7 +5838,7 @@ Search, encode, or broadcast transactions.
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/txs/0CA946EBB823903004056BEA3CFAFE4F184EF616D72F38433763006534AA0E2E
+https://rest.thestratos.org/txs/0CA946EBB823903004056BEA3CFAFE4F184EF616D72F38433763006534AA0E2E
 ```
 Response Example:
 ```json
@@ -5945,7 +5949,7 @@ parameters
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/txs?message.action=send&message.sender=st1l76s0ukw0r77fydhqtqpexax8m64mzaq04830s
+https://rest.thestratos.org/txs?message.action=send&message.sender=st1l76s0ukw0r77fydhqtqpexax8m64mzaq04830s
 ```
 Response Example:
 ```json
@@ -6058,7 +6062,7 @@ Response Example:
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/txs
+https://rest.thestratos.org/txs
 ```
 The tx must be a signed StdTx. The supported broadcast modes include "block"(return after tx commit), "sync"(return afer CheckTx) and "async"(return right away).
 Request Body:
@@ -6164,7 +6168,7 @@ Response Example:
 
 Check this Tx
 ```http
-https://rest-mesos.thestratos.org/txs/3F96F021622ED95820D425522319FBE9C4510200FB18A2E18D75A209ABF05323
+https://rest.thestratos.org/txs/3F96F021622ED95820D425522319FBE9C4510200FB18A2E18D75A209ABF05323
 ```
 Response
 ```json
@@ -6261,7 +6265,7 @@ Response
 
 Check this block
 ```http
-https://rest-mesos.thestratos.org/blocks/3495
+https://rest.thestratos.org/blocks/3495
 ```
 Response
 ```json
@@ -6337,7 +6341,7 @@ Response
 
 Request Example:
 ```http
-https://rest-mesos.thestratos.org/txs/decode
+https://rest.thestratos.org/txs/decode
 ```
 Request Body:
 ```json
