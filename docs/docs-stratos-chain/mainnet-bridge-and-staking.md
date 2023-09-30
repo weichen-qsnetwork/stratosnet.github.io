@@ -9,6 +9,7 @@ description: Guide on how to use the bridge between Ethereum and Stratos and How
 
 ## Introduction
 
+- <span style="color: red;">IMPORTANT:</span> Before proceding, make sure to download and install the latest version of Stratos Network Wallet (v1.0.1) [<a href="https://www.thestratos.org/download.html" target="_blank">Download</a>]
 - The bridge web app is only available for Metamask.
 - STOS tokens have to be on ETH network and you need some ETH for gas fees.
 - If your tokens are on a CEX, you need to withdraw them to Metamask first.
