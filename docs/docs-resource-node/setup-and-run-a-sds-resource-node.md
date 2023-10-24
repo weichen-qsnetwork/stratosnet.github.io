@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.3
+git checkout tags/v0.11.4
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.3`.
+You should get `v0.11.4`.
 
 ---
 
@@ -408,7 +408,7 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.3)
+✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.4)
 </b>
 
 ```toml
@@ -450,7 +450,7 @@ app_ver = 11
 # Network connections from nodes below this version number will be rejected. Eg: 11
 min_app_ver = 11
 # Formatted version number. Eg: "v0.11.0"
-show = 'v0.11.3'
+show = 'v0.11.4'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
@@ -660,6 +660,48 @@ activate 1600stos 0.01stos
  ```shell
  status
  ```
+
+---
+
+
+<br>
+
+## Update node binary
+
+If a newer version is released under <a href="https://github.com/stratosnet/sds/tags" target="_blank">SDS GitHub</a>, you can update your current version by following these instructions:
+
+- Stop the `ppd start` process
+- Compile the new version:
+
+```sh
+cd $HOME
+rm -rf sds
+git clone https://github.com/stratosnet/sds.git
+cd sds
+go clean -modcache
+git checkout tags/vX.XX.X (enter latest version)
+make build
+```
+
+- Replace the current binaries:
+
+```sh
+
+# If current binaries are installed under ~/bin folder, 
+# otherwise use your custom installation path
+
+cd $HOME
+cp sds/target/* $HOME/bin/
+```
+
+- Verify with
+
+```sh
+ppd version
+
+# It should display the latest version available on GitHub
+```
+
 
 ---
 
