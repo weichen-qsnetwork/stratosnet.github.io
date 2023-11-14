@@ -27,26 +27,26 @@ Since the application state is generally much smaller than the blocks, and resto
 
 	```
 	Example response:
-	326121
+	695987
 	```
 
 	### 2. Get the hash for the block
 
 	Since snapshots are generated every 1,000 blocks, you'll need to obtain the hash for the block number at 1,000-interval heights. 
 
-	For example, in the above response we got `326121` so we will need to request the hash for height `326000`.
+	For example, in the above response we got `695987` so we will need to request the hash for height `695000`.
 
-	If latest block would have been `374521`, we will request the hash for `374000` and so on.
+	If latest block would have been `741589`, we will request the hash for `741000` and so on.
 
 	Always use the most recent block height, rounded down to the nearest lower multiple of 1,000.
 
 	```shell
-	curl -s http://rpc.thestratos.org/block?height=326000 | jq -r '.result.block_id.hash'
+	curl -s http://rpc.thestratos.org/block?height=695000 | jq -r '.result.block_id.hash'
 	```
 
 	```
 	Example response:
-	C524665A353CB6C5E03D4B73B3151FA00862704A0966E01C5E97F1DE1B08B1B4
+	8C138E7FE1FF3B237EF3938D524BCA25AF3DE1E041F08FD9E4B37C6BD14CBB6C
 	```
 
 	### 3. Setup config.toml
@@ -73,9 +73,9 @@ Since the application state is generally much smaller than the blocks, and resto
 	#
 	# For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 	# weeks) during which they can be financially punished (slashed) for misbehavior.
-	rpc_servers = "35.187.203.203:26657,35.187.189.109:26657"
-	trust_height = 326000
-	trust_hash = "C524665A353CB6C5E03D4B73B3151FA00862704A0966E01C5E97F1DE1B08B1B4"
+	rpc_servers = "18.133.11.120:26657,3.11.149.151:26657"
+	trust_height = 695000
+	trust_hash = "8C138E7FE1FF3B237EF3938D524BCA25AF3DE1E041F08FD9E4B37C6BD14CBB6C"
 	trust_period = "168h0m0s"
 
 	# Time to spend discovering snapshots before initiating a restore.

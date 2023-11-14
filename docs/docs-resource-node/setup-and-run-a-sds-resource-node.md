@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.4
+git checkout tags/v0.11.6
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.4`.
+You should get `v0.11.6`.
 
 ---
 
@@ -408,7 +408,7 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.4)
+✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.6)
 </b>
 
 ```toml
@@ -450,7 +450,7 @@ app_ver = 11
 # Network connections from nodes below this version number will be rejected. Eg: 11
 min_app_ver = 11
 # Formatted version number. Eg: "v0.11.0"
-show = 'v0.11.4'
+show = 'v0.11.6'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
