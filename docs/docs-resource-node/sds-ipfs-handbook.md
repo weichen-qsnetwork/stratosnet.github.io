@@ -29,6 +29,7 @@ Flags:
       --ipcEndpoint string   ipc endpoint path
   -p, --port string          port (default "6798")
   -m, --rpcMode string       use httpRpc or ipc (default "ipc")
+      --password string      password to wallet
 
 Global Flags:
   -c, --config string   configuration file path  (default "./config/config.toml")
