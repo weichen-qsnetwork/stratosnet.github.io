@@ -125,7 +125,7 @@ The following binary `stchaind` has been built and ready to be downloaded direct
 ```shell
 # Make sure we are inside the $HOME folder
 cd $HOME
-wget https://github.com/stratosnet/stratos-chain/releases/download/v0.11.1/stchaind
+wget https://github.com/stratosnet/stratos-chain/releases/download/v0.11.3/stchaind
 ```
 
 <br>
@@ -168,7 +168,7 @@ mv stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.11.1
+# Should return v0.11.3
 ```
 
 !!! tip
@@ -202,7 +202,7 @@ Alternatively, you can follow the official instructions: [link](https://golang.o
 ```shell
 git clone https://github.com/stratosnet/stratos-chain.git
 cd stratos-chain
-git checkout tags/v0.11.1
+git checkout tags/v0.11.3
 make build
 ```
 
@@ -223,7 +223,7 @@ cp build/stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.11.1
+# Should return v0.11.3
 ```
 
 <br>
@@ -304,7 +304,7 @@ stchaind init "<your_node_moniker>" --chain-id <network_chain_id>
 
 !!! tip ""
 
-    💡 We strongly recommend using this downloaded `config.toml` for v0.11.1, instead of the ones for previous versions to avoid any mismatching. 
+    💡 We strongly recommend using this downloaded `config.toml` for v0.11.3, instead of the ones for previous versions to avoid any mismatching. 
 
    <br>
 

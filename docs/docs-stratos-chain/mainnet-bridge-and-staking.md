@@ -9,10 +9,12 @@ description: Guide on how to use the bridge between Ethereum and Stratos and How
 
 ## Introduction
 
-- <span style="color: red;">IMPORTANT:</span> Before proceding, make sure to download and install the latest version of Stratos Network Wallet (v1.0.1) [<a href="https://www.thestratos.org/download.html" target="_blank">Download</a>]
+- <span style="color: red;">IMPORTANT:</span> Before proceding, make sure to download and install the latest version of Stratos Network Wallet [<a href="https://www.thestratos.org/download.html" target="_blank">Download</a>]
+- <span style="color: red;">IMPORTANT:</span> Never send STOS directly from Ethereum network to a Stratos wallet. Migration has to go through the bridge app or else the tokens will be lost.
 - The bridge web app is only available for Metamask.
 - STOS tokens have to be on ETH network and you need some ETH for gas fees.
-- If your tokens are on a CEX, you need to withdraw them to Metamask first.
+- If your tokens are on a CEX (other than Gate.io), you need to withdraw them to Metamask first. If your tokens are on Gate.io, you might be interested in withdrawing directly from Gate to Stratos Network (<a href="https://docs.thestratos.org/docs-stratos-chain/token-migration-using-gateio/" target="_blank">tutorial here</a>).
+- If in doubt, please use telegram or discord to ask for assistance (links at the bottom of the page). Or, at least, send a small test transaction first, the fee will be worth the trouble if something is wrong. 
 
 ---
 
@@ -108,6 +110,31 @@ You can check back from time to time and withdraw your rewards by clicking on th
 
   	 - Your staking rewards can be withdrawn at any time but your staking DEPOSIT has a 21 days lock-down period. 
 
+---
+
+## How to Bridge Back
+
+Migrating back to Ethereum network is basically the same process, but backwards.
+
+1. Open Metamask and make sure it's connected to Stratos Network.
+
+2. Copy your Metamask wallet address and convert it to st1x format using the <a href="https://docs.thestratos.org/address-convertor-ui/" target="_blank">conversion UI</a>. Make sure you switch the order by clicking the middle button and that `eth based address` is first.
+
+	![](../assets/mainnet-bridge/bridge-back-0.jpg)
+
+3. Send STOS tokens from Stratos wallet to the converted st1x wallet address.
+
+4. Once you see your STOS tokens in Metamask (connected to Stratos), open <a href="https://app.exoswap.io/#/bridge" target="_blank">ExoSwap</a>.
+
+5. Change the order of the operation using the switch button in the middle and make sure the first chain is set to Stratos:
+
+	![](../assets/mainnet-bridge/bridge-back-1.jpg)
+
+6. Start the transfer process.
+
+!!! warning
+
+	Fees for bridging from Stratos to Ethereum are quite high (out of our control, it's what Ethereum network is charging) so alternatively, you could use the <a href="https://docs.thestratos.org/docs-stratos-chain/token-migration-using-gateio/" target="_blank">migration option through Gate.io</a>.
 ---
 
 <br>
