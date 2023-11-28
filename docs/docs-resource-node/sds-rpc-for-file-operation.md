@@ -857,7 +857,7 @@ Response
 }
 ```
 
-[^1]: filehash uses MD5
+[^1]: filehash uses Keccak-256
 [^2]: the message for signature is \<file_hash> + \<walletaddr>, e.g. the string of "v05ahm52b88i4lh1epel0cmce6606duatmml4o48st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u" when file hash is "v05ahm52b88i4lh1epel0cmce6606duatmml4o48" and wallet address is "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u" 
 [^3]: after getting signed, the signature bytes are encoded into hex string.
 [^4]: data is encoded using Base64
