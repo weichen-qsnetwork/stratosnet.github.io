@@ -54,6 +54,7 @@ When "return" object in "result" is a string encoded negative number, it carries
 	"-9":  INTERNAL_DATA_FAILURE 
 	"-10": INTERNAL_COMM_FAILURE 
 	"-11": WRONG_FILE_INFO 
+	"-12": WRONG_WALLET_ADDRESS
 ```
 
 <br>
@@ -62,35 +63,86 @@ When "return" object in "result" is a string encoded negative number, it carries
 
 ## Upload a File
 
-Two methods are used to accomplish uploading a file.
+Three methods are used to accomplish uploading a file.
 
+* user_requestGetOzone: get ozone balance and sequence number
 * user_requestUpload: start uploading a file
 * user_uploadData: upload a piece of file data 
 
+### user_requestGetOzone
+
+A request for ozone needs to be done before uploading a file. This method allows a check for ozone balance and a sequence number to be used in next uploading methods.  
+
+#### Parameters
+| name         | type   | comment                            |
+|--------------|--------|------------------------------------|
+| walletaddr   | string | wallet address of the user account |
+#### Returns
+
+| name           | type   | comment                                                                                   |
+|----------------|--------|-------------------------------------------------------------------------------------------|
+| return         | string | negative: errors; "1": success and expect for next user_uploadData; other values: invalid |
+| ozone          | string | the balance of nano ozone of this wallet                                                  |
+| sequencynumber | string | a sequence number to be used in uploading a file                                          |
+
+#### Example
+
+Request
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "user_requestGetOzone",
+  "params": [
+    {
+      "walletaddr": "st1r2gh2h8kjtz4slek6aua95ukyd8zmey2y9uatt"
+    }
+  ]
+}
+```
+Response
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "return": "0",
+    "ozone": "257695561060",
+    "sequencynumber": "SN:0000000000000000028"
+  }
+}
+```
 ### user_requestUpload
 
 To request to upload a file. The result could carry the offsets of a piece of the file to be uploaded if the request succeeded.
 
 #### Parameters
 
-| name         | type   | comment                            |
-|--------------|--------|------------------------------------|
-| filename     | string | name of the file                   |
-| filesize     | number | size of the file, in byte          |
-| filehash     | string | file hash to identify a file [^1]  |
-| walletaddr   | string | wallet address of the user account |
-| walletpubkey | string | public key of wallet address       |
-| signature    | string | signed on a message [^2][^3]       |
-  
-  
+| name              | type    | comment                                                    |
+|-------------------|---------|------------------------------------------------------------|
+| filename          | string  | name of the file                                           |
+| filesize          | number  | size of the file, in byte                                  |
+| filehash          | string  | file hash to identify a file [^1]                          |
+| signature         | object  | signature on this message                                  |
+| desired_tier      | number  | the desired tier to store the file                         |
+| allow_higher_tier | boolean | if higher tier allowed when no desired tier can't be found |
+| req_time          | number  | the epoch time when this request is made                   |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
 | name        | type   | comment                                                                                   |
 |-------------|--------|-------------------------------------------------------------------------------------------|
- | return      | string | negative: errors; "1": success and expect for next user_uploadData; other values: invalid |
- | offsetstart | number | the offset of beginning of the piece of file data, inclusive                              |
- | offsetend   | number | the offset of end of the piece of file data, exclusive                                    |
+| return      | string | negative: errors; "1": success and expect for next user_uploadData; other values: invalid |
+| offsetstart | number | the offset of beginning of the piece of file data, inclusive                              |
+| offsetend   | number | the offset of end of the piece of file data, exclusive                                    |
 
 #### Example
 
@@ -98,19 +150,24 @@ Request
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "user_requestUpload",
-  "params": [
-    {
-      "filename": "test_16m.bin",
-      "filesize": 16777216,
-      "filehash": "v05ahm53rcu3b7hrcllpmevfje4vckvriaftg3b0",
-      "walletaddr": "st1macvxhdy33kphmwv7kvvk28hpg0xn7nums5klu",
-      "walletpubkey": "stsdspub1q0u5yz7t24whqqgy9rsw85m8r2936qqtvty6rwp8zcc688w38zkdwcqm5tz",
-      "signature": "1a6c5a67f906553c1d2d0b0c0e856303617dd8b0ab5901321e930fae076c0fdf77d4ba7d84c576d581802f04ea1a8641928fc11ba90a58e430a0a0f09f9515af"
-    }
-  ]
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "user_requestUpload",
+ "params": [
+  {
+   "filename": "test_10m",
+   "filesize": 10485760,
+   "filehash": "v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "178e5a84d721d8893b402fb502cbd66dbc349536f720bdaabd1674cd99e3a5272cd8a40ba0da9a61fe71abb1d0c4530de44983531b99d0e349a801e46c7b16d100"
+   },
+   "desired_tier": 2,
+   "allow_higher_tier": true,
+   "req_time": 1701267007
+  }
+ ]
 }
 ```
 
@@ -118,13 +175,13 @@ Response
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "return": "1",
-    "offsetstart": 0,
-    "offsetend": 3500000
-  }
+ "jsonrpc": "2.0",
+ "id": 1,
+ "result": {
+  "return": "1",
+  "offsetstart": 0,
+  "offsetend": 3500000
+ }
 }
 ```
 
@@ -153,15 +210,15 @@ Request
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "user_uploadData",
-  "params": [
-    {
-      "filehash": "v05ahm53rcu3b7hrcllpmevfje4vckvriaftg3b0",
-      "data": "OQP9h/WvknuPaiWwvJ0MKIjcFs5WGGn4CoYwKLfXsvj0rAjwROuplLOBHjp6N42+/3tjtbdyZlcLk8+BWh+4ZilplkofOsTdGIYoPsbou5 ... "
-    }
-  ]
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "user_uploadData",
+ "params": [
+  {
+   "filehash": "v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+   "data": "xfYRzYszM+NbWW/nZJZqmI8W9aGlaFt7SBkkuL5nkx/5L ... "
+  }
+ ]
 }
 ```
 
@@ -193,10 +250,19 @@ Request listing files owned by the account with the wallet address.
 
 #### Parameters
 
-| name       | type   | comment                                          |
-|------------|--------|--------------------------------------------------|
-| walletaddr | string | wallet address of the user account               |
-| page       | number | the list is paginated. Page number start from 0. |
+| name      | type   | comment                                          |
+|-----------|--------|--------------------------------------------------|
+| signature | object | signature on this message                        |
+| page      | number | the list is paginated. Page number start from 0. |
+| req_time  | number | the epoch time when this request is made         |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -221,15 +287,20 @@ Request
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "user_requestList",
-  "params": [
-    {
-      "walletaddr": "st1macvxhdy33kphmwv7kvvk28hpg0xn7nums5klu",
-      "page": 0
-    }
-  ]
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "user_requestList",
+ "params": [
+  {
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "75d54f5b302d5c9d34ba0fe70153b4a1d7b6e54be90585ab706dc97ce038da4431a4053f976c14d1227af2a14b5a61a5133da634380e9d7ba67830cc52c2ec5001"
+   },
+   "page": 0,
+   "req_time": 1701313602
+  }
+ ]
 }
 ```
 
@@ -290,24 +361,74 @@ Response
 
 ## Download a File
 
-To download a file, there are three methods to be used. 
+To download a file, there are four methods to be used. 
 
+* user_requestGetOzone: get ozone balance and sequence number 
 * user_requestDownload: to start downloading the file 
 * user_downloadData: to request a piece of file data
 * user_downloadedFileInfo: request server verification of the downloaded file
 
+### user_requestGetOzone
+
+A request for ozone needs to be done before uploading a file. This method allows a check for ozone balance and a sequence number to be used in next uploading methods.
+
+#### Parameters
+| name         | type   | comment                            |
+|--------------|--------|------------------------------------|
+| walletaddr   | string | wallet address of the user account |
+#### Returns
+
+| name           | type   | comment                                                                                   |
+|----------------|--------|-------------------------------------------------------------------------------------------|
+| return         | string | negative: errors; "1": success and expect for next user_uploadData; other values: invalid |
+| ozone          | string | the balance of nano ozone of this wallet                                                  |
+| sequencynumber | string | a sequence number to be used in uploading a file                                          |
+
+#### Example
+
+Request
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "user_requestGetOzone",
+  "params": [
+    {
+      "walletaddr": "st1r2gh2h8kjtz4slek6aua95ukyd8zmey2y9uatt"
+    }
+  ]
+}
+```
+Response
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "return": "0",
+    "ozone": "257695561060",
+    "sequencynumber": "SN:0000000000000000028"
+  }
+}
+```
 ### user_requestDownload
 
 To start downloading a file. A piece of fire data is carried in the response while successfully started.  
 
 #### Parameters
 
-| name         | type   | comment                                              |
-|--------------|--------|------------------------------------------------------|
-| filehandle   | string | url of the file in sdm:// format [^5]                |
-| walletaddr   | string | wallet address of the user account                   |
-| walletpubkey | string | public key of wallet address                         |
-| signature    | string | signed on message "filehash" + "walletaddr" [^2][^3] |
+| name       | type   | comment                                   |
+|------------|--------|-------------------------------------------|
+| filehandle | string | url of the file in sdm:// format [^5]     |
+| signature  | object  | signature on this message                |
+| req_time   | number  | the epoch time when this request is made |
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -317,6 +438,7 @@ To start downloading a file. A piece of fire data is carried in the response whi
 | reqid       | string | to identify download instances when multiple download happen at same time |
 | offsetstart | number | the offset of beginning of the piece of file data, inclusive              |
 | offsetend   | number | the offset of end of the piece of file data, exclusive                    |
+| filename    | string | the name of the file                                                      |
 | filedata    | string | data of the piece of the file [^4]                                        |
 
 #### Example
@@ -325,34 +447,39 @@ Request
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "user_requestDownload",
-  "params": [
-    {
-      "filehandle": "sdm://st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u/v05ahm51buqelg70rjmcbqtn2qijc7um0ds1oedo",
-      "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-      "walletpubkey": "stpub1qdaazld397esglujfxsvwwtd8ygytzqnj5ven52guvvdpvaqdnn52ecsjms",
-      "signature": "f598a58bcbf579390e03b3a1ee41c77cff48a714547ae2784124d3c9d873d8a509f615a45c6cad35e94562984e6775a87dbf3ccb2e47af52e23bffc31c698f8901"
-    }
-  ]
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "user_requestDownload",
+ "params": [
+  {
+   "filehandle": "sdm://st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9/v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "9f8a13fe02cebe66b5144d7ef308c5b1c4d2f2f47a5509fa0921fd16463e2f4f66e77ed8068934307e39a47630e3ff4c3ff62fca403eedc3b9a59997ce145d6400"
+   },
+   "req_time": 1701314045
+  }
+ ]
 }
+
 ```
 
 Response
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "return": "2",
-    "reqid": "c97eafef-401f-49d1-bff3-7ce9eaa2c2dd",
-    "offsetstart": 0,
-    "offsetend": 3145728,
-    "filedata": "JHg2MxpnGfXLcyZc6CpRSRGOHrL1U1jwQWDCnBXi81JmnwR8SrNHcidJZJcYYb+RdXG/bap7RmkXpPmJArEAvrlADlChhG9YOR1JeeKIiS16UCPsYby ... "
-  }
-}
+ "jsonrpc":"2.0",
+ "id":1,
+ "result":{
+  "return":"2",
+  "reqid":"58bb018a-bc6d-446b-bb9c-89867b5c1fe9",
+  "offsetstart":0,
+  "offsetend":3145728,
+  "filename":"test_10m",
+  "filedata":"xfYRzYszM+NbWW/nZJZqmI8W9aGz+uNVZJAUUDdoUpbnVvd2fOFJcz54642jxk5ZjcIQQv1i/lVehc36v/Czk0Pi5PPxZK ... "
+ }
+}    
 ```
 
 ### user_downloadData
@@ -374,6 +501,7 @@ After the user handles previous piece of file data, this method is called to get
 | reqid       | string | to identify download instances when multiple download happen at same time                           |
 | offsetstart | number | the offset of beginning of the piece of file data, inclusive                                        |
 | offsetend   | number | the offset of end of the piece of file data, exclusive                                              |
+| filename    | string | the name of the file                                                                                |
 | filedata    | string | data of the piece of the file [^4]                                                                  |
 
 #### Example
@@ -398,13 +526,14 @@ Response
 
 ```json
 {
- "jsonrpc": "2.0",
- "id": 1,
+ "jsonrpc":"2.0",
+ "id":1,
  "result": {
-  "return": "2",
-  "offsetstart": 3145728,
-  "offsetend": 6291456,
-  "filedata": "MgWLqUng/xnuoF921Q35Pd2jq9PlWFWpYcLFTTJd1on+HUUJAXwDNbtZZPL1hh+EM0VCSwax ... "
+   "return": "2",
+   "offsetstart": 3145728,
+   "offsetend": 6291456,
+   "filename": "test_10m",
+   "filedata": "QYILair4V84YdEyU+9kfOfwrGmNz7OIkxzlTcKiMk4aNcmwiLMDXScf+S17gUWpQds8oW88eLFCqdOaHPmrZYmqhFjGFV ... "
  }
 }
 ```
@@ -481,12 +610,21 @@ Response
 
 #### Parameters
 
-| name        | type   | comment                             |
-|-------------|--------|-------------------------------------|
-| filehash    | string | file hash to identify a file [^1]   |
-| walletaddr  | string | wallet address of the user account  |
-| duration    | number | duration in second sharing the file |
-| privateflag | bool   | if the file is private              |
+| name        | type   | comment                                  |
+|-------------|--------|------------------------------------------|
+| filehash    | string | file hash to identify a file [^1]        |
+| signature   | object | signature on this message                |
+| duration    | number | duration in second sharing the file      |
+| privateflag | bool   | if the file is private                   |
+| req_time    | number | the epoch time when this request is made |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -507,10 +645,15 @@ Request
  "method": "user_requestShare",
  "params": [
   {
-   "filehash": "v05ahm51buqelg70rjmcbqtn2qijc7um0ds1oedo",
-   "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-   "duration": 3600,
-   "privateflag": false
+   "filehash": "v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "c1d2b4b427689cdb7a9e5cdc58a405190e07bc608ec492c2efa0bba0d7c05ec11e963ed9b78a303a6adae608642d10257b70214acad8dac658b42d11bba998f001"
+   },
+   "duration": 0,
+   "bool": false,
+   "req_time": 1701315117
   }
  ]
 }
@@ -540,10 +683,19 @@ Response
 
 #### Parameters
 
-| name       | type   | comment                            |
-|------------|--------|------------------------------------|
-| walletaddr | string | wallet address of the user account |
-| shareid    | string | a uniq identifier for this sharing |
+| name      | type   | comment                                  |
+|-----------|--------|------------------------------------------|
+| signature | object | signature on this message                |
+| shareid   | string | a uniq identifier for this sharing       |
+| req_time  | number | the epoch time when this request is made |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -562,8 +714,13 @@ Request
  "method": "user_requestStopShare",
  "params": [
   {
-   "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-   "shareid": "78a8fe38a826fed4"
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "83e9ae4ab17df35ab73b63104710414029adc5ebe1811c01fe1c75e1c95b58cd3efdb53aced3446390101945546e585fe5e5e351df74a95bb89fee3412e912c900"
+   },
+   "shareid": "06bcfdbe7e0d2cbb",
+   "req_time": 1701315426
   }
  ]
 }
@@ -591,10 +748,19 @@ Response
 
 #### Parameters
 
-| name       | type   | comment                                          |
-|------------|--------|--------------------------------------------------|
-| walletaddr | string | wallet address of the user account               |
-| page       | number | the list is paginated. Page number start from 0. |
+| name      | type   | comment                                          |
+|-----------|--------|--------------------------------------------------|
+| page      | number | the list is paginated. Page number start from 0. |
+| req_time  | number | the epoch time when this request is made         |
+| signature | object | signature on this message                        |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -626,11 +792,17 @@ Request
  "method": "user_requestListShare",
  "params": [
   {
-   "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-   "page": 0
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "e176392ac2d195d0e5b1510463ce1d2a13c338b5ed7311e5da9f2252de39c4f91ab4444f0bb24fb8ea77fd33ef972706cc7945adbf9580f77cedbac65df03ea701"
+   },
+   "page": 0,
+   "req_time": 1701315596
   }
  ]
 }
+
 ```
 
 Response
@@ -692,19 +864,28 @@ There are for methods to be used to download a shared file.
 
 #### Parameters
 
-| name         | type   | comment                             |
-|--------------|--------|-------------------------------------|
-| walletaddr   | string | wallet address of the user account  |
-| walletpubkey | string | public key of wallet address        |
-| sharelink    | string | link for accessing this shared file |
+| name      | type   | comment                                  |
+|-----------|--------|------------------------------------------|
+| sharelink | string | link for accessing this shared file      |
+| req_time  | number | the epoch time when this request is made |
+| signature | object | signature on this message                |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
-| name     | type   | comment                                                                   |
-|----------|--------|---------------------------------------------------------------------------|
-| return   | string | negative: errors; "4": got shared file info; other values: invalid        |
-| reqid    | string | to identify download instances when multiple download happen at same time |
-| filehash | string | file hash to identify a file                                              |
+| name           | type   | comment                                                                   |
+|----------------|--------|---------------------------------------------------------------------------|
+| return         | string | negative: errors; "4": got shared file info; other values: invalid        |
+| reqid          | string | to identify download instances when multiple download happen at same time |
+| filehash       | string | file hash to identify a file                                              |
+| sequencenumber | string | a sequence number to be used in uploading a file                          |
 
 #### Example
 
@@ -712,16 +893,20 @@ Request
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "user_requestGetShared",
-  "params": [
-    {
-      "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-      "walletpubkey": "stpub1qdaazld397esglujfxsvwwtd8ygytzqnj5ven52guvvdpvaqdnn52ecsjms",
-      "sharelink": "j05U4M_25926f167e917c01"
-    }
-  ]
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "user_requestGetShared",
+ "params": [
+  {
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "3e43680bb6b801a7847652aaaddf0efeda6f3c73382b1a4aea63388b1f17fe9468998172e5b00fbeb8e5c6f3d35ecfe02d4101dca17628423518e69b29a5470100"
+   },
+   "sharelink": "eozCrm_014cc2f5388a911c",
+   "req_time": 1701315818
+  }
+ ]
 }
 ```
 
@@ -729,13 +914,14 @@ Response
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "return": "4",
-    "reqid": "d9bb9abe-32eb-4215-b33b-7d6372127774",
-    "filehash": "v05ahm52b88i4lh1epel0cmce6606duatmml4o48"
-  }
+ "jsonrpc": "2.0",
+ "id": 1,
+ "result": {
+  "return": "4",
+  "reqid": "31d1e975-cd8b-4631-8185-bee592ca3e34",
+  "filehash": "v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+  "sequencenumber": "SN:0000000000000000001"
+ }
 }
 ```
 
@@ -743,13 +929,20 @@ Response
 
 #### Parameters
 
-| name         | type   | comment                                                   |
-|--------------|--------|-----------------------------------------------------------|
-| filehash     | string | file hash to identify a file [^1]                         |
-| walletaddr   | string | wallet address of the user account                        |
-| walletpubkey | string | public key of wallet address                              |
-| signature    | string | signed on message "filehash" + "walletaddr"               |
-| reqid        | string | the same reqid get from response of user_requestGetShared |
+| name      | type   | comment                                                   |
+|-----------|--------|-----------------------------------------------------------|
+| filehash  | string | file hash to identify a file [^1]                         |
+| reqid     | string | the same reqid get from response of user_requestGetShared |
+| req_time  | number | the epoch time when this request is made                  |
+| signature | object | signature on this message                                 |
+
+Object _signature_
+
+| name      | type   | comment                            |
+|-----------|--------|------------------------------------|
+| address   | string | wallet address of the user account |
+| pubkey    | string | public key of wallet address       |
+| signature | string | signed on a message [^2][^3]       |
 
 #### Returns
 
@@ -759,6 +952,7 @@ Response
 | reqid       | string | to identify download instances when multiple download happen at same time |
 | offsetstart | number | the offset of beginning of the piece of file data, inclusive              |
 | offsetend   | number | the offset of end of the piece of file data, exclusive                    |
+| filename    | string | the name of the file                                                      |
 | filedata    | string | data of the piece of the file [^4]                                        |
 
 #### Example
@@ -772,11 +966,14 @@ Request
  "method": "user_requestDownloadShared",
  "params": [
   {
-   "filehash": "v05ahm52b88i4lh1epel0cmce6606duatmml4o48",
-   "walletaddr": "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u",
-   "walletpubkey": "stpub1qdaazld397esglujfxsvwwtd8ygytzqnj5ven52guvvdpvaqdnn52ecsjms",
-   "signature": "c45dff7b83a8410cbaea8af8b0d7296634cb7a11f7621e2fa6c6f5537f978b1733ab19ef38659bf0f9c9f9e568827926d26b30540023607f3863dfb944b1633d00",
-   "reqid": "d9bb9abe-32eb-4215-b33b-7d6372127774"
+   "filehash": "v05j1m571efv3vuk3tq7airrfglanjvts4jrd4l8",
+   "signature": {
+    "address": "st144ykkar9fhl8khs7lwz0s7py9vj4w9adp37kt9",
+    "pubkey": "stpub1q0ska45w724dy0n0jujuqcvn2c80fa9c69dth0v9flacxrxp7w2rsncclps",
+    "signature": "2b68b0d3ddc981ba8b7e366e90901fe57cd1ef7b3caea4afb0eb8588b3025fe843c35ddf26ecf1a0cece5d48c633c7b9cd84c6311452d0e1c075f5ab030e773600"
+   },
+   "reqid": "31d1e975-cd8b-4631-8185-bee592ca3e34",
+   "req_time": 1701315818
   }
  ]
 }
@@ -790,12 +987,14 @@ Response
  "id": 1,
  "result": {
   "return": "2",
-  "reqid": "d9bb9abe-32eb-4215-b33b-7d6372127774",
+  "reqid": "e59fb32c-0579-4762-9edf-89f71a17a60b",
   "offsetstart": 0,
   "offsetend": 3145728,
-  "filedata": "toQwnWMGAYSAn5vyv11p8XYM5FcIgOiavQnczxhaNjsKWvOskMK9QQjkfzzyrBbiCmxUjqk ... "
+  "filename": "test_10m",
+  "filedata": "xfYRzYszM+NbWW/nZJZqmI8W9aGlaFt7SBkkuL5nkx/5LGjc9aKNXsyNxloYrgs30B4KmG2uDZWvS803FPxjzbOHvs7dNu3ZZQxf7yrKeDxQB1lL2n ... "
  }
 }
+
 ```
 
 ### user_requestDownloadData
@@ -822,11 +1021,11 @@ Please see same method under section _[Download a File](#download-a-file)_
 
 #### Returns
 
-| name   | type   | comment                                                            |
-|--------|--------|--------------------------------------------------------------------|
-| return | string | negative: errors; "0": got shared file info; other values: invalid |
-| ozone  | string | value of ozone balance                                             |
-
+| name           | type   | comment                                                            |
+|----------------|--------|--------------------------------------------------------------------|
+| return         | string | negative: errors; "0": got shared file info; other values: invalid |
+| ozone          | string | value of ozone balance                                             |
+| sequencynumber | string | a sequence number to be used in uploading a file                   |
 #### Example
 
 Request
@@ -852,15 +1051,16 @@ Response
  "id": 1,
  "result": {
   "return": "0",
-  "ozone": "5982936846405"
+  "ozone": "999951054180",
+  "sequencynumber": "SN:0000000000000000001"
  }
 }
 ```
 
 [^1]: filehash uses Keccak-256
-[^2]: the message for signature is \<file_hash> + \<walletaddr>, e.g. the string of "v05ahm52b88i4lh1epel0cmce6606duatmml4o48st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u" when file hash is "v05ahm52b88i4lh1epel0cmce6606duatmml4o48" and wallet address is "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u" 
+[^2]: the message for signature is \[file_hash\] + \[walletaddr\], e.g. the string of "v05ahm52b88i4lh1epel0cmce6606duatmml4o48st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u" when file hash is "v05ahm52b88i4lh1epel0cmce6606duatmml4o48" and wallet address is "st19nn9fnlzkpm3hah3pstz0wq496cehclpru8m3u"
 [^3]: after getting signed, the signature bytes are encoded into hex string.
-[^4]: data is encoded using Base64
-[^5]: smd://\<owner wallet address>/\<file hash>
+[^4]: data is encoded using standard Base64 as defined in RFC 4648.
+[^5]: smd://\[owner wallet address\]/\[file hash\]
 
 <br>
