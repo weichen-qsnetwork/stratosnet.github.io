@@ -811,8 +811,8 @@ Turn on performance measurement log for 60 seconds.
 Withdraw matured reward.
 
 ```yaml
-> withdraw st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
-> [INFO] 2023/07/10 11:28:58 withdraw.go:37: Withdraw transaction delivered.
+> withdraw 100stos 0.01stos st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l
+> [INFO] 2023/11/30 05:51:38 withdraw.go:42: Withdraw transaction delivered.
 ```
 <br>
 

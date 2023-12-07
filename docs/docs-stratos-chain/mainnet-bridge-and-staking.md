@@ -9,7 +9,7 @@ description: Guide on how to use the bridge between Ethereum and Stratos and How
 
 ## Introduction
 
-- <span style="color: red;">IMPORTANT:</span> Before proceding, make sure to download and install the latest version of Stratos Network Wallet [<a href="https://www.thestratos.org/download.html" target="_blank">Download</a>]
+- <span style="color: red;">IMPORTANT:</span> Before proceding, make sure to download and install the latest version of Stratos Network Wallet [<a href="https://www.thestratos.org/stratos-network-wallet" target="_blank">Download</a>]
 - <span style="color: red;">IMPORTANT:</span> Never send STOS directly from Ethereum network to a Stratos wallet. Migration has to go through the bridge app or else the tokens will be lost.
 - The bridge web app is only available for Metamask.
 - STOS tokens have to be on ETH network and you need some ETH for gas fees.
@@ -70,7 +70,7 @@ description: Guide on how to use the bridge between Ethereum and Stratos and How
 
 ## How to Stake
 
-- Go to <a href="https://thestratos.org/download.html" target="_blank">https://thestratos.org/download.html</a> and download the Stratos Wallet.
+- Go to <a href="https://www.thestratos.org/stratos-network-wallet" target="_blank">thestratos.org/stratos-network-wallet</a> and download the Stratos Wallet.
 
 - Import an existing wallet address or generate a new one. To generate a new one, click `Import` and the click `Here` button to generate a new mnemonic phrase.
 

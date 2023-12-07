@@ -27,7 +27,7 @@ keywords:
 
     - **Step 2: Deposit ST Token:**
         - You can deposit token using our wallet web,
-            - (For staking) [Stratos Wallet](https://www.thestratos.org/download.html)
+            - (For staking) [Stratos Wallet](https://www.thestratos.org/stratos-network-wallet)
             - (For web3) [MetaMask](https://metamask.io/)
 
       🎉Voila, you can start interacting with Stratos now 🎉
