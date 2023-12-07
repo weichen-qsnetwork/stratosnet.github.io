@@ -73,7 +73,7 @@ Since the application state is generally much smaller than the blocks, and resto
 	#
 	# For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 	# weeks) during which they can be financially punished (slashed) for misbehavior.
-	rpc_servers = "18.133.11.120:26657,3.11.149.151:26657"
+	rpc_servers = "34.146.249.235:26657,104.198.116.252:26657"
 	trust_height = 695000
 	trust_hash = "8C138E7FE1FF3B237EF3938D524BCA25AF3DE1E041F08FD9E4B37C6BD14CBB6C"
 	trust_period = "168h0m0s"
