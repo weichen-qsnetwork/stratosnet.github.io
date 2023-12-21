@@ -184,7 +184,8 @@ A validator can be crested by sending a `create-validator` transaction command
     * `commission-max-rate`: The maximum commission rate which this validator can charge. The `commission-max-change-rate` is used to measure % point change over the commission-rate, e.g., 1% to 2% is a 100% rate increase. This flags cannot be changed after create-validator is processed
     * `commission-max-change-rate`: The maximum daily increase of the validator commission. This flags cannot be changed after create-validator is processed
     * `min-self-delegation`: Minimum amount of tokens the validator needs to have bonded at all time. It is a strictly positive integer that represents the minimum amount of self-delegated staking token your validator must always have. A validator with a self delegation lower than this number will automatically be unbonded.
-    * the minimum amount of tokens that must be delegated to be a bonded validator is "1".
+    * `amount`: the amount to delegate, the minimum amount of tokens that must be delegated to be a bonded validator is "1".
+    * `from`: the wallet address that the delegation amount come from.
     * the current `chain-id` is `mesos-1` for Testnet and `stratos-1` for Mainnet 
     * on Testnet, `--keyring-backend=test`
     * on Mainnet, `--keyring-backend=file|os|pass`. You must use the same one you used when creating the wallet in previous guide (Setup Full-Chain Node).

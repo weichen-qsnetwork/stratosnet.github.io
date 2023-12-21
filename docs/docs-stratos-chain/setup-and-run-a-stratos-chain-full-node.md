@@ -140,7 +140,7 @@ cd $HOME
 md5sum stchaind
 
 ## Expected output
-## c3e55667fd2eb0a345dde80a56068a6a  stchaind
+## 0d4a0fd5173fa273f6150b28e48086a3  stchaind
 ```
 
 <br>
