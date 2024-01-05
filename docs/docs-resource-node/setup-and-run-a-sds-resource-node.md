@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.8
+git checkout tags/v0.11.9
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.8`.
+You should get `v0.11.9`.
 
 ---
 
@@ -344,6 +344,7 @@ After the above command executed successfully, Your `rsnode` folder should inclu
 ├── accounts
 │   ├── st10t5chdnhx6myggwwhfq7q39hnjhzapau9yy6tv.json
 │   └── stsds1hez7aewx6srjtrw3064w3qy4dk22uv0cx7jxww.json
+│── config
 │   └── config.toml
 └── tmp
   └── logs
@@ -366,17 +367,6 @@ Open config file and make the following modifications:
 
 ```shell
 nano config/config.toml
-```
-
-<br>
-
- ✏️ - <b>Edit the blockchain node address:</b>
-
-```toml
-# Connect to the chain using an insecure connection (no TLS) Eg: true
-insecure = false
-# Network address of the chain Eg: "127.0.0.1:9090"
-grpc_server = 'grpc.thestratos.org:443'
 ```
 
 <br>
@@ -408,7 +398,7 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.8)
+✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.9)
 </b>
 
 ```toml
@@ -450,7 +440,7 @@ app_ver = 11
 # Network connections from nodes below this version number will be rejected. Eg: 11
 min_app_ver = 11
 # Formatted version number. Eg: "v0.11.0"
-show = 'v0.11.8'
+show = 'v0.11.9'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
@@ -705,8 +695,8 @@ ppd version
 - Edit `rsnode/config/config.toml` file at the following line with the latest version number:
 
 ```sh
-# Formatted version number. Eg: "v0.11.8"
-show = 'v0.11.8'
+# Formatted version number. Eg: "v0.11.9"
+show = 'v0.11.9'
 ```
 
 - Start the `ppd start` process again.
