@@ -46,10 +46,7 @@ nav:
       - REST APIs: docs-stratos-chain/stratos-chain-rest-apis.md
       - Network: docs-stratos-chain/network.md
     - EVM:
-      - Node config: docs-evm/node-config.md
-      - Network details:
-        - Network: docs-evm/network-details/network.md
-        - STOS Gas token: docs-evm/network-details/gas-token.md
+      - Node config: docs-evm/node-config.md  
       - Deploying on Stratos:
         - Using Hardhat: docs-evm/deploy-smart-contracts/hardhat.md
         - Using Truffle: docs-evm/deploy-smart-contracts/truffle.md
@@ -57,6 +54,7 @@ nav:
         - Hello MetaMask: docs-evm/wallets/metamask/hello.md
         - Configure Stratos on MetaMask: docs-evm/wallets/metamask/configure-on-metamask.md
         - Multiple Accounts: docs-evm/wallets/metamask/multiple-accounts.md
+        - STOS Gas token: docs-evm/wallets/metamask/gas-token.md
       - Available dapps: docs-evm/available-dapps.md
   - Resource Node:
     - HOWTOs:
@@ -78,7 +76,7 @@ extra:
     - icon: fontawesome/brands/chrome
       link: https://thestratos.org
     - icon: fontawesome/brands/telegram
-      link: https://t.me/StratosCommunity
+      link: https://t.me/StratosOfficial
     - icon: fontawesome/brands/discord
       link: https://discord.com/invite/tpQGpC2nMh
     - icon: fontawesome/brands/twitter
