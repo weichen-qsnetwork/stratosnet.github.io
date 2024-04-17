@@ -3,7 +3,7 @@ title: Stratos Chain stchaind gRPC queries
 description: Stratos Network Full-Chain stchaind gRPC queries.
 ---
 
-Cosmos SDK gRPC definitions have been documented [here](https://crypto.org/docs/resources/cosmos-grpc-docs.html#cosmos.auth.v1beta1.QueryAccountRequest)
+Cosmos SDK gRPC definitions have been documented [here](https://docs.cosmos.network/api)
 
 ## Register Module
 
