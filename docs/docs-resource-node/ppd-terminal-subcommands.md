@@ -14,8 +14,8 @@ Show all the `ppd terminal` sub-commands' description.
 help                                                           show all the commands
 wallets                                                        acquire all wallet wallets' address
 newwallet                                                      create new wallet, input password in prompt
-registerpeer                                                   register peer to index node
-rp                                                             register peer to index node
+registerpeer                                                   register peer to meta node
+rp                                                             register peer to meta node
 activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
 updateDeposit <depositDelta> <fee> optional<gas>               send transaction to stchain to update active pp's deposit
 deactivate <fee> optional<gas>                                 send transaction to stchain to stop being an active PP node
@@ -29,7 +29,7 @@ list <filename>                                                query uploaded fi
 list <page id>                                                 query all files owned by the wallet, paginated
 delete <filehash>                                              delete file
 get <sdm://account/filehash> <saveAs>                          download file, need to consume ozone
-    e.g: get sdm://st1jn9skjsnxv26mekd8eu8a8aquh34v0m4mwgahg/e2ba7fd2390aad9213f2c60854e2b7728c6217309fcc421de5aacc7d4019a4fe
+    e.g: get sdm://st1jn9skjsnxv26mekd8eu8a8aquh34v0m4mwgahg/v05ahm50ugfjrgd3ga8mqi6bqka32ks3dooe1p9g
 sharefile <filehash> <duration> <is_private>                   share an uploaded file
 allshare                                                       list all shared files
 getsharefile <sharelink> <password>                            download a shared file, need to consume ozone
@@ -43,6 +43,7 @@ config  <key> <value>                                          set config key va
 getoz <walletAddress>                                          get current ozone balance
 status                                                         get current resource node status
 filestatus <filehash>                                          get current state of an uploaded file
+backupstatus <filehash>                                        get backup status of an file
 maintenance start <duration>                                   put the node in maintenance mode for the requested duration (in seconds)
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node

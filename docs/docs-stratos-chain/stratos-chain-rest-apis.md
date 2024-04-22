@@ -4700,7 +4700,7 @@ Response Example:
 <br>
 
 <details>
-    <summary><code> GET /sds/simPrepay/{amtToPrepay}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries a simulated prepay result </summary>
+    <summary><code> GET /stratos/sds/simPrepay/{amtToPrepay}</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; queries a simulated prepay result </summary>
 
 Request Example:
 ```http

@@ -35,7 +35,7 @@ Here are the required hardware/software to run a Stratos-chain full-node:
 <b>Software (tested version)</b>
 
 * Ubuntu 18.04+
-* Go 1.19+ linux/amd64
+* Go 1.20+ linux/amd64
 
 
 <br>
@@ -125,7 +125,7 @@ The following binary `stchaind` has been built and ready to be downloaded direct
 ```shell
 # Make sure we are inside the $HOME folder
 cd $HOME
-wget https://github.com/stratosnet/stratos-chain/releases/download/v0.11.3/stchaind
+wget https://github.com/stratosnet/stratos-chain/releases/download/v0.12.0/stchaind
 ```
 
 <br>
@@ -168,7 +168,7 @@ mv stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.11.3
+# Should return v0.12.0
 ```
 
 !!! tip
@@ -202,7 +202,7 @@ Alternatively, you can follow the official instructions: [link](https://golang.o
 ```shell
 git clone https://github.com/stratosnet/stratos-chain.git
 cd stratos-chain
-git checkout tags/v0.11.3
+git checkout tags/v0.12.0
 make build
 ```
 
@@ -223,7 +223,7 @@ cp build/stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.11.3
+# Should return v0.12.0
 ```
 
 <br>
@@ -304,7 +304,7 @@ stchaind init "<your_node_moniker>" --chain-id <network_chain_id>
 
 !!! tip ""
 
-    💡 We strongly recommend using this downloaded `config.toml` for v0.11.3, instead of the ones for previous versions to avoid any mismatching. 
+    💡 We strongly recommend using this downloaded `config.toml` for v0.12.0, instead of the ones for previous versions to avoid any mismatching. 
 
    <br>
 
@@ -508,7 +508,7 @@ stchaind status
         "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
         "listen_addr": "tcp://0.0.0.0:26656",
         "network": "test-chain",
-        "version": "0.34.21",
+        "version": "0.37.4",
         "channels": "40202122233038606100",
         "moniker": "node",
         "other": {
@@ -650,31 +650,26 @@ Example:
 
 ``` { .properties .no-copy }
 stchaind keys list --keyring-backend=test
-   - name: user0
-     type: local
-     address: st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw
+   - address: st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw
+     name: user0
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A/wF15Wd3ogCXstE7S4Zf3DA4KXb0W7exQhP004PLTi3"}'
-     mnemonic: ""
-   - name: user1
      type: local
-     address: st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0
+   - address: st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0
+     name: user1
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"AgnhB5EkHL8+jD0/zRDR11nIpfOirTRrjgCX6uibhmDW"}'
-     mnemonic: ""
-   - name: user10
      type: local
-     address: st1lkcrz3ktt2p7ppu9arglpqcn94pcdd9a9pmatf
+   - address: st1lkcrz3ktt2p7ppu9arglpqcn94pcdd9a9pmatf
+     name: user10
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A2sZ2Z9BU9oDELC06Gj8Lfc5UycxTaPux3sEIq8sIzSW"}'
-     mnemonic: ""
-   - name: user2
      type: local
-     address: st16czjk2ym0prgvy4gl970t84vrp96s5kayfqmf2
+   - address: st16czjk2ym0prgvy4gl970t84vrp96s5kayfqmf2
+     name: user2
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"AwfcJTOVWdx6ai61cy8VGJ1SdWHzwm2CCmr/+PwSpFeR"}'
-     mnemonic: ""
-   - name: user3
      type: local
-     address: st17patveqxcq42rguc7nayr2g3jtawpzvhfmmumt
+   - address: st17patveqxcq42rguc7nayr2g3jtawpzvhfmmumt
+     name: user3
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"AtFxbuB4s+2SYzImGPIBwe0H0mKCXbIPu1T63OvbgE/3"}'
-     mnemonic: ""
+     type: local
 ```
 
 <br>
@@ -689,11 +684,10 @@ Example:
 
 ``` { .properties .no-copy }
 stchaind keys show myWallet1 --keyring-backend=test
-   - name: myWallet1
-     type: local
-     address: st16rzhy6wy2rupydps0gem69y2cnus2j09n42ksx
+   - address: st16rzhy6wy2rupydps0gem69y2cnus2j09n42ksx
+     name: myWallet1
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A13YKi3/7p9FsFPTfVgxEO0YK8bnDHmBPfA3ID+k37ET"}'
-     mnemonic: ""
+     type: local
 ```
 
 <br>
@@ -750,8 +744,6 @@ Example:
 stchaind query bank balances st1d3qtsjyypa639q9kf0wmuf2dn4a7zrnujw84q4
 |
 balances:
-- amount: "200"
-  denom: utros
 - amount: "9998000000000000000"
   denom: wei
 pagination:
