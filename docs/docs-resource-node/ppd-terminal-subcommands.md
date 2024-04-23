@@ -730,6 +730,26 @@ Request Accepted
 
 ---
 
+## `backupstatus`
+Shows backup state of a file.
+
+```yaml
+backupstatus <filehash>
+```
+
+Example:
+
+```yaml
+>filestatus v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo
+Request Accepted
+  >[INFO] 2024/04/22 21:38:12 upload_file.go:192: Backup status for file v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo: current_replica is 5, desired_replica is 5, ongoing_backups is 0, delete_origin is true, need_reupload is false
+  [INFO] 2024/04/22 21:38:12 upload_file.go:196: Backup is finished for file v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo, delete all the temporary slices 
+```
+
+<br>
+
+---
+
 ## `maintenance start`
 Claim a maintenance. Put the resource node in maintenance mode for the requested duration (in seconds).
 
