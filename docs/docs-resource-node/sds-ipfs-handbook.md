@@ -21,6 +21,7 @@ Usage:
   ppd ipfs [command]
 
 Available Commands:
+  config      create config file for ipfs api server
   migrate     migrate ipfs file to sds
 
 Flags:
@@ -59,7 +60,7 @@ resource node
 ---
 
 ## Config File
-All the parameters could be pre-defined in the config file `config.toml` placed in the folder `config` under the home path
+All the parameters could be pre-defined in the config file `ipfs_config.toml` placed in the folder `config` under the home path
 (defined by -r or --home flag).
 ### Template
 ```toml
@@ -82,7 +83,7 @@ Folder structure under the home path
 | Folder   | Content                                                           |
 |----------|-------------------------------------------------------------------|
 | accounts | wallet files Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.json" |
-| config   | config file "config.toml"                                          |
+| config   | config file "ipfs_config.toml"                                    |
 
 ---
 
