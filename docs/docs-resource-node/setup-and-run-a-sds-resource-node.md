@@ -152,7 +152,7 @@ An alternative option is to install a separate virtual Linux system using [Virtu
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.11.9
+git checkout tags/v0.12.0
 make build
 ```
 
@@ -174,7 +174,7 @@ cp target/* ~/bin
 ppd version
 ```
 
-You should get `v0.11.9`.
+You should get `v0.12.0`.
 
 ---
 
@@ -398,7 +398,7 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.11.9)
+✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.12.0)
 </b>
 
 ```toml
@@ -435,12 +435,12 @@ network_address = '34.82.40.37:8888'
 
 ```shell
 [version]
-# App version number. Eg: 11
-app_ver = 11
-# Network connections from nodes below this version number will be rejected. Eg: 11
-min_app_ver = 11
-# Formatted version number. Eg: "v0.11.0"
-show = 'v0.11.9'
+# App version number. Eg: 12
+app_ver = 12
+# Network connections from nodes below this version number will be rejected. Eg: 12
+min_app_ver = 12
+# Formatted version number. Eg: "v0.12.0"
+show = 'v0.12.0'
 
 # Configuration of the connection to the Stratos blockchain
 [blockchain]
@@ -471,11 +471,11 @@ p2p_password = 'my-passw0rd'
 # Address of the stratos wallet. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 wallet_address = 'stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 wallet_password = 'my-passw0rd'
+# "Address for receiving reward. Eg: \"stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"
+beneficiary_address = 'stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 # Configuration of this node
 [node]
-# Should the node start mining automatically? Eg: true
-auto_start = true
 # Should debug info be printed out in logs? Eg: false
 debug = false
 # When not 0, limit disk usage to this amount (in megabytes) Eg: 7629394 = 8 * 1000 * 1000 * 1000 * 1000 / 1024 / 1024  (8TB)
@@ -643,6 +643,22 @@ activate 1600stos 0.01stos
 
 ---
 
+- <b>Start Mining</b>
+
+You should run this command:
+
+1, After new node is activated
+
+2, After node is unsuspended
+
+Run the following command in `ppd terminal`:
+
+ ```shell
+ startmining
+ ```
+
+---
+
  - <b>Verify Activation Status</b>
 
  Run the following command in `ppd terminal`:
@@ -695,8 +711,8 @@ ppd version
 - Edit `rsnode/config/config.toml` file at the following line with the latest version number:
 
 ```sh
-# Formatted version number. Eg: "v0.11.9"
-show = 'v0.11.9'
+# Formatted version number. Eg: "v0.12.0"
+show = 'v0.12.0'
 ```
 
 - Start the `ppd start` process again.
@@ -721,7 +737,7 @@ Check node registration status(`register` module)
 - Query total deposit state of all registered resource nodes and meta nodes
 
 ```shell
-https://rest.thestratos.org/register/deposit
+https://rest.thestratos.org/stratos/register/v1/deposit_total
 ```    
 
 <br>
@@ -729,7 +745,7 @@ https://rest.thestratos.org/register/deposit
 - Query params of `register` module
 
 ```shell
-https://rest.thestratos.org/register/params
+https://rest.thestratos.org/stratos/register/v1/params
 ```    
 
 <br>
@@ -737,7 +753,7 @@ https://rest.thestratos.org/register/params
 - Get all deposit info of a specific owner
 
 ```shell
-https://rest.thestratos.org/register/deposit/owner/{owner wallet address}
+https://rest.thestratos.org/stratos/register/v1/deposit_by_owner/{owner wallet address}
 ```    
 
 <br>
@@ -745,7 +761,7 @@ https://rest.thestratos.org/register/deposit/owner/{owner wallet address}
 - Get info of a registered resource node
 
 ```shell
-https://rest.thestratos.org/register/resource-node/{resource node network address}
+https://rest.thestratos.org/stratos/register/v1/resource_node/{resource node network address}
 ```    
 
 <br>
@@ -753,7 +769,7 @@ https://rest.thestratos.org/register/resource-node/{resource node network addres
 - Get info of a registered meta node
 
 ```shell
-https://rest.thestratos.org/register/meta-node/{meta node network address}
+https://rest.thestratos.org/stratos/register/v1/meta_node/{meta node network address}
 ```    
 
 <br>
@@ -761,7 +777,7 @@ https://rest.thestratos.org/register/meta-node/{meta node network address}
 - Get total number of registered resource nodes
 
 ```shell
-https://rest.thestratos.org/register/resource-count
+https://rest.thestratos.org/stratos/register/v1/resource_node_count
 ```    
 
 <br>
@@ -769,7 +785,7 @@ https://rest.thestratos.org/register/resource-count
 - Get total number of registered meta nodes
 
 ```shell
-https://rest.thestratos.org/register/meta-count
+https://rest.thestratos.org/stratos/register/v1/meta_node_count
 ```    
 
 <br>
@@ -779,7 +795,7 @@ https://rest.thestratos.org/register/meta-count
   - Query PoT rewards of a wallet_address at a specific epoch
 
 ```shell
-https://rest.thestratos.org/pot/rewards/wallet/{wallet_address}?epoch={epoch}
+https://rest.thestratos.org/stratos/pot/v1/rewards/wallet/{wallet_address}/epoch/{epoch}
 ```    
 
 <br>
@@ -787,7 +803,7 @@ https://rest.thestratos.org/pot/rewards/wallet/{wallet_address}?epoch={epoch}
 - Query current Pot rewards of a wallet_address
 
 ```shell
-https://rest.thestratos.org/pot/rewards/wallet/{wallet_address}
+https://rest.thestratos.org/stratos/pot/v1/rewards/wallet/{wallet_address}
 ```  
 
 <br>
@@ -795,7 +811,7 @@ https://rest.thestratos.org/pot/rewards/wallet/{wallet_address}
 - Query owner's Pot slashing info at a specific height
 
 ```shell
-https://rest.thestratos.org/pot/slashing/{wallet_adress}?height={height}
+https://rest.thestratos.org/stratos/pot/v1/slashing/{wallet_address}
 ```  
 
 <br>
@@ -805,21 +821,21 @@ https://rest.thestratos.org/pot/slashing/{wallet_adress}?height={height}
 - Get a simulated prepay result
 
 ```shell
-https://rest.thestratos.org/sds/simulatePrepay/<amount of `wei` to prepay>
+https://rest.thestratos.org/stratos/sds/v1/sim_prepay/<amount of `wei` to prepay>
 ```    
 <br>
 
 - Get current nozPrice
 
 ```shell
-https://rest.thestratos.org/sds/nozPrice
+https://rest.thestratos.org/stratos/sds/v1/noz_price
 ```    
 <br>
 
 - Get current nozSupply
 
 ```shell
-https://rest.thestratos.org/sds/nozSupply
+https://rest.thestratos.org/stratos/sds/v1/noz_supply
 ```    
 
 ---

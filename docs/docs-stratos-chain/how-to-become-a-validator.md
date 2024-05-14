@@ -34,7 +34,7 @@ If the active validators double sign, are frequently offline or do not participa
 ---
 
 ## Becoming a validator
-In order to become a validator, First you have installed and run a Stratos-chain full-node. You can [setup your full-node](../setup-and-run-a-stratos-chain-full-node/) if you haven't yet.
+In order to become a validator, First you have installed and run a Stratos-chain full-node. You can [setup your full-node](./setup-and-run-a-stratos-chain-full-node.md) if you haven't yet.
 
 The following instructions assume you have successfully run a Stratos-chain full-node and followed our instructions by default.
 
@@ -44,7 +44,7 @@ The following instructions assume you have successfully run a Stratos-chain full
 
 ## Connect to Stratos-chain Testnet
 
-Please refer to [full-node setup guide](../setup-and-run-a-stratos-chain-full-node/) to:
+Please refer to [full-node setup guide](./setup-and-run-a-stratos-chain-full-node.md) to:
 
 :material-check: download related files
 
@@ -549,7 +549,7 @@ stchaind tx slashing unjail --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
 Example:
 
 ```shell
-stchaind query slashing signing-info stvalconspub1zcjduepqsnwlx7rv0ghyvh9tm99zle39df99jt8hccwt8jdrvjs26zqrzh9shdmgyc
+stchaind query slashing signing-info '{"@type":"/cosmos.crypto.ed25519.PubKey","key":"gkpFejHRUaNjvaKpYXvsaUGJsIC5zrXu0ZlqOSF2Wms="}'
 ``` 
 
 You can find all detailed explanations at
@@ -681,7 +681,7 @@ Response:
         "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
         "listen_addr": "tcp://0.0.0.0:26656",
         "network": "mesos-1",
-        "version": "0.34.21",
+        "version": "0.37.4",
         "channels": "40202122233038606100",
         "moniker": "node",
         "other": {
@@ -733,7 +733,7 @@ Response:
       "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
       "listen_addr": "tcp://0.0.0.0:26656",
       "network": "mesos-1",
-      "version": "0.34.21",
+      "version": "0.37.4",
       "channels": "40202122233038606100",
       "moniker": "node",
       "other": {

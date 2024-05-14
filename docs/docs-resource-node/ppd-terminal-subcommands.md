@@ -14,8 +14,8 @@ Show all the `ppd terminal` sub-commands' description.
 help                                                           show all the commands
 wallets                                                        acquire all wallet wallets' address
 newwallet                                                      create new wallet, input password in prompt
-registerpeer                                                   register peer to index node
-rp                                                             register peer to index node
+registerpeer                                                   register peer to meta node
+rp                                                             register peer to meta node
 activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
 updateDeposit <depositDelta> <fee> optional<gas>               send transaction to stchain to update active pp's deposit
 deactivate <fee> optional<gas>                                 send transaction to stchain to stop being an active PP node
@@ -29,7 +29,7 @@ list <filename>                                                query uploaded fi
 list <page id>                                                 query all files owned by the wallet, paginated
 delete <filehash>                                              delete file
 get <sdm://account/filehash> <saveAs>                          download file, need to consume ozone
-    e.g: get sdm://st1jn9skjsnxv26mekd8eu8a8aquh34v0m4mwgahg/e2ba7fd2390aad9213f2c60854e2b7728c6217309fcc421de5aacc7d4019a4fe
+    e.g: get sdm://st1jn9skjsnxv26mekd8eu8a8aquh34v0m4mwgahg/v05ahm50ugfjrgd3ga8mqi6bqka32ks3dooe1p9g
 sharefile <filehash> <duration> <is_private>                   share an uploaded file
 allshare                                                       list all shared files
 getsharefile <sharelink> <password>                            download a shared file, need to consume ozone
@@ -43,12 +43,16 @@ config  <key> <value>                                          set config key va
 getoz <walletAddress>                                          get current ozone balance
 status                                                         get current resource node status
 filestatus <filehash>                                          get current state of an uploaded file
+backupstatus <filehash>                                        get backup status of an file
 maintenance start <duration>                                   put the node in maintenance mode for the requested duration (in seconds)
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node
 performancemeasure                                             turn on performance measurement log for 60 seconds
 withdraw <amount> <fee> optional<targetAddr> optional<gas>     withdraw matured reward (from address is the configured node wallet)
 send <toAddress> <amount> <fee> optional<gas>                  sending coins to another account (from address is the configured node wallet)
+updateinfo [--moniker=<moniker>] [--identity=<identity>] [--website=<website>]
+           [--security_contact=<security_contact>] [--details=<details>] <--fee=fee> <--gas=gas>
+                                                               update pp node info, including the beneficiary address from config file
 ```
 
 <br>
@@ -729,6 +733,26 @@ Request Accepted
 
 ---
 
+## `backupstatus`
+Shows backup state of a file.
+
+```yaml
+backupstatus <filehash>
+```
+
+Example:
+
+```yaml
+>filestatus v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo
+Request Accepted
+  >[INFO] 2024/04/22 21:38:12 upload_file.go:192: Backup status for file v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo: current_replica is 5, desired_replica is 5, ongoing_backups is 0, delete_origin is true, need_reupload is false
+  [INFO] 2024/04/22 21:38:12 upload_file.go:196: Backup is finished for file v05j1m52dltbs6ift7atcsup2ab9vh03umdp7pqo, delete all the temporary slices 
+```
+
+<br>
+
+---
+
 ## `maintenance start`
 Claim a maintenance. Put the resource node in maintenance mode for the requested duration (in seconds).
 
@@ -825,6 +849,31 @@ Sending coins to another account.
 > send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
 > [INFO] 2023/07/10 11:32:43 send.go:35: Send transaction delivered.
 ```
+<br>
+
+---
+
+## `updateinfo`
+update pp node info, including the beneficiary address from config file
+
+```yaml
+updateinfo [--moniker=<moniker>] [--identity=<identity>] [--website=<website>] [--security_contact=<security_contact>] [--details=<details>] <--fee=fee> <--gas=gas>
+```
+
+Example:
+
+```yaml
+>updateinfo --fee=0.1stos --gas=1000000
+Request Accepted
+>[INFO] 2024/05/13 09:56:21 update_resource_node.go:66: Send transaction delivered.
+  
+
+>updateinfo --moniker=newmoniker --identity=newIdentity --website=newWebsite --security_contact=newSecurityContact --details=newDdetails --fee=0.1stos --gas=1000000
+Request Accepted
+>[INFO] 2024/05/13 09:58:13 update_resource_node.go:66: Send transaction delivered.
+
+```
+
 <br>
 
 ---
