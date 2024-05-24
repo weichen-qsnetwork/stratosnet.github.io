@@ -16,14 +16,15 @@ wallets                                                        acquire all walle
 newwallet                                                      create new wallet, input password in prompt
 registerpeer                                                   register peer to meta node
 rp                                                             register peer to meta node
-activate <amount> <fee> optional<gas>                          send transaction to stchain to become an active PP node
-updateDeposit <depositDelta> <fee> optional<gas>               send transaction to stchain to update active pp's deposit
-deactivate <fee> optional<gas>                                 send transaction to stchain to stop being an active PP node
+activate <amount> <fee> [--gas=<gas>]                          send transaction to stchain to become an active PP node
+updateDeposit <depositDelta> <fee> [--gas=<gas>]               send transaction to stchain to update active pp's deposit
+deactivate <fee> [--gas=<gas>]                                 send transaction to stchain to stop being an active PP node
 startmining                                                    start mining
-prepay <amount> <fee> optional<beneficiary> <gas>              prepay stos to get ozone
-put <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
+prepay <amount> <fee> [--beneficiary=<beneficiary>] [--gas=<gas>]              
+                                                               prepay stos to get ozone
+put <filepath> [--isEncrypted=<isEncrypted>] [--nodeTier=<nodeTier>] [--allowHigherTier=<allowHigherTier>]
                                                                upload file, need to consume ozone
-putstream <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
+putstream <filepath> [--nodeTier=<nodeTier>] [--allowHigherTier=<allowHigherTier>]
                                                                upload video file for streaming, need to consume ozone. (alpha version, encode format config impossible)
 list <filename>                                                query uploaded file by self
 list <page id>                                                 query all files owned by the wallet, paginated
@@ -48,10 +49,11 @@ maintenance start <duration>                                   put the node in m
 maintenance stop                                               stop the current maintenance
 downgradeinfo                                                  get information of last downgrade happened on this pp node
 performancemeasure                                             turn on performance measurement log for 60 seconds
-withdraw <amount> <fee> optional<targetAddr> optional<gas>     withdraw matured reward (from address is the configured node wallet)
-send <toAddress> <amount> <fee> optional<gas>                  sending coins to another account (from address is the configured node wallet)
-updateinfo [--moniker=<moniker>] [--identity=<identity>] [--website=<website>]
-           [--security_contact=<security_contact>] [--details=<details>] <--fee=fee> <--gas=gas>
+withdraw <amount> <fee> [--targetAddr=<targetAddr>] [--gas=<gas>]
+                                                               withdraw matured reward (from address is the configured node wallet)
+send <toAddress> <amount> <fee> [--gas=<gas>]                  sending coins to another account (from address is the configured node wallet)
+updateinfo <fee> [--moniker=<moniker>] [--identity=<identity>] [--website=<website>]
+           [--security_contact=<security_contact>] [--details=<details>] [--gas=<gas>]
                                                                update pp node info, including the beneficiary address from config file
 ```
 
@@ -143,7 +145,7 @@ Example:
 Send transaction to Stratos chain to become an active Resource Node
 
 ```yaml
-activate <amount> <fee> [gas] 
+activate <amount> <fee> [--gas=gas] 
 ```
 
 !!! tip
@@ -157,7 +159,7 @@ activate <amount> <fee> [gas]
 Example:
 
 ```yaml
->activate 2stos 0.01stos 1000000
+>activate 2stos 0.01stos --gas=1000000
 Request Accepted
 [INFO] 2023/01/12 18:49:39 activate.go:66: get RspActivatePP RES_SUCCESS 
 [INFO] 2023/01/12 18:49:41 activate.go:83: The activation transaction was broadcast
@@ -172,7 +174,7 @@ Request Accepted
 Update deposit of an active resource node.
 
 ```yaml
-updateDeposit <depositDelta> <fee> [gas] 
+updateDeposit <depositDelta> <fee> [--gas=gas] 
 ```
 
 !!! tip
@@ -186,7 +188,7 @@ Example:
 The following command will increase 1stos to deposit, use 10000gwei for tx fees and 1000000 for tx gas.
 
 ```yaml
->updateDeposit 1stos 1000000gwei 1000000
+>updateDeposit 1stos 1000000gwei --gas=1000000
 Request Accepted
 ```
 
@@ -202,13 +204,13 @@ Request Accepted
 send transaction to Stratos-chain to stop being an active resource node
 
 ```yaml
-deactivate <fee> <gas>
+deactivate <fee> [--gas=gas]
 ```
 
 Example:
 
 ```yaml
->deactivate 10000000gwei 1000000
+>deactivate 10000000gwei --gas=1000000
 ```
 
 <br>
@@ -233,7 +235,7 @@ Ozone is the unit of traffic used by SDS. Operations involving network traffic r
 User can always `prepay` stos to get Ozone any time before uploading/downloading files.
 
 ```yaml
-prepay <amount> <fee> [gas]
+prepay <amount> <fee> [--beneficiary=<beneficiary>] [--gas=<gas>]  
 ```
 
 !!! tip
@@ -245,7 +247,7 @@ prepay <amount> <fee> [gas]
 Example:
 
 ```yaml
->prepay 1stos 6000000gwei 6000000
+>prepay 1stos 6000000gwei --gas=6000000
 Request Accepted
 >[INFO] 2023/01/12 10:59:07 prepay.go:24: Sending prepay message to SP! st172v4u8ysfgaphjs8uyy0svvc6d6tzl6gp07kn4
 [INFO] 2023/01/12 10:59:07 prepay.go:37: get RspPrepay RES_SUCCESS 
@@ -261,7 +263,7 @@ Request Accepted
 upload a file. It will consume Ozone.
 
 ```yaml
-put <filepath> optional<isEncrypted> optional<nodeTier> optional<allowHigherTier>
+put <filepath> [--isEncrypted=<isEncrypted>] [--nodeTier=<nodeTier>] [--allowHigherTier=<allowHigherTier>]
 ```
 `filepath` is the location of the file to upload, starting from your resource node folder. It is better to be an absolute path.
 
@@ -310,7 +312,7 @@ brew install ffmpeg
 Then, use `putstream` command to upload a media file
 
 ```yaml
-putstream <filepath>
+putstream <filepath> [--nodeTier=<nodeTier>] [--allowHigherTier=<allowHigherTier>]
 ```
 
 > `filepath` is the absolute path of the file to be uploaded, or a relative path starting from the root directory of the resource node.
@@ -835,7 +837,13 @@ Turn on performance measurement log for 60 seconds.
 Withdraw matured reward.
 
 ```yaml
-> withdraw 100stos 0.01stos st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l
+withdraw <amount> <fee> [--targetAddr=<targetAddr>] [--gas=<gas>]
+```
+
+Example:
+
+```yaml
+> withdraw 100stos 0.01stos --targetAddr=st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l
 > [INFO] 2023/11/30 05:51:38 withdraw.go:42: Withdraw transaction delivered.
 ```
 <br>
@@ -846,7 +854,13 @@ Withdraw matured reward.
 Sending coins to another account.
 
 ```yaml
-> send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos 6000000
+send <toAddress> <amount> <fee> [--gas=<gas>]
+```
+
+Example:
+
+```yaml
+> send st19tgvkz4d4uqv68ahn90vc4mhuh63g2l7u4ad6l 100wei 0.01stos --gas=6000000
 > [INFO] 2023/07/10 11:32:43 send.go:35: Send transaction delivered.
 ```
 <br>
@@ -857,18 +871,18 @@ Sending coins to another account.
 update pp node info, including the beneficiary address from config file
 
 ```yaml
-updateinfo [--moniker=<moniker>] [--identity=<identity>] [--website=<website>] [--security_contact=<security_contact>] [--details=<details>] <--fee=fee> <--gas=gas>
+updateinfo <fee> [--moniker=<moniker>] [--identity=<identity>] [--website=<website>] [--security_contact=<security_contact>] [--details=<details>] [--gas=<gas>]
 ```
 
 Example:
 
 ```yaml
->updateinfo --fee=0.1stos --gas=1000000
+>updateinfo 0.1stos --gas=1000000
 Request Accepted
 >[INFO] 2024/05/13 09:56:21 update_resource_node.go:66: Send transaction delivered.
   
 
->updateinfo --moniker=newmoniker --identity=newIdentity --website=newWebsite --security_contact=newSecurityContact --details=newDdetails --fee=0.1stos --gas=1000000
+>updateinfo 0.1stos --moniker=newmoniker --identity=newIdentity --website=newWebsite --security_contact=newSecurityContact --details=newDdetails --gas=1000000
 Request Accepted
 >[INFO] 2024/05/13 09:58:13 update_resource_node.go:66: Send transaction delivered.
 
