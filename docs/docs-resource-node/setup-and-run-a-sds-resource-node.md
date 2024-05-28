@@ -32,7 +32,7 @@ Note that provides their resource(disk/bandwidth/computation power) for SDS is c
 - <b>Software(tested version)</b>
 
     * Ubuntu 18.04+
-    * Go 1.19 linux/amd64
+    * Go 1.19 - 1.22 linux/amd64
 
 ---
 
@@ -64,7 +64,7 @@ There are some keywords that are widely used in SDS. We describe them as
 
 !!! tip
 
-    In order to run an SDS resource node, you need to build SDS source code which requires `Go 1.19`, `git`, `curl` and `make` installed.
+    In order to run an SDS resource node, you need to build SDS source code which requires `Go 1.19+`, `git`, `curl` and `make` installed.
     
     If you have installed them previously, just skip this section. Otherwise, please install them as the following
 
@@ -84,7 +84,7 @@ sudo apt update
 sudo apt upgrade
     
 # Install git, snap and make(you can also install them separately as your needs)
-sudo apt install git build-essential curl --yes
+sudo apt install git build-essential curl tmux --yes
 
 # Prepare binary PATH:
 mkdir ~/bin
@@ -92,31 +92,28 @@ echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile
 source ~/.profile
 ```
 
-!!! warning
-    Due to a conflict with one of our 3rd party dependencies, for the moment only Go version 1.19 can be used.
-
-To install Go 1.19, please follow these steps:
+To install Go 1.22, please follow these steps:
 
 ```shell
-# If you already have Go installed, check if it's version 1.19.xx:
+# If you already have Go installed, check with
 go version
 
-# If you have 1.18.xx or 1.20.xx, remove it using the same method you installed with. For example:
+# If you have 1.18 or older, remove it using the same method you installed with. For example:
 sudo snap remove go
 sudo apt remove golang-go
 ```
 
-Install Go 1.19:
+Install Go 1.22:
 
 ```shell
 # Do a clean-up:
 sudo rm -rf /usr/local/go
 
 # Download the Go Binary Package:
-wget https://go.dev/dl/go1.19.12.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.22.3.linux-amd64.tar.gz
 
 # Unzip it to /usr/local directory:
-sudo tar -C /usr/local -xzf go1.19.12.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.22.3.linux-amd64.tar.gz
 
 # Add the Go PATH:
 echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
@@ -126,7 +123,7 @@ source ~/.profile
 go version
 
 # You should see:
-# go version go1.19.12 linux/amd64
+# go version go1.22.3 linux/amd64
 
 ```
 
@@ -222,6 +219,7 @@ Usage:
 
 Available Commands:
   accounts    create accounts for the node
+  update      update the config file to the latest version
 
 Flags:
   -p, --create-p2p-key   create p2p key with config file, need interactive input
@@ -229,10 +227,11 @@ Flags:
   -h, --help             help for config
 
 Global Flags:
-  -c, --config string   configuration file path  (default "./configs/config.toml")
-  -r, --home string     path for the node (default "<root directory of your resource node>")
+  -c, --config string   configuration file path  (default "./config/config.toml")
+  -r, --home string     path for the node (default "/root/sds10")
 
 Use "ppd config [command] --help" for more information about a command.
+
 ```
 
 <br>
@@ -269,32 +268,35 @@ ppd config -w -p
 
 You will get a new wallet account
 
-```shell
+```jq
 # Make sure we are inside the root directory of the resource node
-cd ~/rsnode
-          
+cd ~/rsnode        
 ppd config -w -p
-[INFO]2022/02/14 10:19:09 setting.go:122: The config at location ./configs/config.toml does not exist
-generating default config file
-[INFO]2022/02/14 10:19:09 node.go:67: No P2P key specified in config. Attempting to create one...
-Enter password:                           # enter your P2P key password
-Enter password again:
-[INFO]2022/02/14 10:19:29 setting.go:245: finished changing configuration file  P2PAddress:  stsdsp2p1k70qsfx70s2vkyn737hu3yj50ghrn5yz53dzwx
-No wallet key specified in config. Attempting to create one...
-Enter wallet nickname: wallet2            # enter your wallet nickname
-Enter password:                           # enter your wallet key password
-Enter password again:
-       
-# Leaving the following blank will generate a new wallet account automatically.
 
-input bip39 mnemonic (leave blank to generate a new one)                # Press enter to generate a new wallet
-input hd-path for the account, default: "m/44'/606'/0'/0/0" :           # Press enter
-[INFO]2022/02/14 10:19:48 setting.go:245: finished changing configuration file  WalletAddress:  st1cmu0e9qlypg6j2ck8v5gfty6sxj2jszz84h8gf
-save wallet password to config file: Y(es)/N(o): Y                      # Press Y
-save the mnemonic phase properly for future recover:
-=======================================================================  
-interest liberty thrive maple trip fringe nurse deal fresh sport cool hip gate indoor brown mansion what table three wise design master warm apple
+[INFO] setting.go:159: The config at location /home/rawl/tmp/config/config.toml does not exist
+[INFO] config.go:29: generating default config file
+[INFO] config.go:66: No wallet key specified in config. Attempting to create one...
+Enter wallet nickname: main1
+Enter password:         # choose a password
+Enter password again:   # retype the password
+input bip39 mnemonic (leave blank to generate a new one)        # press enter
+input hd-path for the account, default: "m/44'/606'/0'/0/0" :   # press enter
+save the mnemonic phase properly for future recovery:
 =======================================================================
+junior quantum now kit gadget usage audit glide rocket tissue crawl surprise 
+point verify put virus prepare monitor electric spice tourist horror achieve poem
+=======================================================================
+
+[INFO] setup_wallet.go:62: Wallet st1na2yyucggvmjv5kmgc2jeaacpmjr6u9g7vqv32 has been generated successfully
+Do you want to use this wallet as your node wallet: Y(es)/N(o): y
+
+[INFO] common.go:162: No p2p key specified in config. Attempting to create one...
+Enter password for p2p key:         # choose a password
+Enter password for p2p key again:   # retype the password
+
+How should the p2p key be generated?  1) From the wallet  2) From a hex-encoded private key  3) Randomly: 1
+Use the HD path (m/44'/606'/0/0) to generate the p2p key (stsds1qvsypctsdm30keudfwcmtal63dxhnfhjunxms8)? [y/N] y
+
 ```
 </details>
 
@@ -305,33 +307,47 @@ You will get the same wallet account if you already have one.
 
 ```shell
 # Make sure we are inside the root directory of the resource node
-cd ~/rsnode
+cd ~/rsnode        
 ppd config -w -p
 
-[INFO]2022/02/22 11:25:19 setting.go:125: The config at location ./configs/config.toml does not exist
-generating default config file
-[INFO]2022/02/22 11:25:19 node.go:67: No P2P key specified in config. Attempting to create one...
-Enter password:               # enter your P2P key password
-Enter password again:
-[INFO]2022/02/22 11:25:21 setting.go:251: finished changing configuration file  P2PAddress:  stsdsp2p1arpvg0wthng0yty06ay0uup3vw7k3upm586few
-No wallet key specified in config. Attempting to create one...
-Enter wallet nickname: wallet1            # enter your wallet nickname
-Enter password:                           # enter your wallet key password
-Enter password again:
-        
-# Inputting the mnemonic phrase here will recovering an existing wallet account(mnemonic will not show on the screen). 
-
-input bip39 mnemonic (leave blank to generate a new one)         # Insert your mnemonic (seed phrase) 
-input hd-path for the account, default: "m/44'/606'/0'/0/0" :    # Press enter
-[INFO] 2022/02/22 11:25:34 setting.go:251: finished changing configuration file  WalletAddress:  st10t5chdnhx6myggwwhfq7q39hnjhzapau9yy6tv
-save wallet password to config file: Y(es)/N(o): Y               # Press Y
-save the mnemonic phase properly for future recover:
-=======================================================================  
-climb work able lock find blind fire cement exotic outdoor eyebrow panther repeat veteran prosper speak identify wolf mind decorate genre arctic bean gauge
+[INFO] setting.go:159: The config at location /home/rawl/tmp/config/config.toml does not exist
+[INFO] config.go:29: generating default config file
+[INFO] config.go:66: No wallet key specified in config. Attempting to create one...
+Enter wallet nickname: main1
+Enter password:         # choose a password
+Enter password again:   # retype the password
+input bip39 mnemonic (leave blank to generate a new one)        # enter your 24-words seed phrase
+input hd-path for the account, default: "m/44'/606'/0'/0/0" :   # press enter
+save the mnemonic phase properly for future recovery:
 =======================================================================
+junior quantum now kit gadget usage audit glide rocket tissue crawl surprise 
+point verify put virus prepare monitor electric spice tourist horror achieve poem
+=======================================================================
+
+[INFO] setup_wallet.go:62: Wallet st1na2yyucggvmjv5kmgc2jeaacpmjr6u9g7vqv32 has been generated successfully
+Do you want to use this wallet as your node wallet: Y(es)/N(o): y
+
+[INFO] common.go:162: No p2p key specified in config. Attempting to create one...
+Enter password for p2p key:         # choose a password
+Enter password for p2p key again:   # retype the password
+
+How should the p2p key be generated?  1) From the wallet  2) From a hex-encoded private key  3) Randomly: 1
+Use the HD path (m/44'/606'/0/0) to generate the p2p key (stsds1qvsypctsdm30keudfwcmtal63dxhnfhjunxms8)? [y/N] y
 ```
 
 </details>
+
+!!! note
+
+    When you enter your seed phrase, it will not be shown as a security measure.
+    
+    When generating the p2p key, option 1) will generate the same p2p address for the existing wallet, every time.
+    
+    If you want to run multiple nodes on the same wallet address, choose option 3).
+    
+    Alternatively, you can use unique wallets and unique p2p addresses, but a single `beneficiary_address` where all the rewards will be gathered to. 
+
+    It's just a matter of personal preference.
 
 <br>
 
@@ -398,7 +414,7 @@ network_port = '18081'
 
 <br>
 
-✏️ - <b>Edit the first meta node to connect on first run: (you can skip this if you start with v0.12.0)
+✏️ - <b>Edit the first meta node to connect on first run: <br>(you can skip this if you start with v0.12.0)
 </b>
 
 ```toml
@@ -416,7 +432,7 @@ p2p_address = 'stsds1ypxg8sj5vn4s4v0w965g4r9g3pt3vlz6wyzx0f'
 p2p_public_key = 'stsdspub1y6exsr8snwz65ev3pzq6k3yfy2ku3kexqdd0en35dnr8mxc9w6sq5jg6lf'
 network_address = '34.34.149.18:8888'
 
-# asian
+# asia
 p2p_address = 'stsds10kmygjv7e2t39f6jka6445q20e9lv4a7u3qex3'
 p2p_public_key = 'stsdspub1srn3qetarx3x6f2x9wqfv3nh2aufxv03ncl5v6jkmyg666scvz6s4xgprq'
 network_address = '34.85.35.57:8888'
@@ -430,16 +446,30 @@ network_address = '34.82.40.37:8888'
 
 <br>
 
+✏️ - <b>Edit the beneficiary_address:</b>
+
+```toml
+# Address for receiving reward. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+beneficiary_address = ''
+```
+
+Enter your wallet address where you want to receive your node mining rewards.
+
+This is useful when you run multiple nodes, each with its unique operating wallet and you want to receive all the rewards in one place.
+
+If you only have one node, you can enter here the same address as defined under `wallet_address`.
+
+
 <details>
   <summary><b>Example of a full config file</b></summary>
 
 ```shell
 [version]
-# App version number. Eg: 12
+# App version number. Eg: 11
 app_ver = 12
-# Network connections from nodes below this version number will be rejected. Eg: 12
+# Network connections from nodes below this version number will be rejected. Eg: 11
 min_app_ver = 12
-# Formatted version number. Eg: "v0.12.0"
+# Formatted version number. Eg: "v0.11.0"
 show = 'v0.12.0'
 
 # Configuration of the connection to the Stratos blockchain
@@ -456,28 +486,28 @@ grpc_server = 'grpc.thestratos.org:443'
 # Structure of the home folder. Default paths (eg: "./storage" become relative to the node home. Other paths are relative to the working directory
 [home]
 # Key files (wallet and P2P key). Eg: "./accounts"
-accounts_path = '/home/user/rsnode/accounts'
+accounts_path = '/home/user/sds1/accounts'
 # Where downloaded files will go. Eg: "./download"
-download_path = '/home/user/rsnode/download'
+download_path = '/home/user/sds1/download'
 # The list of peers (other sds nodes). Eg: "./peers"
-peers_path = '/home/user/rsnode/peers'
+peers_path = '/home/user/sds1/peers'
 # Where files are stored. Eg: "./storage"
-storage_path = '/home/user/rsnode/storage'
+storage_path = '/home/user/sds1/storage'
 
 [keys]
 # Address of the P2P key. Eg: "stsdsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-p2p_address = 'stsdsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-p2p_password = 'my-passw0rd'
+p2p_address = 'stsds1exampleexampleexampleexample'
+p2p_password = '1'
 # Address of the stratos wallet. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-wallet_address = 'stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-wallet_password = 'my-passw0rd'
-# "Address for receiving reward. Eg: \"stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"
-beneficiary_address = 'stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+wallet_address = 'st1exampleexampleexampleexample'
+wallet_password = '1'
+# Address for receiving reward. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+beneficiary_address = 'st1exampleexampleexampleexample'
 
 # Configuration of this node
 [node]
 # Should debug info be printed out in logs? Eg: false
-debug = false
+debug = true
 # When not 0, limit disk usage to this amount (in megabytes) Eg: 7629394 = 8 * 1000 * 1000 * 1000 * 1000 / 1024 / 1024  (8TB)
 max_disk_usage = 7629394
 
@@ -485,21 +515,21 @@ max_disk_usage = 7629394
 # Is the node running on an internal network? Eg: false
 internal = false
 # IP address of the node. Eg: "127.0.0.1"
-network_address = '99.99.99.99'
+network_address = '12.13.14.15'
 # Main port for communication on the network. Must be open to the internet. Eg: "18081"
 network_port = '18081'
 # Port for prometheus metrics
-metrics_port = '18181'
+metrics_port = '18152'
 # Port for the JSON-RPC api. See https://docs.thestratos.org/docs-resource-node/sds-rpc-for-file-operation/
-rpc_port = '18281'
-# Enable the node owner RPC API. This API can manipulate the node status and sign txs with the local wallet. Do not open this to the internet  Eg: false
-allow_owner_rpc = false
+rpc_port = '18252'
+# Namespaces enabled in the RPC API. Eg: "user,owner"
+rpc_namespaces = 'user'
 
 # The first meta node to connect to when starting the node
 [node.connectivity.seed_meta_node]
-p2p_address = 'stsds10kmygjv7e2t39f6jka6445q20e9lv4a7u3qex3'
-p2p_public_key = 'stsdspub1srn3qetarx3x6f2x9wqfv3nh2aufxv03ncl5v6jkmyg666scvz6s4xgprq'
-network_address = '34.85.35.57:8888'
+p2p_address = 'stsds1twy3wslrwmpkshx5fps6ysmqx5lc09p0ukurgf'
+p2p_public_key = 'stsdspub1xtewcceylwekj78qwyvvpp3ms8ku44ksxkcxhhw9c4vz9xtfu2yq2l4am7'
+network_address = '34.82.187.241:8888'
 
 # Configuration for the monitor server
 [monitor]
@@ -510,16 +540,16 @@ cert_file_path = ''
 # Path to the TLS private key file
 key_file_path = ''
 # Port used for the monitor websocket connection. It's the monitor UI that uses this port, not the person accessing the UI in a browser
-port = '18381'
+port = '18352'
 # List of IPs that are allowed to connect to the monitor websocket port. This is used to decide which IP can connect their monitor to the node, NOT to decide who can view the monitor UI page.
 allowed_origins = ['localhost']
 
 # Configuration for video streaming
 [streaming]
 # Port for the internal HTTP server
-internal_port = '18481'
+internal_port = '18452'
 # Port for the REST server
-rest_port = '18581'
+rest_port = '18552'
 
 [traffic]
 # Interval at which traffic is logged (in seconds) Eg: 10
@@ -534,12 +564,11 @@ max_upload_rate = 0
 # Configuration for the web server (when running sdsweb)
 [web_server]
 # Location of the web server files Eg: "./web"
-path = '/home/user/rsnode/sds1/web'
+path = '/home/user/sds1/web'
 # Port where the web server is hosted with sdsweb. If the port is opened and token_on_startup is true, anybody who loads the monitor UI will have full access to the monitor
-port = '18681'
+port = '18652'
 # Automatically enter monitor token when opening the monitor UI. This should be false if the web_server port is opened to internet and you don't want public access to your node monitor'
 token_on_startup = false
-
 
 ```
 
@@ -647,9 +676,9 @@ activate 1600stos 0.01stos
 
 You should run this command:
 
-1, After new node is activated
+1. After new node is activated
 
-2, After node is unsuspended
+2. After node is unsuspended
 
 Run the following command in `ppd terminal`:
 
@@ -669,55 +698,6 @@ Run the following command in `ppd terminal`:
 
 ---
 
-
-<br>
-
-## Update node binary
-
-If a newer version is released under <a href="https://github.com/stratosnet/sds/tags" target="_blank">SDS GitHub</a>, you can update your current version by following these instructions:
-
-- Stop the `ppd start` process
-- Compile the new version:
-
-```sh
-cd $HOME
-rm -rf sds
-git clone https://github.com/stratosnet/sds.git
-cd sds
-go clean -modcache
-git checkout tags/vX.XX.X (enter latest version)
-make build
-```
-
-- Replace the current binaries:
-
-```sh
-
-# If current binaries are installed under ~/bin folder, 
-# otherwise use your custom installation path
-
-cd $HOME
-cp sds/target/* $HOME/bin/
-```
-
-- Verify with
-
-```sh
-ppd version
-
-# It should display the latest version available on GitHub
-```
-
-- Edit `rsnode/config/config.toml` file at the following line with the latest version number:
-
-```sh
-# Formatted version number. Eg: "v0.12.0"
-show = 'v0.12.0'
-```
-
-- Start the `ppd start` process again.
-
----
 
 <br>
 
