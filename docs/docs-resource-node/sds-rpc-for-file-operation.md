@@ -77,6 +77,7 @@ A request for ozone needs to be done before uploading a file. This method allows
 | name         | type   | comment                            |
 |--------------|--------|------------------------------------|
 | walletaddr   | string | wallet address of the user account |
+
 #### Returns
 
 | name           | type   | comment                                                                                   |
@@ -1026,6 +1027,7 @@ Please see same method under section _[Download a File](#download-a-file)_
 | return         | string | negative: errors; "0": got shared file info; other values: invalid |
 | ozone          | string | value of ozone balance                                             |
 | sequencynumber | string | a sequence number to be used in uploading a file                   |
+
 #### Example
 
 Request
