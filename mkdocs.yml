@@ -64,7 +64,8 @@ nav:
       - Video Streaming: docs-resource-node/sds-video-streaming-handbook.md
     - Operating:
       - ppd Commands: docs-resource-node/ppd-terminal-subcommands.md
-      - SDS RPC: docs-resource-node/sds-rpc-for-file-operation.md
+      - File Operations RPC API: docs-resource-node/sds-rpc-for-file-operation.md
+      - Node Monitor WebSocket API: docs-resource-node/node-monitor-websocket-api.md
     - Examples:
       - RPC Client: docs-resource-node/rpc-client.md
 
