@@ -37,8 +37,8 @@ nav:
       - Become a Validator: docs-stratos-chain/how-to-become-a-validator.md
       - Use of State Sync: docs-stratos-chain/how-to-start-with-state-sync.md
       - Full-Chain as REST/gRPC: docs-stratos-chain/how-to-setup-rest-grpc-full-chain.md
-      - Use the Bridge on Testnet: docs-stratos-chain/how-to-use-bridge-testnet.md
-      - Mainnet Bridge and Staking: docs-stratos-chain/mainnet-bridge-and-staking.md
+      - Mainnet Bridge: docs-stratos-chain/mainnet-bridge.md
+      - Mainnet Staking: docs-stratos-chain/mainnet-staking.md      
     - Operating:
       - stchaind Commands Part 1: docs-stratos-chain/stchaind-commands-part-1.md
       - stchaind Commands Part 2: docs-stratos-chain/stchaind-commands-part-2.md
