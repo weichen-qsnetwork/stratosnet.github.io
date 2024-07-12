@@ -56,7 +56,7 @@ nav:
         - Multiple Accounts: docs-evm/wallets/metamask/multiple-accounts.md
         - STOS Gas token: docs-evm/wallets/metamask/gas-token.md
       - Available dapps: docs-evm/available-dapps.md
-  - Resource Node:
+  - Decentralized Storage:
     - HOWTOs:
       - SDS Resource Node: docs-resource-node/setup-and-run-a-sds-resource-node.md
       - SDS Update to v12: docs-resource-node/sds-update-v12.md
