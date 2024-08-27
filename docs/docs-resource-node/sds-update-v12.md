@@ -70,19 +70,14 @@ Should return: `v0.12.2`
 
 ## Edit config file
 
-There are 2 ways to update the existing config file: Automatically or Manually.
-
-The recommended way is to update it automatically. But, if for any reason, the automatic method fails, you can update your config file manually.
+Automatically update and verify your current configuration file:
 
 ---
-
-### Automatically
 
 - Enter your node folder. Eg:
 
 ```shell
-cd $HOME
-cd sds1
+cd /path/to/rsnode1
 ```
 
 - Run the config update command:
@@ -101,71 +96,9 @@ Expected output:
 [INFO] config.go:135: Added entry node.connectivity.rpc_namespaces = user
 ```
 
----
+!!! tip ""
 
-### Manually
-
-- Enter your node folder.
-Eg:
-
-```shell
-cd $HOME
-cd sds1
-```
-
-- Open your node config file:
-
-```shell
-nano config/config.toml
-```
-
-- Find the lines in <red>red</red> and edit them as shown in <green>green</green>:
-
-
-!!! info ""
-
-    <red>app_ver = 11</red><br>
-    <green>app_ver = 12</green>
-
-    <red>min_app_ver = 11</red><br>
-    <green>min_app_ver = 12</green>
-
-    <red>show = 'v0.11.9</red><br>
-    <green>show = 'v0.12.2'</green>
-
-    <red>gas_adjustment = 1.3</red><br>
-    <green>gas_adjustment = 1.5</green>
-
-    <red>allow_owner_rpc = false</red><br>
-    <green>rpc_namespaces = 'user'</green>
-
-- Add the following lines:
-
-!!! info ""
-
-    After
-
-    ```
-    wallet_password = ''
-    ```
-
-    Add:
-
-    ```
-    # Address for receiving reward. Eg: "stxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    beneficiary_address = 'st1kranydxr7hyjs3n4susctywrxg5v23ef60urvk'
-    ```
-
-`beneficiary_address` has been added for miners that operate multiple nodes, from multiple wallets, that would like to receive all rewards to a single wallet address. You can use the same wallet as `wallet_address` if you want.
-
-- Remove the following lines:
-
-!!! info ""
-
-    ```
-    # Should the node start mining automatically? Eg: true
-    auto_start = true
-    ```
+    `beneficiary_address` has been added for miners that operate multiple nodes, from multiple wallets, that would like to receive all rewards to a single wallet address. You can use the same wallet as `wallet_address` if you want.
 
 ??? info "Example of a full config file"
 
@@ -220,14 +153,16 @@ nano config/config.toml
     [node.connectivity]
     # Is the node running on an internal network? Eg: false
     internal = false
-    # IP address of the node. Eg: "127.0.0.1"
-    network_address = '12.13.14.15'
+    # Domain name or IP address of the node. Eg: "127.0.0.1"
+    network_address = '127.0.0.1'
     # Main port for communication on the network. Must be open to the internet. Eg: "18081"
-    network_port = '18081'
+    network_port = '9101'
+    # (Optional)If not empty, the node will listen to this port locally, but other nodes will still use the network_port to connect to this node
+    local_port = ''
     # Port for prometheus metrics
-    metrics_port = '18152'
+    metrics_port = '9201'
     # Port for the JSON-RPC api. See https://docs.thestratos.org/docs-resource-node/sds-rpc-for-file-operation/
-    rpc_port = '18252'
+    rpc_port = '9301'
     # Namespaces enabled in the RPC API. Eg: "user,owner"
     rpc_namespaces = 'user'
 

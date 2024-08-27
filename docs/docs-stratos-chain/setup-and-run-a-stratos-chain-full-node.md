@@ -13,6 +13,11 @@ In practice, running a full-node only implies running a non-compromised and up-t
 
 The Stratos-chain validator is a full-node that participates in the Stratos Chain block generation cycle and also voting for the validity of a block proposed.
 
+!!! tip ""
+
+    You do not need to initiate your validator from block 1, which can take a long time to sync. 
+
+    Instead, you can expedite the process by using the State Sync feature before starting the node.
 
 <br>
 
@@ -63,7 +68,7 @@ sudo apt update
 sudo apt upgrade
     
 # Install git, snap and make(you can also install them separately as your needs)
-sudo apt install git build-essential curl tmux libgmp3-dev flex bison --yes
+sudo apt install git build-essential curl tmux libgmp3-dev flex bison jq --yes
     
 # Install PBC library
 wget https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz
@@ -120,12 +125,22 @@ Once the user account `stratos` is created, switch and login the system using `s
 
 #### Pre-compiled executables
 
+- Create executable folder and path:
+
+```shell
+mkdir ~/bin 
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile 
+source ~/.profile
+```
+
+<br>
+
 The following binary `stchaind` has been built and ready to be downloaded directly.
 
 ```shell
-# Make sure we are inside the $HOME folder
-cd $HOME
-wget https://github.com/stratosnet/stratos-chain/releases/download/v0.12.0/stchaind
+wget https://github.com/stratosnet/stratos-chain/releases/download/v0.12.1/stchaind \
+-O ~/bin/stchaind && \
+chmod +x ~/bin/stchaind
 ```
 
 <br>
@@ -133,49 +148,30 @@ wget https://github.com/stratosnet/stratos-chain/releases/download/v0.12.0/stcha
 - Check the granularity
 
 ```shell
-# Make sure we are inside the $HOME folder and check these two binary executables
-cd $HOME
-
-# Check granularity
-md5sum stchaind
-
+md5sum ~/bin/stchaind
+```
+```
 ## Expected output
-## 0d4a0fd5173fa273f6150b28e48086a3  stchaind
+0277fc8036ae2414f447f839f43c91e2  /home/stratos/bin/stchaind
 ```
 
 <br>
-
-- Add execute permission to this binary
-
-```shell
-# Make sure the file can be executed
-chmod +x stchaind
-```
-
-<br>
-
-- Add the binary to the search path
-
-```shell
-mkdir ~/bin 
-echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile 
-source ~/.profile
-mv stchaind ~/bin 
-```
 
 - Verify installation
 
 ```shell
 stchaind version
 
-# Should return v0.12.0
+# Should return v0.12.1
 ```
 
 !!! tip
 
-    💡 This binary is built for Ubuntu 18.04+ amd64. if you have other Linux kernels or you have any issues with the pre-compiled binary please, follow the next step to build your own binary from source code.
+    💡 This binary is built for Ubuntu 18.04+ amd64. 
 
-    Otherwise, continue with [Networks](#networks).
+    If you have other Linux kernels or you have any issues with the pre-compiled binary please, follow the next step to build your own binary from source code.
+
+    Otherwise, continue with [Initialize the node](#initialize-the-node).
 
 
 <br>
@@ -193,7 +189,7 @@ sudo apt install snapd
 sudo snap install go --classic
 ```
 
-Alternatively, you can follow the official instructions: [link](https://golang.org/doc/install)
+Alternatively, you can follow the official instructions: [install golang](https://golang.org/doc/install).
 
 <br>
 
@@ -202,7 +198,7 @@ Alternatively, you can follow the official instructions: [link](https://golang.o
 ```shell
 git clone https://github.com/stratosnet/stratos-chain.git
 cd stratos-chain
-git checkout tags/v0.12.0
+git checkout tags/v0.12.1
 make build
 ```
 
@@ -215,7 +211,8 @@ make build
 mkdir ~/bin 
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.profile 
 source ~/.profile
-cp build/stchaind ~/bin 
+cp build/stchaind ~/bin
+chmod +x ~/bin/stchaind
 ```
 
 - Verify installation
@@ -223,110 +220,55 @@ cp build/stchaind ~/bin
 ```shell
 stchaind version
 
-# Should return v0.12.0
+# Should return v0.12.1
 ```
 
 <br>
 
 ---
 
-### Networks
-
-!!! important ""
-
-    Currently, there are two live blockchains you can join:
-
-    - `Mainnet` (Stratos) which is using real tokens and it's a production environment. 
-
-    - `Testnet` (Mesos) which is using test tokens. You can setup a validator here at first if you want to test your system, see how things work, etc, without the risk of losing real tokens if something goes wrong.
-
-    - This guide applies to both, with a few small differences:
-
-
-    | Variable⤵  | Mainnet | Testnet |
-    | :------- | :------- | :----- |
-    | chain-id | stratos-1 | mesos-1 |
-    | keyring-backend | file / os / pass | test |
-
-### keyring-backend
-
-!!! important ""
-
-    On Testnet, the `keyring's backend` is `test`, i.e., `--keyring-backend=test`
-
-    - The `test` backend is a password-less variation of the `file` backend. Keys are stored unencrypted on disk.
-
-    On Mainnet, the `keyring's backend` can be `file`, `os` or `pass` e.g., `--keyring-backend=file`
-
-    - The `file` backend stores the keyring encrypted within the app's configuration directory. This keyring will request a password each time it is accessed. (Recommended)
-    - The `os` backend relies on operating system-specific defaults to handle key storage securely since operating system's default credentials managers are designed to meet users' most common needs and provide them with a comfortable experience without compromising on security.
-    - The `pass` backend uses the pass utility to manage on-disk encryption of keys' sensitive data and metadata. Keys are stored inside gpg encrypted files within app-specific directories. More info at passwordstore.org
-
----
-
 ### Initialize the node
 
+Create folders and initialize the node:
+
+Ignore the output since you need to download the genesis file.
 
 ```sh
-# Make sure we are inside the home directory
-cd $HOME
+stchaind init "<node moniker>" --chain-id stratos-1
 
-# Create folders and initialize the node
-stchaind init "<your_node_moniker>" --chain-id <network_chain_id>
-
-# ignore the output since you need to download the genesis file 
 ```
 
 !!! tip ""
 
-    💡 You can choose any `your_node_moniker`. This will be your node name.
-
-    💡 `network_chain_id` is `stratos-1` for Mainnet or `mesos-1` for Testnet. See [Networks](#networks).
+    💡 You can choose any `node moniker`. This will be your validator name.
 
 
 <br>
 
 - Download the `genesis.json` and `config.toml` files
 
-=== "Mainnet"
+```shell
+wget https://raw.githubusercontent.com/stratosnet/mainnet/main/genesis/genesis.json \
+-O ~/.stchaind/config/genesis.json
 
-    ```shell
-    wget https://raw.githubusercontent.com/stratosnet/mainnet/main/genesis/genesis.json
-    wget https://raw.githubusercontent.com/stratosnet/mainnet/main/config.toml
-    ```
+wget https://raw.githubusercontent.com/stratosnet/mainnet/main/config.toml \
+-O ~/.stchaind/config/config.toml
+```
 
-=== "Testnet"
-
-    ```shell
-    wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/genesis.json
-    wget https://raw.githubusercontent.com/stratosnet/stratos-chain-testnet/main/config.toml
-    ```
-
-!!! tip ""
-
-    💡 We strongly recommend using this downloaded `config.toml` for v0.12.0, instead of the ones for previous versions to avoid any mismatching. 
-
-   <br>
+<br>
 
 - Change `moniker` in the downloaded `config.toml` file
 
-Please change your node moniker by modifying the `config.toml` file. Open this file with an editor, search `moniker` (usually at Line #18) in the file to find the “moniker” field. 
+```shell
+nano ~/.stchaind/config/config.toml
+```
 
-Change it to any value you like. It’s your node name that will show on the network.
+Search `moniker` (usually at Line #18) in the file and choose a name for your validator:
 
 ```shell
 # A custom human readable name for this node
 moniker = "<your_node_moniker>"
 ```
-<br>
-
-- Move the downloaded `config.toml` and `genesis.json` files to `stchaind` folder (default in `$HOME/.stchaind/config/`). Replace if you already have these files.
-
-```shell
-mv config.toml $HOME/.stchaind/config/
-mv genesis.json $HOME/.stchaind/config/
-```
-
 <br>
 
 ---
@@ -347,13 +289,15 @@ After you finished the above steps, your `$HOME` folder should include the follo
 │   │   └── priv_validator_key.json
 │   ├── data
 │   │    └── priv_validator_state.json 
-│   └── keyring-test
+│   └── keyring-file
 ├── ...
 ```
 
 !!! tip
 
-    💡 By default, directory `.stchaind` will be created in the `$HOME` folder. The `.stchaind` folder contains the nodes` configurations and data.
+    💡 By default, directory `.stchaind` will be created in the `$HOME` folder. 
+
+    The `.stchaind` folder contains the nodes` configurations and data.
 
 <br>
 
@@ -361,13 +305,13 @@ After you finished the above steps, your `$HOME` folder should include the follo
 
 ## Start the full-chain node
 
-!!! tip
+!!! tip "Important"
 
-    Joining the network at a later time will require your node to download all the past blocks which, depending on how far ahead the network is, could take hours or even days.
+    Joining the network at a later time after mainnet launch will require your node to download all the past blocks which, depending on how far ahead the network is, it could take hours or even days.
 
     Stratos Chain now supports StateSync which enables your node to use a snapshot of the current chain and start the sync from there, which will only take a couple of minutes.
 
-    You can find the StateSync Doc [here](../how-to-start-with-state-sync/).
+    Please follow the StateSync Doc [here](../how-to-start-with-state-sync/) BEFORE starting the node.
 
 There are three ways to run your Stratos-chain full-node. 
 
@@ -375,28 +319,10 @@ Please choose ONE of them to start the node.
 
 <br>
 
-### In foreground
-
-
-```shell
-# Make sure we are inside the home directory
-cd $HOME
-
-# run your node
-stchaind start
-
-# Use `Ctrl+c` to stop the node.
-```
-
-<br>
-
 ### In background
 
 
 ```shell
-# Make sure we are inside the home directory
-cd $HOME
-
 # run your node in backend
 tmux new -s stchaind
 stchaind start 
@@ -406,6 +332,17 @@ Use the following Linux Command to stop your node.
 
 ```shell
 pkill stchaind
+```
+
+<br>
+
+### In foreground
+
+```shell
+# run your node
+stchaind start
+
+# Use `Ctrl+c` to stop the node.
 ```
 
 <br>
@@ -427,7 +364,7 @@ After=network-online.target
 
 [Service]
 User=stratos
-ExecStart=/home/stratos/stchaind start --home=/home/stratos/.stchaind
+ExecStart=/home/stratos/bin/stchaind start --home=/home/stratos/.stchaind
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=8192
@@ -491,50 +428,49 @@ Once you start your full-node, it will connect to the peers and start syncing. Y
 
 ```shell
 # Check the status of the node
-stchaind status
+stchaind status | jq
 ```
 
 The output will be similar to
 
 ```json
-stchaind status
 {
-    "NodeInfo": {
-        "protocol_version": {
-            "p2p": "8",
-            "block": "11",
-            "app": "0"
-        },
-        "id": "16a0758d175cbf5c08d41dffa73eb5c0190869ed",
-        "listen_addr": "tcp://0.0.0.0:26656",
-        "network": "test-chain",
-        "version": "0.37.4",
-        "channels": "40202122233038606100",
-        "moniker": "node",
-        "other": {
-            "tx_index": "on",
-            "rpc_address": "tcp://127.0.0.1:26657"
-        }
+  "NodeInfo": {
+    "protocol_version": {
+      "p2p": "8",
+      "block": "11",
+      "app": "0"
     },
-    "SyncInfo": {
-        "latest_block_hash": "697A2DB243E5191C6D85285A2ADD4924526924969C6C70FE71827C9FE41D4373",
-        "latest_app_hash": "E978F87BB23D351B853F5F0CF9FBBBA4464FF5D7CE3746BF3E2357F28CBCE041",
-        "latest_block_height": "497",
-        "latest_block_time": "2023-01-11T01:10:37.562405326Z",
-        "earliest_block_hash": "139676534FECFA507D56A06B03BD528E70ACA6D4DB6560219707011966613DE4",
-        "earliest_app_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-        "earliest_block_height": "1",
-        "earliest_block_time": "2023-01-09T17:08:58.4890503Z",
-        "catching_up": false
-    },
-    "ValidatorInfo": {
-        "Address": "18A7169C1B427D994133F7B3D4504E92789DB37C",
-        "PubKey": {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "69gothWTE9FJBZ5gBjjSNhg8y/5SsI1hBaD81Dum7lo="
-        },
-        "VotingPower": "500000"
+    "id": "431fa1be3ae34f83db720fcdeeaf7bd3c2a5976c",
+    "listen_addr": "tcp://0.0.0.0:26656",
+    "network": "stratos-1",
+    "version": "0.37.5",
+    "channels": "40202122233038606100",
+    "moniker": "your-node",
+    "other": {
+      "tx_index": "on",
+      "rpc_address": "tcp://94.53.41.120:26657"
     }
+  },
+  "SyncInfo": {
+    "latest_block_hash": "D443883AB048660663F13A52A530DAC60972BE54088929E6ECA805BEA3D0EAE6",
+    "latest_app_hash": "BE719C38F2665CEEEED705BD42B4CADE05DD4B9E63F102EE8351CB8B50C690F8",
+    "latest_block_height": "4752278",
+    "latest_block_time": "2024-08-20T20:57:26.381005711Z",
+    "earliest_block_hash": "AB23DC591EE39725A719849B7DDAD6205D218586332E98912CE52DE9CE5D2A19",
+    "earliest_app_hash": "E152858E2B7B2BD6CC427CD9D9E6B8CAE3D2F7C854587BBA9B90262B1AEEA860",
+    "earliest_block_height": "630001",
+    "earliest_block_time": "2023-11-04T18:33:05.05823058Z",
+    "catching_up": false
+  },
+  "ValidatorInfo": {
+    "Address": "0AA17143FBF6AA55E157548B87AADBEDA5031FC0",
+    "PubKey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "NIh+ybQFoHDiNd133LcwUYjmGxR8ITta/2G1gpcq/AU="
+    },
+    "VotingPower": "2703735768"
+  }
 }
 ```
 
@@ -561,14 +497,15 @@ To create a new wallet account, type the following command
 
 
 ```shell
-stchaind keys add <your wallet name> --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<your chosen keyring backend>
+stchaind keys add wallet1 \
+--hd-path="m/44'/606'/0'/0/0" \
+--keyring-backend=file
+
 ```
 
 !!! tip
 
-    💡 Choose a keyring-backend suited for the network you are running this chain installation on. See [keyring-backend](#keyring-backend).
-
-    💡 Enter a wallet name that you will easily remember. This name will be used inside other commands later.
+    💡 You can replace `wallet1` with another name of your choosing. 
 
 
 
@@ -581,9 +518,9 @@ In addition, you will have a secret recovery phrase(mnemonic phrase) which can b
 Example:
 
 ``` { .yaml .no-copy }
-stchaind keys add myWallet --hd-path="m/44'/606'/0'/0/0" --keyring-backend=test
+stchaind keys add wallet1 --hd-path="m/44'/606'/0'/0/0" --keyring-backend=file
 
-- name: myWallet
+- name: wallet1
 type: local
 address: st1x2c6gy4vr8alsyzuqr2x8x8xxtvs97sk3jt6dp
 pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A7HCZTlHEarBPabkOgId5SlyQKdqEsbXJHit7y9LXRy+"}'
@@ -603,33 +540,27 @@ venue chest pattern tool certain identify adult theme thing public foster promot
 If you already have a Stratos wallet account, you can recover it by typing the following command
 
 ```shell
-stchaind keys add <your wallet name> --recover --hd-path="m/44'/606'/0'/0/0" --keyring-backend=<your chosen keyring backend>
+stchaind keys add wallet1 \
+--recover \
+--hd-path="m/44'/606'/0'/0/0" \
+--keyring-backend=file
 ```
 
 !!! tip
 
-    💡 Choose a keyring-backend suited for the network you are running this chain installation on. See [keyring-backend](#keyring-backend).
-
-    💡 Enter a wallet name that you will easily remember. This name will be used inside other commands later.
-
-Example:
-
-```shell
-stchaind keys add myWallet1 --recover --hd-path="m/44'/606'/0'/0/0" --keyring-backend=test  
-```
+    💡 You can replace `wallet1` with another name of your choosing. 
 
 <br>
 
-After the above `keys add` command executed, a `keyring-*` folder will be created which contains your wallets' information with their addresses. 
+After the above `keys add` command executed, a `keyring-file` folder will be created under `~/.stchaind` which contains your wallets' information with their addresses. 
  
- The `keyring-*` folder looks like
+ The `keyring-file` folder looks like
 
 ``` { .yaml .no-copy }
 .
-├── 32b1a412ac19fbf8105c00d46398e632d902fa16.address
-├── d0c57269c450f81234307a33bd148ac4f90549e5.address
-├── myWallet1.info
-└── myWallet.info
+├── 2aee376318ab1d893383befee766d3a362aa34d1.address
+├── keyhash
+└── wallet1.info
 ```
 
 <br>
@@ -643,15 +574,15 @@ There are two ways to check your local wallets
 - Check all local wallet accounts
 
 ```shell
-stchaind keys list --keyring-backend=<keyring's backend> 
+stchaind keys list --keyring-backend=file
 ```
 
 Example:
 
 ``` { .properties .no-copy }
-stchaind keys list --keyring-backend=test
+stchaind keys list --keyring-backend=file
    - address: st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw
-     name: user0
+     name: wallet1
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A/wF15Wd3ogCXstE7S4Zf3DA4KXb0W7exQhP004PLTi3"}'
      type: local
    - address: st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0
@@ -677,15 +608,15 @@ stchaind keys list --keyring-backend=test
 - Check a specific local wallet account
 
 ```shell
-stchaind keys show <your wallet name> --keyring-backend=<keyring's backend> 
+stchaind keys show <your wallet name> --keyring-backend=file
 ```
 
 Example:
 
 ``` { .properties .no-copy }
-stchaind keys show myWallet1 --keyring-backend=test
+stchaind keys show wallet1 --keyring-backend=file
    - address: st16rzhy6wy2rupydps0gem69y2cnus2j09n42ksx
-     name: myWallet1
+     name: wallet1
      pubkey: '{"@type":"/stratos.crypto.v1.ethsecp256k1.PubKey","key":"A13YKi3/7p9FsFPTfVgxEO0YK8bnDHmBPfA3ID+k37ET"}'
      type: local
 ```
@@ -694,25 +625,9 @@ stchaind keys show myWallet1 --keyring-backend=test
 
 ---
 
-## Faucet
+- Check wallet account info and balance
 
-Faucet will only be available on Testnet to get test tokens into your wallet.
-
-```shell
-curl --header "Content-Type: application/json" --request POST --data '{"denom":"stos","address":"your wallet address"} ' https://faucet-mesos.thestratos.org/credit
-```
-
-!!! tip
-
-    Replace "your wallet address" with your st1xx wallet address
-
-    💡1stos = 1,000,000,000gwei = 1,000,000,000,000,000,000wei
-
-<br>
-
-- Check wallet account balance
-
-You can query your account info using this command:
+You can query your account information using this command:
 
 ```shell
 stchaind query account <your wallet address>
@@ -726,8 +641,10 @@ stchaind query account st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx
 '@type': /cosmos.auth.v1beta1.BaseAccount
 account_number: "1"
 address: st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx
-pub_key: null
-sequence: "0"
+pub_key:
+  '@type': /stratos.crypto.v1.ethsecp256k1.PubKey
+  key: A7jyRacJN1YLbmDxlA6qhs2yNHQle+ketWaUPhTuJUS2
+sequence: "132"
 ```
 
 <br>
@@ -758,9 +675,15 @@ total: "0
 
  This tx command will send an amount of tokens from one wallet address to another:
 
- ```shell
- stchaind tx bank send <from address> <to address> <amount> --keyring-backend=<keyring's backend> --chain-id=<current chain-id> --gas=auto --gas-prices=1000000000wei
- ```
+```shell
+stchaind tx bank send <from address> <to address> <amount> \
+--keyring-backend=file \
+--chain-id=stratos-1 \
+--gas=auto \
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
+
+```
  
 !!! tip ""
 
@@ -772,13 +695,47 @@ Example:
 
 Let us assume:
 
-* `from address`: st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0
-* `to address`: st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg
-* `amount`: 10stos
+* from address: `st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0`
+* to address: `st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg`
+* amount: `1stos`
 
 ``` { .properties .no-copy }
-stchaind tx bank send st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg 10stos \
---chain-id=mesos-1  --keyring-backend=test --gas=100000 --gas-prices=1000000000wei -y
+stchaind tx bank send st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0 \
+st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg 1stos \
+--keyring-backend=file \
+--chain-id=stratos-1 \
+--gas=auto \
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
+
+
+Enter keyring passphrase (attempt 1/3):
+gas estimate: 117088
+auth_info:
+  fee:
+    amount:
+    - amount: "117088000000000"
+      denom: wei
+    gas_limit: "117088"
+    granter: ""
+    payer: ""
+  signer_infos: []
+  tip: null
+body:
+  extension_options: []
+  memo: ""
+  messages:
+  - '@type': /cosmos.bank.v1beta1.MsgSend
+    amount:
+    - amount: "100000000000000000"
+      denom: wei
+    from_address: st1dz20dmhjkuc2tur3amgl8t45w807a640leh8p0
+    to_address: st123wun5lnwerdrt0mk2uxtusgawpfr228a0sseg
+  non_critical_extension_options: []
+  timeout_height: "0"
+signatures: []
+
+confirm transaction before signing and broadcasting [y/N]: y
 
 code: 0
 codespace: ""
@@ -792,7 +749,7 @@ logs: []
 raw_log: '[]'
 timestamp: ""
 tx: null
-txhash: BA96CF87646592487ABB9DDDE8FA86FE71441226281B04E15C5C66EDE415FBC6
+txhash: B8E22210FD5A654E900FA83340D955E07D1DD5FFF27FRAF0FB5FB0F7CC1D4A50
 ```
 
 <br>
