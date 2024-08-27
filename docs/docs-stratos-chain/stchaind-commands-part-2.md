@@ -85,10 +85,11 @@ Transaction example:
  --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
  --moniker=resource-node0 \
  --node-type=1 \
- --chain-id=mesos-1 \
- --keyring-backend=test \
+ --chain-id=stratos-1 \
+ --keyring-backend=file \
  --gas=auto \
- --gas-prices=1000000000wei -y
+ --gas-prices=1000000000wei \
+ --gas-adjustment=1.5
 ```
 
 There are three ways to check if the new resource node is in the resource-node list:
@@ -284,10 +285,11 @@ stchaind tx register update-resource-node \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=resource-nodeupdate \
 --node-type=7 \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 Check if the new resource node info has been updated.
@@ -370,10 +372,11 @@ stchaind tx register update-resource-node \
 --network-address=stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=resource-nodeupdate \
---node-type=7 --chain-id=mesos-1 \
---keyring-backend=test \
+--node-type=7 --chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 
@@ -428,10 +431,11 @@ Transaction example:
 stchaind tx register remove-resource-node \
 --network-address=stsds1gl9ywg6jdfdgcja70ffum4ectq4fmt26ay4znv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 Check the status update of the resource node
@@ -543,11 +547,11 @@ stchaind tx register create-meta-node \
 --pubkey=stsdspub1zcjduepqv7sj69c52rsdu5m8nk6tg4v5y8fh43w2hl9aa7mp3qgr9ym0feyshrc4wv \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
 --moniker=meta-node0 \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
-
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -613,10 +617,11 @@ stchaind tx register meta-node-reg-vote \
 --candidate-owner-address=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --opinion=true \
 --voter-network-address=stsds13yakj2xgzzdfcw7kd5gtfcfv2k6sn5eg4vdfem \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 
@@ -677,10 +682,11 @@ stchaind tx register update-meta-node \
 --network-address=stsds1faej5w4q6hgnt0ft598dlm408g4p747y4krwca \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --moniker=meta-node \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 
@@ -737,10 +743,11 @@ Transaction example:
 stchaind tx register remove-meta-node \
 --network-address=stsds1faej5w4q6hgnt0ft598dlm408g4p747y4krwca \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 Check if the meta node has been removed from the meta-node list using REST API
@@ -826,10 +833,11 @@ stchaind tx register update-meta-node-deposit \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
 --deposit-delta=100gwei \
 --incr-deposit=true \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -898,10 +906,11 @@ stchaind tx register kick-meta-node-vote \
 --voter-network-address=stsds1cw8qhgsxddak8hh8gs7veqmy5ku8f8za6qlq64 \
 --target-network-address=stsds13yakj2xgzzdfcw7kd5gtfcfv2k6sn5eg4vdfem \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1gwei -y
+--gas-adjustment=1.5 \
+--gas-prices=1000000000wei
 ```
 
 <br>
@@ -1110,10 +1119,11 @@ Transaction example:
  --uploader=st16uzr20lx072gexwjuvg94hz3t8y73u4085s9sw \
  --reporter=stsds14c3em44vlh276cujnr2ez802uyjyeqrrsu9fuh \
  --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
- --chain-id=mesos-1 \
- --keyring-backend=test \
+ --chain-id=stratos-1 \
+ --keyring-backend=file \
  --gas=auto \
- --gas-prices=1000000000wei -y
+ --gas-prices=1000000000wei \
+ --gas-adjustment=1.5
 ```
 
 <br>
@@ -1160,10 +1170,11 @@ Transaction example:
 
 ```shell
  stchaind tx sds prepay st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh 10stos \
- --chain-id=mesos-1 \
- --keyring-backend=test \
+ --chain-id=stratos-1 \
+ --keyring-backend=file \
  --gas=auto \
- --gas-prices=1000000000wei -y
+ --gas-prices=1000000000wei \
+ --gas-adjustment=1.5
 ```
 
 <br>
@@ -1278,10 +1289,11 @@ Transaction example:
 stchaind tx pot foundation-deposit \
 --amount=40000stos \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1339,10 +1351,12 @@ Transaction example:
 stchaind tx pot withdraw \
 --amount=100gwei \
 --target-address=st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx \
---from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh --chain-id=mesos-1 \
---keyring-backend=test \
+--from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1399,10 +1413,11 @@ stchaind tx pot legacy-withdraw \
 --amount=100gwei \
 --target-address=st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx \
 --from=st1pvyjzlhwrpgklu0044at4t6qh7m23k3kr2gsjh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 
@@ -1927,7 +1942,7 @@ Flags:
 Example:
 
 ```shell
-stchaind keys list --keyring-backend=test
+stchaind keys list --keyring-backend=file
 ```
 
 Result:
@@ -1978,7 +1993,7 @@ Flags:
 Example:
 
 ```shell
-stchaind status
+stchaind status | jq
 ```
 
 Result:
@@ -2145,7 +2160,7 @@ Flags:
 Example:
 
 ```shell
-stchaind query block 150
+stchaind query block 630001 | jq
 ```
 
 Result:
@@ -2244,7 +2259,7 @@ Example:
 ```shell
 stchaind query txs \
 --events 'message.sender=st1gtw399h9vfnekqsz3dg4n6mj0qgdpnh3c2n66k' \
---chain-id=mesos-1 \
+--chain-id=stratos-1 \
 --limit=20
 ```
 

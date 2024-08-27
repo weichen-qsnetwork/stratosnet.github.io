@@ -163,7 +163,7 @@ Global Flags(can be used for all stchaind commands):
 
     - `--chain-id`: the current `chain-id` may change when updating in testing phase . When it is applied, user needs to point out current `chain-id` which is `mesos-1` for Testnet and `stratos-1` for Mainnet.
 
-    - on Testnet, `--keyring-backend=test`
+    - on Testnet, `--keyring-backend=file`
 
     - on Mainnet, `--keyring-backend=os|file|pass`. You must use the same one you used when creating the wallet in previous guide (Setup Full-Chain Node). 
 
@@ -186,24 +186,27 @@ For example, the following commands will result in transfering the same value (1
 ``` shell
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100stos \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100000000000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 100000000000000000000wei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 ---
@@ -241,10 +244,11 @@ Example:
 
 ```shell
 stchaind tx bank send st1sqzsk8mplxx22fdgg878ccc3329gfd9g7d9g9d st1sqzsk8mplv5248gx6dddzzxweqvew8rtst96fx 1stos \
---chain-id=mesos-1  \
---keyring-backend=test \
+--chain-id=stratos-1  \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -316,10 +320,11 @@ Example:
 ```shell
 stchaind tx distribution withdraw-rewards stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  \
---keyring-backend=test \
+--chain-id=stratos-1  \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -358,10 +363,11 @@ Example:
 ```shell
 stchaind tx distribution withdraw-all-rewards \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  \
---keyring-backend=test \
+--chain-id=stratos-1  \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei -y
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -596,10 +602,11 @@ stchaind tx gov submit-proposal \
 --type="Text" \
 --deposit="100000000000gwei" \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1  \
---keyring-backend=test \
+--chain-id=stratos-1  \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -646,10 +653,11 @@ A sample of `param_change.json` could be:
 ```shell
 stchaind tx gov submit-proposal param-change ./helpers/param_change.json \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -689,10 +697,11 @@ The `proposal.json` could be:
 ```shell
 stchaind tx gov submit-proposal community-pool-spend ./helpers/proposal.json \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -716,10 +725,11 @@ stchaind tx gov submit-proposal software-upgrade="v0.3.1" \
 --title=test1 \
 --deposit=100000000000gwei \
 --info=testinfo \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -759,10 +769,11 @@ Example:
 ```shell
 stchaind tx gov deposit 7 100000000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -800,10 +811,11 @@ Example:
 ```shell
 stchaind tx gov vote 7 yes \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1125,10 +1137,11 @@ Example:
 ```shell
 stchaind tx slashing unjail \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1236,10 +1249,11 @@ Example:
 ```shell
 stchaind tx staking delegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k 1000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1277,10 +1291,11 @@ Example:
 ```shell
 stchaind tx staking redelegate stvaloper1fmdh9vf262qxe5ehmp9jvgkqzaeye4qmxjrr3k stvaloper1gtw399h9vfnekqsz3dg4n6mj0qgdpnh30x66xa 1000gwei \
 --from=st1fmdh9vf262qxe5ehmp9jvgkqzaeye4qm372rda \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1319,10 +1334,11 @@ Example:
 ```shell
 stchaind tx staking unbond stvaloper12adksjsd7gcsn23h5jmvdygzx2lfw5q4pyf57u 10000gwei \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=mesos-1 \
---keyring-backend=test \
+--chain-id=stratos-1 \
+--keyring-backend=file \
 --gas=auto \
---gas-prices=1000000000wei
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
@@ -1392,7 +1408,11 @@ stchaind tx staking create-validator \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---chain-id=mesos-1 --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y 
+--chain-id=stratos-1 \
+--keyring-backend=file \
+--gas=auto \
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5 
 ```
 
 The value of `--pubkey` can be retrieved by using the command `stchaind tendermint show-validator`
@@ -1447,10 +1467,14 @@ Example:
 ```shell
 stchaind tx staking edit-validator \
 --from=st12adksjsd7gcsn23h5jmvdygzx2lfw5q4kgq5zh \
---keyring-backend=test \
+--keyring-backend=file \
 --min-self-delegation=100  \
 --memo="Change 'min-self-delegation' from 1 to 100" \
---chain-id=mesos-1  --keyring-backend=test --gas=auto --gas-prices=1000000000wei -y
+--chain-id=stratos-1  \
+--keyring-backend=file \
+--gas=auto \
+--gas-prices=1000000000wei \
+--gas-adjustment=1.5
 ```
 
 <br>
