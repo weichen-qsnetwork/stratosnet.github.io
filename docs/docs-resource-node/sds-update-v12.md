@@ -9,7 +9,7 @@ description: SDS Update to v12 Documentation.
 
 SDS v12 is a mandatory update, if you run a SDS node for Stratos, you have to apply this update in order for your node to continue normal operations.
 
-v12 brings a large number of updates and new features. See <a href="https://github.com/stratosnet/sds/releases/tag/v0.12.2" target="_blank">Changelog</a> for detailed info.
+v12 brings a large number of updates and new features. See <a href="https://github.com/stratosnet/sds/releases/tag/v0.12.4" target="_blank">Changelog</a> for detailed info.
 
 ---
 
@@ -39,7 +39,7 @@ rm -rf sds
 ```shell
 git clone https://github.com/stratosnet/sds.git
 cd sds
-git checkout tags/v0.12.2
+git checkout tags/v0.12.4
 go clean -modcache
 make build
 ```
@@ -64,7 +64,7 @@ Make sure the newly installed `ppd` binary is up to date:
 ```shell
 ppd version
 ```
-Should return: `v0.12.2`
+Should return: `v0.12.4`
 
 ---
 
@@ -77,6 +77,8 @@ The recommended way is to update it automatically. But, if for any reason, the a
 ---
 
 ### Automatically
+
+(recommended)
 
 - Enter your node folder. Eg:
 
@@ -94,7 +96,7 @@ ppd config update
 Expected output:
 
 ```
-[INFO] config.go:122: Updated config version from v0.11.9 to v0.12.2
+[INFO] config.go:122: Updated config version from v0.11.9 to v0.12.4
 [INFO] config.go:128: Deleted entry node.auto_start = true
 [INFO] config.go:128: Deleted entry node.connectivity.allow_owner_rpc = false
 [INFO] config.go:135: Added entry keys.beneficiary_address =
@@ -131,7 +133,7 @@ nano config/config.toml
     <green>min_app_ver = 12</green>
 
     <red>show = 'v0.11.9</red><br>
-    <green>show = 'v0.12.2'</green>
+    <green>show = 'v0.12.4'</green>
 
     <red>gas_adjustment = 1.3</red><br>
     <green>gas_adjustment = 1.5</green>
@@ -176,7 +178,7 @@ nano config/config.toml
     # Network connections from nodes below this version number will be rejected. Eg: 11
     min_app_ver = 12
     # Formatted version number. Eg: "v0.11.0"
-    show = 'v0.12.2'
+    show = 'v0.12.4'
 
     # Configuration of the connection to the Stratos blockchain
     [blockchain]
